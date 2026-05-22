@@ -36,18 +36,20 @@ export default function BingleCharacter({ state = 'happy', size = 160, className
     }
   }, [speechBubble]);
 
+  const basePath = import.meta.env.BASE_URL || '/';
+
   // Map emotional states to the original PNG images provided by the user
   const imageMap = {
-    happy: '/images/bingle_happy.png',
-    sleeping: '/images/bingle_sleeping.png',
-    angry: '/images/bingle_angry.png',
-    hot: '/images/bingle_hot.png',
-    crying: '/images/bingle_crying.png',
-    excited: '/images/bingle_excited.png',
-    tired: '/images/bingle_tired.png',
-    shocked: '/images/bingle_shocked.png',
-    frozen: '/images/bingle_frozen.png',
-    eating: '/images/bingle_eating.png',
+    happy: `${basePath}images/bingle_happy.png`,
+    sleeping: `${basePath}images/bingle_sleeping.png`,
+    angry: `${basePath}images/bingle_angry.png`,
+    hot: `${basePath}images/bingle_hot.png`,
+    crying: `${basePath}images/bingle_crying.png`,
+    excited: `${basePath}images/bingle_excited.png`,
+    tired: `${basePath}images/bingle_tired.png`,
+    shocked: `${basePath}images/bingle_shocked.png`,
+    frozen: `${basePath}images/bingle_frozen.png`,
+    eating: `${basePath}images/bingle_eating.png`,
   };
 
   // If Bingle is currently feeding, show eating image! Otherwise if dragged nearby, show excited!
@@ -57,7 +59,7 @@ export default function BingleCharacter({ state = 'happy', size = 160, className
         ? (['sleeping', 'tired', 'happy', 'frozen'].includes(state) ? 'excited' : state)
         : state);
 
-  const imageSrc = imageMap[effectiveState] || '/images/bingle_happy.png';
+  const imageSrc = imageMap[effectiveState] || `${basePath}images/bingle_happy.png`;
 
   // Hover 3D Parallax mouse tracking
   const handleMouseMove = (e) => {

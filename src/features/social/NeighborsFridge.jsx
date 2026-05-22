@@ -281,7 +281,7 @@ export default function NeighborsFridge({ gameState, updateGameState, gainXP, sh
                 <div 
                   className="w-full aspect-square flex flex-col border-b-4 border-black relative overflow-hidden p-4 items-center justify-center"
                   style={{
-                    backgroundImage: `url('/images/ice_igloo_bg.png')`,
+                    backgroundImage: `url('${import.meta.env.BASE_URL || '/'}images/ice_igloo_bg.png')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}

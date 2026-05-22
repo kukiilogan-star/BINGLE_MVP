@@ -294,7 +294,7 @@ export default function PantryWarehouse({ gameState, updateGameState, gainXP, sh
       style={{
         backgroundImage: isSleeping
           ? 'linear-gradient(180deg, #0a1128 0%, #101f42 50%, #1d3570 100%)'
-          : `url('/images/fridge_shelves_bg.png')`
+          : `url('${import.meta.env.BASE_URL || '/'}images/fridge_shelves_bg.png')`
       }}
     >
       {/* Starry Night Sky shimmering stars when sleeping */}

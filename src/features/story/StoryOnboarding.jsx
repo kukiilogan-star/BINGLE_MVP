@@ -2,24 +2,26 @@ import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import BingleCharacter from '../../shared/ui/BingleCharacter.jsx';
 
+const basePath = import.meta.env.BASE_URL || '/';
+
 const PANELS = [
   {
-    img: '/images/panel_1.png',
+    img: `${basePath}images/panel_1.png`,
     ko: '냉장고 속 어딘가에, 혼자 남겨진 얼음 요정 빙글이가 있어요.',
     caption: '"It\'s so quiet... 문을 열어줄 사람이 있을까?"',
   },
   {
-    img: '/images/panel_2.png',
+    img: `${basePath}images/panel_2.png`,
     ko: '그런데 어느 날, 냉장고 문이 열렸습니다!',
     caption: '"WHOA!! 세상이 있었어?!"',
   },
   {
-    img: '/images/panel_3.png',
+    img: `${basePath}images/panel_3.png`,
     ko: '바깥의 온기가 빙글이를 조금씩 변화시킵니다.',
     caption: '"녹는데... 기분이 살아나는 것 같아! ✨"',
   },
   {
-    img: '/images/panel_4.png',
+    img: `${basePath}images/panel_4.png`,
     ko: '이제 빙글이는 당신과 함께 모험을 떠납니다.',
     caption: '"WE\'RE GONNA HAVE A GRAND ADVENTURE!"',
   },

@@ -108,13 +108,15 @@ const ComicDashboard = () => {
     setDialogueIdx(prev => prev + 1);
   };
 
+  const basePath = import.meta.env.BASE_URL || '/';
+
   const bingleImageMap = {
-    happy: '/images/bingle_happy.png',
-    angry: '/images/bingle_angry.png',
-    hot: '/images/bingle_hot.png',
-    sleeping: '/images/bingle_sleeping.png',
-    crying: '/images/bingle_crying.png',
-    excited: '/images/bingle_excited.png',
+    happy: `${basePath}images/bingle_happy.png`,
+    angry: `${basePath}images/bingle_angry.png`,
+    hot: `${basePath}images/bingle_hot.png`,
+    sleeping: `${basePath}images/bingle_sleeping.png`,
+    crying: `${basePath}images/bingle_crying.png`,
+    excited: `${basePath}images/bingle_excited.png`,
   };
 
   return (
