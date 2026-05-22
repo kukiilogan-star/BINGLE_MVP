@@ -1,0 +1,10 @@
+.bingle-glow {
+    filter: drop-shadow(0 0 15px rgba(253, 182, 75, 0.4));
+}
+.squishy-button {
+    transition: all 0.1s ease-out;
+}
+.squishy-button:active {
+    transform: translateY(4px);
+    box-shadow: none !important;
+}

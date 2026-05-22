@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Production build
+dist/
+build/
+
+# Vite / bundlers
+.vite/
+.rollup.cache/
+
+# Streamlit/Python
+.streamlit/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.env
+.venv
+poetry.lock
+pipfile.lock
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large images we don't want to sync if they are generated on desktop
+/bingle_slide_*.png

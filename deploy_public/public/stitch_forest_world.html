@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .breathe-glow {
+            box-shadow: 0 0 40px rgba(255, 140, 105, 0.4), 0 0 80px rgba(253, 182, 75, 0.2);
+        }
+        .leaf-orbit {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#ffe3cf",
+                        "inverse-primary": "#ffb59f",
+                        "primary": "#9e4225",
+                        "on-surface-variant": "#56423d",
+                        "tertiary-container": "#0ac1ab",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "background": "#fff8f5",
+                        "tertiary": "#006b5e",
+                        "on-primary-fixed-variant": "#7e2b10",
+                        "inverse-on-surface": "#ffede2",
+                        "on-secondary-fixed": "#291800",
+                        "surface-container-low": "#fff1e9",
+                        "surface-tint": "#9e4225",
+                        "surface": "#fff8f5",
+                        "on-primary-fixed": "#3a0a00",
+                        "on-primary-container": "#752409",
+                        "on-tertiary-container": "#004940",
+                        "on-secondary-fixed-variant": "#633f00",
+                        "outline": "#89726b",
+                        "tertiary-fixed": "#67f9e1",
+                        "surface-container": "#ffeadc",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#fbddc7",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#fbddc7",
+                        "secondary-fixed": "#ffddb3",
+                        "on-background": "#28180b",
+                        "on-tertiary-fixed-variant": "#005046",
+                        "on-secondary-container": "#704800",
+                        "inverse-surface": "#3f2d1e",
+                        "surface-dim": "#f2d4bf",
+                        "secondary-container": "#fdb64b",
+                        "outline-variant": "#dcc0b9",
+                        "tertiary-fixed-dim": "#44dcc5",
+                        "secondary-fixed-dim": "#ffb951",
+                        "primary-fixed-dim": "#ffb59f",
+                        "primary-fixed": "#ffdbd1",
+                        "surface-bright": "#fff8f5",
+                        "on-error": "#ffffff",
+                        "secondary": "#825500",
+                        "on-surface": "#28180b",
+                        "primary-container": "#ff8c69",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#00201b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "gutter-desktop": "24px",
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "card-padding": "24px",
+                        "gutter-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"],
+                        "headline-lg-mobile": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "label-sm": ["Nunito Sans"],
+                        "display-lg": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "800"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen relative overflow-hidden select-none">
+<!-- Full Screen Gameplay Background -->
+<div class="fixed inset-0 z-0">
+<div class="absolute inset-0 bg-secondary-container/20 mix-blend-overlay pointer-events-none"></div>
+<img alt="Forest World Gameplay Background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRIW8gIh50ZeRg6X0oXmeZsbawzogfS781Ckdyryp2LcT5mP3-kZgSN2SKOeCdDJeAgkVY6O51uQUQXaicy-GoRa1Qaek2sJ6uVW0jyQ-Gj0MccShDPNY6qcvT-yLfj6sxUH8Lb1-qp5Zxg6irMfAGIk2GpvCZvpNtCzGhYd6HGSIBekxIZfjPxS9W6uLTZC2cnSAUgNyYpr7QdMVu8dKOno0hSIMlY5Oc4yMOOeke2gWiC_BqzFPcn7QljqL65L1951kuguBzkHZH"/>
+</div>
+<!-- Top AppBar Overlay (Shared Component Mapping) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile py-4 border-b-2 border-on-surface-variant/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary font-headline-lg-mobile" style="font-variation-settings: 'FILL' 1;">temp_preferences_custom</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-black text-primary tracking-tight">BINGLE</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="bg-surface-container/80 backdrop-blur-sm px-3 py-1 rounded-full border border-outline-variant shadow-sm flex items-center gap-1">
+<span class="font-label-md text-label-md text-secondary">Day 3 / 21</span>
+</div>
+<img alt="Bingle Avatar" class="w-10 h-10 rounded-full border-2 border-primary-container shadow-sm bg-white/50 p-0.5" src="https://lh3.googleusercontent.com/aida/ADBb0uglQcb2VDCwT86ZHpc_yeL9fxyAbwPvqT0wfmm7SSnUhmJsJE7kJpARwWpnqvMSINkmnVtvV6KU18zdvOddXDZc4inGX4sGPfuX8S0t8RG4qZEu7xTMPTX0pVnUm3epxdTUcovZNx7tG9uZ2Q0g8SHpogHBE6-R0iPnDINakgU9MtlWauj1--Xqv34BVF5qHiQcAClmVzpRkPltrvGM7OfUMixs5dbwQYsiWuWWqa4DVpsciJKmIL0-2K0"/>
+</div>
+</header>
+<!-- Main Gameplay Area -->
+<main class="relative z-10 pt-24 pb-44 px-margin-mobile h-screen flex flex-col justify-between overflow-y-auto">
+<!-- HUD - Heart Temperature Bar -->
+<section class="w-full flex flex-col items-center gap-2">
+<div class="w-full max-w-md bg-surface-container-low/90 backdrop-blur-md rounded-xl p-3 border-2 border-outline-variant shadow-sm">
+<div class="flex justify-between items-center mb-2 px-1">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+                        마음 온도
+                    </span>
+<span class="font-label-sm text-label-sm text-primary font-bold">조금 따뜻해지는 중 🌡️</span>
+</div>
+<div class="h-4 w-full bg-surface-container rounded-full overflow-hidden border border-outline-variant/30">
+<div class="h-full bg-gradient-to-r from-primary-container to-secondary-container transition-all duration-1000 ease-in-out" style="width: 35%"></div>
+</div>
+</div>
+</section>
+<!-- Center Breathing Exercise Area -->
+<section class="flex-1 flex flex-col items-center justify-center relative">
+<div class="relative w-64 h-64 flex items-center justify-center">
+<!-- Glowing Circle -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container via-secondary-container to-surface-container-high rounded-full breathe-glow border-4 border-white/40 flex items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-primary-container drop-shadow-sm">숨을 들이쉬어...</span>
+</div>
+<!-- Orbiting Leaf Icons -->
+<div class="leaf-orbit">
+<span class="material-symbols-outlined absolute -top-4 left-1/2 -translate-x-1/2 text-tertiary-container text-4xl" style="font-variation-settings: 'FILL' 1;">energy_savings_leaf</span>
+<span class="material-symbols-outlined absolute top-1/4 -right-2 text-tertiary-container/60 text-3xl" style="font-variation-settings: 'FILL' 1;">energy_savings_leaf</span>
+<span class="material-symbols-outlined absolute bottom-4 left-10 text-tertiary-container/80 text-3xl" style="font-variation-settings: 'FILL' 1;">energy_savings_leaf</span>
+<span class="material-symbols-outlined absolute top-1/2 -left-6 text-tertiary-container/40 text-4xl" style="font-variation-settings: 'FILL' 1;">energy_savings_leaf</span>
+<span class="material-symbols-outlined absolute bottom-1/4 right-0 text-tertiary-container/90 text-2xl" style="font-variation-settings: 'FILL' 1;">energy_savings_leaf</span>
+</div>
+</div>
+<div class="mt-12 text-center">
+<p class="font-label-md text-label-md text-on-surface bg-surface-container-low/80 px-4 py-2 rounded-full border border-outline-variant inline-block mb-4">
+                    나뭇잎을 모아봐 🍃 (3/5)
+                </p>
+<div class="flex gap-2 justify-center">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="material-symbols-outlined text-on-surface-variant/30 text-2xl">eco</span>
+<span class="material-symbols-outlined text-on-surface-variant/30 text-2xl">eco</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-2">오늘의 임무: 나뭇잎 수집</p>
+</div>
+</section>
+<!-- Game Actions Horizontal List -->
+<section class="pb-4">
+<div class="flex gap-4 overflow-x-auto no-scrollbar py-4 px-2 -mx-2">
+<!-- Action 1: Active -->
+<button class="flex-shrink-0 w-32 aspect-square bg-surface-container-high rounded-lg border-4 border-secondary-container shadow-[0_4px_0_0_#704800] flex flex-col items-center justify-center gap-2 transform scale-105 transition-transform">
+<span class="text-3xl">🍃</span>
+<span class="font-label-md text-label-md text-secondary font-bold">호흡하기</span>
+</button>
+<!-- Action 2 -->
+<button class="flex-shrink-0 w-32 aspect-square bg-surface rounded-lg border-2 border-outline-variant/30 shadow-[0_4px_0_0_#89726b] flex flex-col items-center justify-center gap-2 hover:bg-surface-container-low transition-colors">
+<span class="text-3xl">🎵</span>
+<span class="font-label-md text-label-md text-on-surface-variant">자연소리</span>
+</button>
+<!-- Action 3 -->
+<button class="flex-shrink-0 w-32 aspect-square bg-surface rounded-lg border-2 border-outline-variant/30 shadow-[0_4px_0_0_#89726b] flex flex-col items-center justify-center gap-2 hover:bg-surface-container-low transition-colors">
+<span class="text-3xl">✍️</span>
+<span class="font-label-md text-label-md text-on-surface-variant">오늘의 일기</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Bottom Dialogue Box & Navigation Shell -->
+<div class="fixed bottom-0 w-full z-50">
+<!-- Dialogue Box -->
+<div class="px-margin-mobile mb-4">
+<div class="bg-surface-container-low border-2 border-on-surface-variant/20 rounded-lg p-4 shadow-lg flex gap-4 items-start relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-container"></div>
+<div class="flex-shrink-0 w-16 h-16 bg-white/60 rounded-full border-2 border-outline-variant overflow-hidden">
+<img alt="Bingle Portrait" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uglQcb2VDCwT86ZHpc_yeL9fxyAbwPvqT0wfmm7SSnUhmJsJE7kJpARwWpnqvMSINkmnVtvV6KU18zdvOddXDZc4inGX4sGPfuX8S0t8RG4qZEu7xTMPTX0pVnUm3epxdTUcovZNx7tG9uZ2Q0g8SHpogHBE6-R0iPnDINakgU9MtlWauj1--Xqv34BVF5qHiQcAClmVzpRkPltrvGM7OfUMixs5dbwQYsiWuWWqa4DVpsciJKmIL0-2K0"/>
+</div>
+<div class="flex-1 flex flex-col justify-between min-h-[64px]">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed pr-8">
+                        잘하고 있어! 숨을 천천히... 나뭇잎이 너한테 다가오고 있어 🍃
+                    </p>
+<div class="flex justify-end mt-2">
+<button class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-4 py-1.5 rounded-full shadow-[0_2px_0_0_#704800] active:translate-y-0.5 active:shadow-none transition-all flex items-center gap-1">
+                            다음 <span class="material-symbols-outlined text-sm">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Shared Component: BottomNavBar -->
+<nav class="bg-surface-container h-20 px-gutter-mobile flex justify-around items-center border-t-2 border-on-surface-variant/20 shadow-[0_-4px_12px_rgba(86,66,61,0.15)] rounded-t-lg">
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 shadow-[0_4px_0_0_rgba(130,85,0,1)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-label-md text-label-md">Story</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">thermostat</span>
+<span class="font-label-md text-label-md">Feelings</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">brush</span>
+<span class="font-label-md text-label-md">Stickers</span>
+</div>
+</nav>
+</div>
+</body></html>

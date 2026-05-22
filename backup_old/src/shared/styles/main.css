@@ -1,0 +1,225 @@
+:root {
+    --cream: #FDFBEE;
+    --brown: #3E3127;
+    --light-brown: #8B7A6C;
+    --accent: #E6A874;
+}
+
+body, html {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background-color: var(--cream);
+    font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+#app {
+    position: relative;
+    width: 100vw; height: 100vh;
+    display: flex; flex-direction: column;
+}
+
+.paper-texture::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url('https://www.transparenttextures.com/patterns/handmade-paper.png');
+    opacity: 0.3; pointer-events: none; z-index: 5;
+}
+
+.background-container {
+    position: absolute; inset: 0;
+    z-index: 1;
+}
+
+.main-bg {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: sepia(0.1) contrast(0.9);
+}
+
+#physics-canvas {
+    position: absolute; inset: 0;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+.ui-overlay {
+    position: absolute; inset: 0;
+    z-index: 10;
+    display: flex; flex-direction: column;
+    padding: 40px 30px;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.pill {
+    background: white;
+    border: 2.5px solid var(--brown);
+    border-radius: 25px;
+    padding: 8px 18px;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--brown);
+    pointer-events: auto;
+    box-shadow: 0 4px 0 rgba(62, 49, 39, 0.1);
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.title-group {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title-group h1 {
+    font-size: 32px;
+    color: var(--brown);
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.title-group p {
+    font-size: 14px;
+    color: var(--light-brown);
+    margin-top: 10px;
+}
+
+.speech-bubble {
+    background: white;
+    border: 2.5px solid var(--brown);
+    border-radius: 30px;
+    padding: 20px 25px;
+    position: relative;
+    margin-top: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--brown);
+    line-height: 1.5;
+    text-align: center;
+    box-shadow: 4px 4px 0 rgba(62, 49, 39, 0.1);
+    pointer-events: auto;
+}
+
+.speech-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid var(--brown);
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.quest-card {
+    background: #FDFBEE;
+    border: 2.5px solid var(--brown);
+    border-radius: 30px;
+    padding: 25px;
+    pointer-events: auto;
+    box-shadow: 0 8px 0 rgba(62, 49, 39, 0.08);
+}
+
+.quest-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-weight: 800;
+    color: var(--brown);
+}
+
+.quest-items {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.quest-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.quest-item .icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2.5px solid var(--brown);
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.quest-item span {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--brown);
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(62, 49, 39, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+}
+
+.bottom-nav {
+    background: white;
+    border: 2.5px solid var(--brown);
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 10px;
+    pointer-events: auto;
+    box-shadow: 0 8px 0 rgba(62, 49, 39, 0.12);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--light-brown);
+}
+
+.nav-item.active {
+    color: var(--brown);
+}
+
+.nav-item .icon {
+    font-size: 24px;
+}

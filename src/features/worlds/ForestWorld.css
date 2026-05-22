@@ -1,0 +1,15 @@
+.breathe-glow {
+    box-shadow: 0 0 40px rgba(255, 140, 105, 0.4), 0 0 80px rgba(253, 182, 75, 0.2);
+}
+.leaf-orbit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

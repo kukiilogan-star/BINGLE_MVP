@@ -1,0 +1,199 @@
+/* Premium Digital Therapeutics (DTx) Onboarding UI Styling */
+
+.dtx-container {
+    background-color: #030712;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    overflow: hidden;
+    position: relative;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.dtx-card {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 
+                inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+    border-radius: 2.25rem;
+    padding: 2rem;
+    width: 100%;
+    max-w: 420px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panel-viewport {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: radial-gradient(circle at center, rgba(15, 23, 42, 0.4) 0%, rgba(3, 7, 18, 0.8) 100%);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Glassmorphism Speech & Emotion Feedback Card */
+.feedback-card {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.25rem;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-sky {
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.25), 
+                inset 0 0 12px rgba(56, 189, 248, 0.1);
+    border-color: rgba(56, 189, 248, 0.4);
+}
+
+.glow-teal {
+    box-shadow: 0 0 35px rgba(20, 184, 166, 0.3), 
+                inset 0 0 12px rgba(20, 184, 166, 0.15);
+    border-color: rgba(20, 184, 166, 0.5);
+    background: rgba(20, 184, 166, 0.03);
+}
+
+.glow-rose {
+    box-shadow: 0 0 35px rgba(244, 63, 94, 0.25), 
+                inset 0 0 12px rgba(244, 63, 94, 0.12);
+    border-color: rgba(244, 63, 94, 0.45);
+    background: rgba(244, 63, 94, 0.03);
+}
+
+/* Sleek Premium Glass Slider and Buttons */
+.premium-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #f3f4f6;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.premium-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.premium-btn:active {
+    transform: translateY(1px);
+}
+
+.premium-btn-primary {
+    background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+    border: none;
+    box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+    color: #ffffff;
+}
+
+.premium-btn-primary:hover {
+    background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 100%);
+    box-shadow: 0 12px 24px -5px rgba(37, 99, 235, 0.5);
+}
+
+.premium-btn-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Animated Shiver for cold state */
+.shiver-anim {
+    animation: shiver 0.4s infinite ease-in-out;
+}
+@keyframes shiver {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-1.5px, 0.5px) rotate(-0.3deg); }
+    50% { transform: translate(1px, -1px) scale(0.99); }
+    75% { transform: translate(-0.5px, 1px) rotate(0.3deg); }
+}
+
+/* Smooth step meter styling */
+.step-meter-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #38bdf8 0%, #06b6d4 100%);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    border-radius: 9999px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glass slider custom appearance */
+.premium-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    outline: none;
+}
+
+.premium-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.premium-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* Micro-sparkle floating animations */
+.sparkle-slow {
+    animation: sparkleSlow 2.5s infinite ease-in-out;
+}
+@keyframes sparkleSlow {
+    0%, 100% { opacity: 0.3; transform: scale(0.8) translateY(0); }
+    50% { opacity: 1; transform: scale(1.1) translateY(-6px); }
+}
+
+/* World portals in Phase 4 */
+.world-glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 0.75rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.world-glass-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.world-glass-card.active {
+    background: rgba(56, 189, 248, 0.1);
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+}

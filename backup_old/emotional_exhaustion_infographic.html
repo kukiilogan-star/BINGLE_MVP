@@ -1,0 +1,177 @@
+
+<h2 class="sr-only">현대인의 정서적 소진과 데이터 기반 케어 모델 인포그래픽</h2>
+
+<style>
+  .ig-root { font-family: var(--font-sans); padding: 1.5rem 0; }
+  .ig-header { margin-bottom: 2rem; }
+  .ig-title { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; color: var(--color-text-tertiary); text-transform: uppercase; margin: 0 0 6px; }
+  .ig-headline { font-size: 20px; font-weight: 500; color: var(--color-text-primary); margin: 0; line-height: 1.4; }
+  .ig-card { border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+  .ig-card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 1rem; }
+  .ig-icon-wrap { width: 40px; height: 40px; border-radius: var(--border-radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .ig-num { font-size: 11px; font-weight: 500; margin: 0 0 2px; }
+  .ig-card-title { font-size: 15px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 2px; line-height: 1.35; }
+  .ig-card-sub { font-size: 12px; color: var(--color-text-secondary); margin: 0; }
+  .ig-divider { height: 0.5px; background: var(--color-border-tertiary); margin: 0 0 1rem; }
+  .ig-body { font-size: 13.5px; color: var(--color-text-secondary); line-height: 1.75; margin: 0 0 1rem; }
+  .ig-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ig-tag { font-size: 11.5px; font-weight: 500; padding: 3px 10px; border-radius: 100px; }
+
+  .coral-icon { background: #FAECE7; color: #993C1D; }
+  .coral-num { color: #993C1D; }
+  .coral-tag { background: #FAECE7; color: #993C1D; }
+
+  .amber-icon { background: #FAEEDA; color: #854F0B; }
+  .amber-num { color: #854F0B; }
+  .amber-tag { background: #FAEEDA; color: #854F0B; }
+
+  .teal-icon { background: #E1F5EE; color: #0F6E56; }
+  .teal-num { color: #0F6E56; }
+  .teal-tag { background: #E1F5EE; color: #0F6E56; }
+
+  .ig-flow { display: flex; align-items: stretch; gap: 0; margin-bottom: 1rem; }
+  .ig-flow-item { flex: 1; text-align: center; padding: 10px 8px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); }
+  .ig-flow-arrow { display: flex; align-items: center; justify-content: center; padding: 0 4px; color: var(--color-text-tertiary); font-size: 16px; }
+  .ig-flow-label { font-size: 11px; color: var(--color-text-secondary); margin: 0 0 3px; }
+  .ig-flow-val { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin: 0; }
+
+  .ig-highlight { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 14px; margin-bottom: 1rem; }
+  .ig-highlight p { font-size: 13px; color: var(--color-text-secondary); margin: 0; line-height: 1.6; }
+  .ig-highlight strong { font-weight: 500; color: var(--color-text-primary); }
+
+  .ig-stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1rem; }
+  .ig-stat { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 12px; text-align: center; }
+  .ig-stat-num { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 2px; }
+  .ig-stat-label { font-size: 10.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.4; }
+
+  @media (prefers-color-scheme: dark) {
+    .coral-icon { background: #4A1B0C; color: #F0997B; }
+    .coral-num { color: #F0997B; }
+    .coral-tag { background: #4A1B0C; color: #F0997B; }
+    .amber-icon { background: #412402; color: #EF9F27; }
+    .amber-num { color: #EF9F27; }
+    .amber-tag { background: #412402; color: #EF9F27; }
+    .teal-icon { background: #04342C; color: #5DCAA5; }
+    .teal-num { color: #5DCAA5; }
+    .teal-tag { background: #04342C; color: #5DCAA5; }
+  }
+</style>
+
+<div class="ig-root">
+
+  <div class="ig-header">
+    <p class="ig-title">Problem — Solution Framework</p>
+    <p class="ig-headline">번아웃 대응을 위한 저부하 케어 모델의 필요성</p>
+  </div>
+
+  <div class="ig-card">
+    <div class="ig-card-header">
+      <div class="ig-icon-wrap coral-icon">
+        <i class="ti ti-flame" style="font-size:20px;" aria-hidden="true"></i>
+      </div>
+      <div>
+        <p class="ig-num coral-num">문제 01</p>
+        <p class="ig-card-title">현대인의 '정서적 소진'</p>
+        <p class="ig-card-sub">번아웃 증후군의 보편화</p>
+      </div>
+    </div>
+    <div class="ig-divider"></div>
+    <p class="ig-body">급변하는 사회 구조와 과도한 경쟁 속에서 번아웃 증후군은 <strong style="font-weight:500; color:var(--color-text-primary)">특정 직업군을 넘어 현대인 전반</strong>에 걸쳐 나타나는 심각한 질환으로 확산됨.</p>
+    <div class="ig-stat-row">
+      <div class="ig-stat">
+        <p class="ig-stat-num">↓</p>
+        <p class="ig-stat-label">무기력증<br>에너지 고갈</p>
+      </div>
+      <div class="ig-stat">
+        <p class="ig-stat-num">↓</p>
+        <p class="ig-stat-label">자기혐오<br>자존감 저하</p>
+      </div>
+      <div class="ig-stat">
+        <p class="ig-stat-num">↓</p>
+        <p class="ig-stat-label">일상적 기능<br>저하</p>
+      </div>
+    </div>
+    <div class="ig-tags">
+      <span class="ig-tag coral-tag">조기 개입 필수</span>
+      <span class="ig-tag coral-tag">고위험군 전반화</span>
+      <span class="ig-tag coral-tag">만성화 위험</span>
+    </div>
+  </div>
+
+  <div class="ig-card">
+    <div class="ig-card-header">
+      <div class="ig-icon-wrap amber-icon">
+        <i class="ti ti-brain" style="font-size:20px;" aria-hidden="true"></i>
+      </div>
+      <div>
+        <p class="ig-num amber-num">문제 02</p>
+        <p class="ig-card-title">기존 웰니스 앱의 인지적 부담</p>
+        <p class="ig-card-sub">고위험군에서의 높은 이탈률</p>
+      </div>
+    </div>
+    <div class="ig-divider"></div>
+    <p class="ig-body">기존 앱은 사용자가 직접 감정을 입력하거나 복잡한 명상 가이드를 따라야 하는 방식으로 설계되어, 심리적 에너지가 고갈된 사용자에게 역설적 부담을 줌.</p>
+    <div class="ig-flow">
+      <div class="ig-flow-item">
+        <p class="ig-flow-label">감정 직접 입력</p>
+        <p class="ig-flow-val">능동적 노력</p>
+      </div>
+      <div class="ig-flow-arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+      <div class="ig-flow-item">
+        <p class="ig-flow-label">심리적 에너지 소모</p>
+        <p class="ig-flow-val">이중 부담</p>
+      </div>
+      <div class="ig-flow-arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+      <div class="ig-flow-item">
+        <p class="ig-flow-label">고위험군 이탈</p>
+        <p class="ig-flow-val">케어 공백</p>
+      </div>
+    </div>
+    <div class="ig-tags">
+      <span class="ig-tag amber-tag">높은 이탈률</span>
+      <span class="ig-tag amber-tag">역설적 부담</span>
+      <span class="ig-tag amber-tag">명상 가이드 복잡성</span>
+    </div>
+  </div>
+
+  <div class="ig-card">
+    <div class="ig-card-header">
+      <div class="ig-icon-wrap teal-icon">
+        <i class="ti ti-activity-heartbeat" style="font-size:20px;" aria-hidden="true"></i>
+      </div>
+      <div>
+        <p class="ig-num teal-num">솔루션 03</p>
+        <p class="ig-card-title">데이터 기반의 능동적 케어</p>
+        <p class="ig-card-sub">저부하 인터랙티브 케어 모델</p>
+      </div>
+    </div>
+    <div class="ig-divider"></div>
+    <p class="ig-body">웨어러블 기기의 생체 데이터(HRV 등)를 자동으로 수집하여, 사용자가 아무것도 하지 않아도 상태가 감지되고 케어가 시작되는 방식.</p>
+    <div class="ig-highlight">
+      <p><strong>Projection 메커니즘</strong> — 수집된 생체 신호를 캐릭터와 환경에 투영하여, 사용자는 자신의 상태를 직접 표현하지 않고도 시각적·감각적으로 인식하고 반응할 수 있음.</p>
+    </div>
+    <div class="ig-flow">
+      <div class="ig-flow-item">
+        <p class="ig-flow-label">웨어러블</p>
+        <p class="ig-flow-val">HRV 자동 수집</p>
+      </div>
+      <div class="ig-flow-arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+      <div class="ig-flow-item">
+        <p class="ig-flow-label">상태 감지</p>
+        <p class="ig-flow-val">AI 분석</p>
+      </div>
+      <div class="ig-flow-arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+      <div class="ig-flow-item">
+        <p class="ig-flow-label">캐릭터 투영</p>
+        <p class="ig-flow-val">저부하 피드백</p>
+      </div>
+    </div>
+    <div class="ig-tags">
+      <span class="ig-tag teal-tag">수동적 참여</span>
+      <span class="ig-tag teal-tag">HRV 기반</span>
+      <span class="ig-tag teal-tag">캐릭터 프로젝션</span>
+      <span class="ig-tag teal-tag">이탈률 최소화</span>
+    </div>
+  </div>
+
+</div>

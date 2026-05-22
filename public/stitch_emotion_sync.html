@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        .bingle-glow {
+            filter: drop-shadow(0 0 15px rgba(253, 182, 75, 0.4));
+        }
+        .squishy-button:active {
+            transform: translateY(4px);
+            box-shadow: none !important;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#fbddc7",
+                        "outline": "#89726b",
+                        "on-tertiary-fixed": "#00201b",
+                        "surface-dim": "#f2d4bf",
+                        "primary-container": "#ff8c69",
+                        "on-surface-variant": "#56423d",
+                        "surface-container-low": "#fff1e9",
+                        "inverse-primary": "#ffb59f",
+                        "tertiary-container": "#0ac1ab",
+                        "secondary-container": "#fdb64b",
+                        "tertiary": "#006b5e",
+                        "on-secondary-fixed-variant": "#633f00",
+                        "primary-fixed": "#ffdbd1",
+                        "on-primary-fixed-variant": "#7e2b10",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#fff8f5",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#28180b",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#004940",
+                        "secondary-fixed-dim": "#ffb951",
+                        "tertiary-fixed": "#67f9e1",
+                        "on-background": "#28180b",
+                        "primary": "#9e4225",
+                        "secondary": "#825500",
+                        "on-secondary-container": "#704800",
+                        "surface-container": "#ffeadc",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#44dcc5",
+                        "surface-container-high": "#ffe3cf",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#fbddc7",
+                        "surface-tint": "#9e4225",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#291800",
+                        "inverse-on-surface": "#ffede2",
+                        "on-primary-container": "#752409",
+                        "inverse-surface": "#3f2d1e",
+                        "surface": "#fff8f5",
+                        "primary-fixed-dim": "#ffb59f",
+                        "on-tertiary-fixed-variant": "#005046",
+                        "background": "#fff8f5",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffddb3",
+                        "on-primary-fixed": "#3a0a00",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#dcc0b9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-desktop": "40px",
+                        "gutter-mobile": "16px",
+                        "margin-mobile": "20px",
+                        "gutter-desktop": "24px",
+                        "card-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"],
+                        "headline-lg-mobile": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"],
+                        "label-sm": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "800"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim docked full-width top-0 rounded-b-lg border-b-2 border-outline/20 dark:border-outline-variant/20 shadow-[0_4px_0_0_rgba(137,114,107,0.1)] sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-outline/30 bg-surface-container-highest">
+<img alt="Bingle Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJoNLwHU1jO7n1qfWzeLX3uhckAbH-2YqWVF4pa6zJIX6qgYGZCKVMx7x1SDObSJg5ZseLruYMDkuz2tmITyuksyGCna-0TnGw8tVrZT93t2csNpq-XecaiYOcWWSuH_Lv8KPie4N8pST0mvAYOx8XIPrIVG5cHo8zbVoosCVN4W7Gp5AoelyI0kRBxvk-3RNialrkg641EsZ2dEu5D8r6QPq2AtIoHNeMnbwIZV_rZ0teXupbkx-EdMzVWnC22j2Huo29olFL8IUJ"/>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary dark:text-primary-container tracking-tighter">BINGLE</h1>
+</div>
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:scale-105 transition-transform duration-300 active:translate-y-0.5" data-icon="favorite">favorite</button>
+</div>
+</header>
+<main class="flex-grow w-full max-w-md mx-auto px-margin-mobile pt-8 pb-32">
+<!-- Hero Section & Bingle Chat -->
+<section class="relative flex items-end justify-between mb-10 gap-4">
+<div class="flex-1 pb-4">
+<div class="bg-surface-container-lowest border-2 border-outline p-5 rounded-xl shadow-[4px_4px_0_0_rgba(137,114,107,0.2)] relative">
+<p class="font-headline-md text-on-surface leading-tight">
+                        오늘 네 마음이 궁금해! 지금 어떤 기분이야? 🌡️
+                    </p>
+<!-- Speech Bubble Tail -->
+<div class="absolute -right-3 bottom-6 w-0 h-0 border-t-[12px] border-t-transparent border-l-[16px] border-l-outline border-b-[12px] border-b-transparent"></div>
+<div class="absolute -right-2 bottom-6.5 w-0 h-0 border-t-[10px] border-t-transparent border-l-[14px] border-l-surface-container-lowest border-b-[10px] border-b-transparent"></div>
+</div>
+</div>
+<div class="w-32 h-32 flex-shrink-0 bingle-glow relative">
+<img alt="Bingle Character" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJoNLwHU1jO7n1qfWzeLX3uhckAbH-2YqWVF4pa6zJIX6qgYGZCKVMx7x1SDObSJg5ZseLruYMDkuz2tmITyuksyGCna-0TnGw8tVrZT93t2csNpq-XecaiYOcWWSuH_Lv8KPie4N8pST0mvAYOx8XIPrIVG5cHo8zbVoosCVN4W7Gp5AoelyI0kRBxvk-3RNialrkg641EsZ2dEu5D8r6QPq2AtIoHNeMnbwIZV_rZ0teXupbkx-EdMzVWnC22j2Huo29olFL8IUJ"/>
+<!-- Decorative Sparkles -->
+<div class="absolute -top-2 -left-2 material-symbols-outlined text-secondary-container opacity-60 text-xl" data-icon="sparkles">sparkles</div>
+<div class="absolute top-4 -right-4 material-symbols-outlined text-secondary-container opacity-60 text-lg" data-icon="auto_awesome">auto_awesome</div>
+</div>
+</section>
+<!-- Emotional State Selector -->
+<section class="space-y-4 mb-10">
+<!-- State 1: Cold -->
+<button class="w-full flex items-center gap-4 bg-blue-50 border-2 border-outline p-4 rounded-lg shadow-[0_4px_0_0_rgba(137,114,107,0.15)] squishy-button group">
+<div class="w-14 h-14 rounded-full bg-blue-100 border-2 border-outline flex items-center justify-center text-3xl shadow-inner">🌨️</div>
+<span class="font-headline-md text-on-surface-variant group-hover:text-primary transition-colors">꽁꽁 얼어있어</span>
+</button>
+<!-- State 2: Cool -->
+<button class="w-full flex items-center gap-4 bg-orange-50 border-2 border-outline p-4 rounded-lg shadow-[0_4px_0_0_rgba(137,114,107,0.15)] squishy-button group">
+<div class="w-14 h-14 rounded-full bg-[#FFE4D1] border-2 border-outline flex items-center justify-center text-3xl shadow-inner">🌤️</div>
+<span class="font-headline-md text-on-surface-variant group-hover:text-primary transition-colors">약간 차가워</span>
+</button>
+<!-- State 3: Perfect (Selected) -->
+<button class="w-full flex items-center gap-4 bg-secondary-container/20 border-2 border-secondary p-4 rounded-lg shadow-[0_8px_16px_rgba(253,182,75,0.3)] relative overflow-hidden squishy-button ring-4 ring-secondary-container/30">
+<div class="absolute inset-0 bg-gradient-to-r from-secondary-container/10 to-transparent"></div>
+<div class="w-14 h-14 rounded-full bg-secondary-container border-2 border-secondary flex items-center justify-center text-3xl shadow-[0_0_12px_rgba(253,182,75,0.6)] relative z-10">☀️</div>
+<span class="font-headline-md text-on-secondary-container relative z-10">딱 좋아</span>
+<div class="ml-auto material-symbols-outlined text-secondary" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</div>
+</button>
+<!-- State 4: Warm -->
+<button class="w-full flex items-center gap-4 bg-[#FFF1E9] border-2 border-outline p-4 rounded-lg shadow-[0_4px_0_0_rgba(137,114,107,0.15)] squishy-button group">
+<div class="w-14 h-14 rounded-full bg-primary-container/40 border-2 border-outline flex items-center justify-center text-3xl shadow-inner">🔥</div>
+<span class="font-headline-md text-on-surface-variant group-hover:text-primary transition-colors">좀 뜨거워</span>
+</button>
+<!-- State 5: Hot -->
+<button class="w-full flex items-center gap-4 bg-red-50 border-2 border-outline p-4 rounded-lg shadow-[0_4px_0_0_rgba(137,114,107,0.15)] squishy-button group">
+<div class="w-14 h-14 rounded-full bg-error-container border-2 border-outline flex items-center justify-center text-3xl shadow-inner">🌋</div>
+<span class="font-headline-md text-on-surface-variant group-hover:text-primary transition-colors">완전 펄펄 끓어</span>
+</button>
+</section>
+<!-- Divider and Footer Actions -->
+<div class="border-t-2 border-dashed border-outline/40 mb-8 w-full"></div>
+<div class="text-center space-y-6">
+<p class="font-label-md text-on-surface-variant">어떤 세계로 갈지 결정해줄게 🗺️</p>
+<button class="w-full py-5 px-8 bg-primary rounded-full border-b-4 border-on-primary-fixed-variant shadow-lg flex items-center justify-center gap-2 squishy-button group">
+<span class="font-headline-lg-mobile text-on-primary">빙글이 냉장고 열기 ❄️→🔥</span>
+<span class="material-symbols-outlined text-on-primary group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 bg-surface-container/90 backdrop-blur-md border-t-2 border-outline/10 z-50 rounded-t-lg shadow-[0_-4px_12px_rgba(137,114,107,0.15)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-2 opacity-70 hover:bg-surface-container-highest rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-label-md text-label-md">Story</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-xl px-6 py-2 transition-all scale-110 shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="mood" data-weight="fill" style="font-variation-settings: 'FILL' 1;">mood</span>
+<span class="font-label-md text-label-md">Feelings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-2 opacity-70 hover:bg-surface-container-highest rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="temp_set_point">thermostat</span>
+<span class="font-label-md text-label-md">Stickers</span>
+</a>
+</nav>
+<!-- Floating Sticker Decoration -->
+<div class="fixed top-24 right-4 pointer-events-none opacity-20">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="filter_vintage">filter_vintage</span>
+</div>
+<div class="fixed bottom-24 left-4 pointer-events-none opacity-20">
+<span class="material-symbols-outlined text-4xl text-secondary" data-icon="star">star</span>
+</div>
+</body></html>

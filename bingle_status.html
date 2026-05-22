@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BINGLE 🧊 마음 냉장고 - 개발 진행 상황판</title>
+    
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ff8c69",
+              secondary: "#ffcb2f",
+              cream: "#fdf8f5",
+              dark: "#28180b",
+              accent: "#67f9e1",
+              forest: "#e2f0d9"
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+      body {
+        font-family: 'Gaegu', 'Nunito', sans-serif;
+        background-color: #3f2d1e;
+        color: #28180b;
+        overflow-x: hidden;
+      }
+      
+      /* 스티치 망점 패턴 */
+      .halftone-bg {
+        background-image: radial-gradient(rgba(40, 24, 11, 0.07) 1.5px, transparent 1.5px);
+        background-size: 8px 8px;
+      }
+      
+      /* 만화책 볼드 보더 */
+      .border-bold {
+        border: 4px solid #28180b;
+      }
+      .border-bold-sm {
+        border: 2px solid #28180b;
+      }
+      
+      /* 만화책 3D 단색 그림자 */
+      .shadow-comic {
+        box-shadow: 6px 6px 0px 0px #28180b;
+      }
+      .shadow-comic-lg {
+        box-shadow: 12px 12px 0px 0px #28180b;
+      }
+      .shadow-comic-sm {
+        box-shadow: 3px 3px 0px 0px #28180b;
+      }
+      
+      /* Bingle SVG/PNG Floating Animations */
+      .bingle-character-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.15));
+      }
+      
+      /* Happy State Animation */
+      @keyframes bingle-happy-anim {
+        0%, 100% { transform: translateY(0) scaleX(1) scaleY(1) rotate(0deg); }
+        20% { transform: translateY(-12px) scaleX(0.93) scaleY(1.08) rotate(-2deg); }
+        40% { transform: translateY(0) scaleX(1.07) scaleY(0.92) rotate(2deg); }
+        60% { transform: translateY(-4px) scaleX(0.96) scaleY(1.05) rotate(-1deg); }
+        80% { transform: translateY(0) scaleX(1) scaleY(1) rotate(0deg); }
+      }
+      .bingle-happy-physics {
+        animation: bingle-happy-anim 2.2s infinite ease-in-out;
+      }
+      
+      /* Sleeping State Animation */
+      @keyframes bingle-sleeping-anim {
+        0%, 100% { transform: translateY(0) scale(1) rotate(-1.5deg); }
+        50% { transform: translateY(3px) scale(1.03) rotate(1deg); }
+      }
+      .bingle-sleeping-physics {
+        animation: bingle-sleeping-anim 4.2s infinite ease-in-out;
+      }
+      
+      /* Angry State Animation */
+      @keyframes bingle-angry-anim {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        15% { transform: translate(-2.5px, 1.5px) rotate(-1.5deg); }
+        30% { transform: translate(2.5px, -1.5px) rotate(1.5deg); }
+        45% { transform: translate(-2px, 1px) rotate(-1deg); }
+        60% { transform: translate(2px, -1px) rotate(1deg); }
+        75% { transform: translate(-1px, 0.5px) rotate(-0.5deg); }
+        90% { transform: translate(1px, -0.5px) rotate(0.5deg); }
+      }
+      .bingle-angry-physics {
+        animation: bingle-angry-anim 0.5s infinite ease-in-out;
+      }
+      
+      /* Hot State Animation */
+      @keyframes bingle-hot-anim {
+        0%, 100% { transform: translateY(0) scaleX(1) scaleY(1) skewX(0deg); }
+        25% { transform: translateY(3px) scaleX(1.06) scaleY(0.86) skewX(-2.5deg); }
+        50% { transform: translateY(0) scaleX(0.98) scaleY(0.92) skewX(2.5deg); }
+        75% { transform: translateY(1.5px) scaleX(1.04) scaleY(0.88) skewX(-1deg); }
+      }
+      .bingle-hot-physics {
+        animation: bingle-hot-anim 1.6s infinite ease-in-out;
+      }
+
+      /* Micro effects overlay animations */
+      @keyframes sparkle-rotate-left {
+        0% { transform: scale(0) rotate(0deg); opacity: 0; }
+        50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        100% { transform: scale(1) rotate(360deg); opacity: 0.9; }
+      }
+      .sparkle-left {
+        animation: sparkle-rotate-left 2s infinite ease-in-out;
+      }
+      @keyframes sparkle-rotate-right {
+        0% { transform: scale(0) rotate(0deg); opacity: 0; }
+        50% { transform: scale(1.3) rotate(-180deg); opacity: 1; }
+        100% { transform: scale(1) rotate(-360deg); opacity: 0.9; }
+      }
+      .sparkle-right {
+        animation: sparkle-rotate-right 2.4s infinite ease-in-out alternate;
+      }
+      
+      @keyframes snore-puff {
+        0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0.8; }
+        60% { transform: translate(-50%, -50%) scale(1.8); opacity: 0.4; }
+        100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
+      }
+      .snore-bubble-anim {
+        animation: snore-puff 3.5s infinite ease-in-out;
+      }
+      
+      @keyframes zzz-drift-1 {
+        0% { transform: translate(0, 0) scale(0.7); opacity: 0; }
+        30% { transform: translate(5px, -15px) scale(1); opacity: 0.8; }
+        70% { transform: translate(-5px, -35px) scale(0.9); opacity: 0.6; }
+        100% { transform: translate(10px, -55px) scale(0.5); opacity: 0; }
+      }
+      .zzz-letter-1 { animation: zzz-drift-1 4.5s infinite ease-in-out; }
+      .zzz-letter-2 { animation: zzz-drift-1 4.5s infinite ease-in-out 1.5s; }
+      .zzz-letter-3 { animation: zzz-drift-1 4.5s infinite ease-in-out 3s; }
+      
+      @keyframes steam-puff-1 {
+        0% { transform: translateY(0) scale(0.5); opacity: 0.8; }
+        50% { transform: translateY(-12px) scale(1.3); opacity: 0.5; }
+        100% { transform: translateY(-24px) scale(1.7); opacity: 0; }
+      }
+      .steam-puff-left { animation: steam-puff-1 1.2s infinite ease-in-out; }
+      .steam-puff-right { animation: steam-puff-1 1.2s infinite ease-in-out 0.6s; }
+      
+      @keyframes sweat-slide-left {
+        0% { transform: translateY(0); opacity: 0; }
+        20% { opacity: 1; }
+        80% { transform: translateY(12px); opacity: 0.8; }
+        100% { transform: translateY(18px); opacity: 0; }
+      }
+      .sweat-left { animation: sweat-slide-left 2s infinite ease-in; }
+      .sweat-right { animation: sweat-slide-left 2s infinite ease-in 1s; }
+    </style>
+  </head>
+  
+  <body class="min-h-screen flex flex-col items-center p-4 lg:p-8 relative select-none">
+    <!-- Halftone background -->
+    <div id="halftone-overlay" class="halftone-bg absolute inset-0 pointer-events-none opacity-30 z-0"></div>
+    
+    <!-- Header banner -->
+    <header class="w-full max-w-7xl mx-auto bg-cream border-bold p-6 rounded-3xl shadow-comic flex flex-col md:flex-row justify-between items-center gap-4 relative z-10 mb-8 transform -rotate-[0.5deg]">
+      <div class="flex items-center gap-4 text-left">
+        <span class="text-5xl filter drop-shadow-[2.5px_2.5px_0_#000]">📊</span>
+        <div>
+          <h1 class="text-3xl font-black text-dark tracking-tight flex items-center gap-2">마음 냉장고 BINGLE 개발 진행 상황판</h1>
+          <p class="text-sm font-bold text-gray-700 leading-snug mt-1">
+            7대 핵심 모듈 개발 진척도, 실시간 통신 상태 센서, 감정 애니메이션 실험실 종합 현황판
+          </p>
+        </div>
+      </div>
+      
+      <a href="bingle_showcase.html" class="bg-primary hover:bg-[#ffa07a] border-bold-sm text-dark font-black px-5 py-2.5 rounded-2xl shadow-comic-sm transition-all active:translate-y-0.5 active:shadow-none flex items-center gap-1.5 shrink-0 text-sm">
+        <span class="material-symbols-outlined text-xs font-black">arrow_back</span>
+        <span>소개 및 모바일 데모로 돌아가기</span>
+      </a>
+    </header>
+    
+    <!-- Main Dashboard Grid -->
+    <main class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
+      
+      <!-- LEFT COLUMN: Module Statuses (7 col span) -->
+      <section class="lg:col-span-7 bg-[#fdf8f5] border-bold p-6 rounded-3xl shadow-comic-lg flex flex-col gap-6 text-left">
+        <h2 class="text-2xl font-black text-dark flex items-center gap-2 border-b-4 border-dark pb-2">
+          <span class="material-symbols-outlined font-black text-xl bg-[#ffcb2f] p-1 border-2 border-dark rounded shadow-comic-sm">check_box</span>
+          <span>7대 핵심 모듈 개발 진척도 (Stitch Visual Gauges)</span>
+        </h2>
+        
+        <div class="flex flex-col gap-4">
+          <!-- Module 1 -->
+          <div class="bg-white border-2 border-dark p-3.5 rounded-2xl shadow-comic-sm flex flex-col gap-2">
+            <div class="flex justify-between items-center text-xs font-black">
+              <span class="text-dark">① 햅틱 냉장고 도어 온보딩 (Haptic Cabinet Opening)</span>
+              <span class="bg-accent border border-dark text-dark px-2 py-0.5 rounded shadow-comic-sm text-[10px]">완료 100%</span>
+            </div>
+            <div class="w-full bg-gray-100 border-2 border-dark h-5 rounded-full overflow-hidden relative">
+              <div class="h-full bg-accent animate-pulse" style="width: 100%;"></div>
+              <span class="absolute inset-0 flex items-center justify-center text-[9px] font-black text-dark">🚪 좌우 물리 스와이프 도어락 열림 물리 동기화 완료</span>
+            </div>
+          </div>
+          
+          <!-- Module 2 -->
+          <div class="bg-white border-2 border-dark p-3.5 rounded-2xl shadow-comic-sm flex flex-col gap-2">
+            <div class="flex justify-between items-center text-xs font-black">
+              <span class="text-dark">② 스마트 집중 콕핏 (Smart Focus Pomodoro Engine)</span>
+              <span class="bg-accent border border-dark text-dark px-2 py-0.5 rounded shadow-comic-sm text-[10px]">완료 100%</span>
+            </div>
+            <div class="w-full bg-gray-100 border-2 border-dark h-5 rounded-full overflow-hidden relative">
+              <div class="h-full bg-accent" style="width: 100%;"></div>
+              <span class="absolute inset-0 flex items-center justify-center text-[9px] font-black text-dark">⌛ 집중 타이머 기동 + 도어 오픈 시 열역학 냉기 유출 페널티 연계</span>
+            </div>
+          </div>
+          
+          <!-- Module 3 -->
+          <div class="bg-white border-2 border-dark p-3.5 rounded-2xl shadow-comic-sm flex flex-col gap-2">
+            <div class="flex justify-between items-center text-xs font-black">
+              <span class="text-dark">③ 치유 간식 3단 Pantry (Interactive Shelving Warehouse)</span>
+              <span class="bg-accent border border-dark text-dark px-2 py-0.5 rounded shadow-comic-sm text-[10px]">완료 100%</span>
+            </div>
+            <div class="w-full bg-gray-100 border-2 border-dark h-5 rounded-full overflow-hidden relative">
+              <div class="h-full bg-accent animate-pulse" style="width: 100%;"></div>
+              <span class="absolute inset-0 flex items-center justify-center text-[9px] font-black text-dark">🥛 냉장실 내 2.5D 투명 선반 식재료 시각 적재 및 터치 즉시 섭취</span>
+            </div>
+          </div>
+          
+          <!-- Module 4 -->
+          <div class="bg-white border-2 border-dark p-3.5 rounded-2xl shadow-comic-sm flex flex-col gap-2">
+            <div class="flex justify-between items-center text-xs font-black">
+              <span class="text-dark">④ 김서림 투명도 일기장 (Fog-Wiping Mind Diary)</span>
+              <span class="bg-accent border border-dark text-dark px-2 py-0.5 rounded shadow-comic-sm text-[10px]">완료 100%</span>
+            </div>
+            <div class="w-full bg-gray-100 border-2 border-dark h-5 rounded-full overflow-hidden relative">
+              <div class="h-full bg-accent" style="width: 100%;"></div>
+              <span class="absolute inset-0 flex items-center justify-center text-[9px] font-black text-dark">📖 김이 서린 스마트폰 유리를 손가락 캔버스로 지우는 성찰 회고록</span>
+            </div>
+          </div>
+          
+          <!-- Module 5 -->
+          <div class="bg-white border-2 border-dark p-3.5 rounded-2xl shadow-comic-sm flex flex-col gap-2">
+            <div class="flex justify-between items-center text-xs font-black">
+              <span class="text-dark">⑤ GPS 자이로 산책 지도 (Gyro-coupled Path Portal)</span>
+              <span class="bg-accent border border-dark text-dark px-2 py-0.5 rounded shadow-comic-sm text-[10px]">완료 100%</span>
+            </div>
+            <div class="w-full bg-gray-100 border-2 border-dark h-5 rounded-full overflow-hidden relative">
+              <div class="h-full bg-accent animate-pulse" style="width: 100%;"></div>
+              <span class="absolute inset-0 flex items-center justify-center text-[9px] font-black text-dark">🏃 자이로 및 위치정보 연동 모바일 포탈형 마법숲 걷기 엔진</span>
+            </div>
+          </div>
+          
+          <!-- Module 6 -->
+          <div class="bg-white border-2 border-dark p-3.5 rounded-2xl shadow-comic-sm flex flex-col gap-2">
+            <div class="flex justify-between items-center text-xs font-black">
+              <span class="text-dark">⑥ 뇌파 동조 ASMR 사운드 (Binaural Beats Meditation)</span>
+              <span class="bg-accent border border-dark text-dark px-2 py-0.5 rounded shadow-comic-sm text-[10px]">완료 100%</span>
+            </div>
+            <div class="w-full bg-gray-100 border-2 border-dark h-5 rounded-full overflow-hidden relative">
+              <div class="h-full bg-accent" style="width: 100%;"></div>
+              <span class="absolute inset-0 flex items-center justify-center text-[9px] font-black text-dark">🎵 브라우저 Web Audio API 기반 오가닉 실시간 바람/파도 주파수 숲 합성</span>
+            </div>
+          </div>
+
+          <!-- Module 7 -->
+          <div class="bg-white border-2 border-dark p-3.5 rounded-2xl shadow-comic-sm flex flex-col gap-2">
+            <div class="flex justify-between items-center text-xs font-black">
+              <span class="text-dark">⑦ 이글루 아이스타그램 소셜 (Frosted Polaroid social)</span>
+              <span class="bg-accent border border-dark text-dark px-2 py-0.5 rounded shadow-comic-sm text-[10px]">완료 100%</span>
+            </div>
+            <div class="w-full bg-gray-100 border-2 border-dark h-5 rounded-full overflow-hidden relative">
+              <div class="h-full bg-accent animate-pulse" style="width: 100%;"></div>
+              <span class="absolute inset-0 flex items-center justify-center text-[9px] font-black text-dark">❄️ 겨울왕국 이글루 테마 소셜 카드 및 급속 냉풍 이웃 가드 쿨링 지원</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- RIGHT COLUMN: Integration and laboratory (5 col span) -->
+      <section class="lg:col-span-5 flex flex-col gap-8">
+        
+        <!-- API & Firebase Health Monitor -->
+        <article class="bg-[#fdf8f5] border-bold p-6 rounded-3xl shadow-comic flex flex-col gap-4 text-left">
+          <h2 class="text-lg font-black text-dark flex items-center gap-2 border-b-2 border-dark pb-1.5">
+            <span class="material-symbols-outlined font-black text-base text-red-500">sensors</span>
+            <span>실시간 API & Firebase 연동 상태</span>
+          </h2>
+          
+          <!-- Open-Meteo API block -->
+          <div class="bg-white border-2 border-dark p-3 rounded-xl flex flex-col gap-2 relative">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black flex items-center gap-1">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span>Weather API (Open-Meteo)</span>
+              </span>
+              <button onclick="pingWeatherAPI()" class="bg-accent hover:bg-cyan-200 border-2 border-dark text-[9px] font-black px-2 py-0.5 rounded shadow-comic-sm active:translate-y-0.5">
+                수동 핑 테스트 ⚡
+              </button>
+            </div>
+            <div class="bg-gray-900 border-2 border-dark text-[#00ff66] font-mono text-[9px] p-2 rounded-lg leading-relaxed max-h-24 overflow-y-auto no-scrollbar">
+              <div id="weather-ping-log">> SYSTEM READY. WAITING FOR PING...</div>
+            </div>
+          </div>
+          
+          <!-- Firebase DB block -->
+          <div class="bg-white border-2 border-dark p-3 rounded-xl flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black flex items-center gap-1">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span>Firebase Realtime DB Socket</span>
+              </span>
+              <span class="text-[8px] bg-sky-100 border border-dark text-blue-900 font-black px-1.5 py-0.5 rounded shadow-comic-sm">
+                BACKUP ACTIVE
+              </span>
+            </div>
+            <div class="bg-gray-900 border-2 border-dark text-cyan-400 font-mono text-[9px] p-2 rounded-lg leading-relaxed h-28 overflow-y-auto no-scrollbar" id="firebase-socket-log">
+              <div>> CONNECTED TO FIREBASE RETRIEVER.</div>
+              <div>> SYNCHRONIZATION POOL OPENED.</div>
+              <div>> BACKUP SUITE: HEARTBEAT OK.</div>
+              <div>> CACHE STATUS: 0 ERRORS.</div>
+            </div>
+          </div>
+        </article>
+        
+        <!-- Bingle Emotion Laboratory View -->
+        <article class="bg-[#fdf8f5] border-bold p-6 rounded-3xl shadow-comic flex flex-col gap-4 text-left">
+          <h2 class="text-lg font-black text-dark flex items-center gap-2 border-b-2 border-dark pb-1.5">
+            <span class="material-symbols-outlined font-black text-base text-yellow-500">science</span>
+            <span>빙글이 감정 애니메이션 실험실</span>
+          </h2>
+          
+          <p class="text-[10px] font-bold text-gray-500 leading-tight">
+            새로 적용된 투명 누끼 PNG(sleeping/angry)와 가속 키프레임 물리 엔진을 수동으로 트리거해 시각적 무결성을 테스트해보세요!
+          </p>
+          
+          <!-- Laboratory simulator window -->
+          <div class="bg-[#d1fae5] border-bold p-4 rounded-2xl relative overflow-hidden flex flex-col items-center justify-center h-48">
+            <div class="absolute inset-0 bg-blue-900/5 pointer-events-none z-0"></div>
+            
+            <!-- Dynamic Bingle viewport -->
+            <div id="lab-bingle-character" class="w-32 h-32 relative select-none flex items-center justify-center overflow-visible z-10 transition-all">
+              <!-- Dynamically injected -->
+            </div>
+            
+            <div id="lab-bingle-badge" class="absolute bottom-2 bg-white/95 border-2 border-dark font-black text-[9px] px-2 py-0.5 rounded shadow-comic-sm z-20">
+              #HAPPY ☀️ 기쁨 연구체
+            </div>
+          </div>
+          
+          <!-- stress gauge index block -->
+          <div class="bg-white border-2 border-dark p-3 rounded-xl flex flex-col gap-1.5">
+            <div class="flex justify-between items-center text-[10px] font-black">
+              <span>뇌파 스트레스 지수 (Stress Index)</span>
+              <span id="lab-stress-value" class="text-teal-600">15% SAFE</span>
+            </div>
+            <div class="w-full bg-gray-100 border border-dark h-3.5 rounded-full overflow-hidden relative">
+              <div id="lab-stress-bar" class="h-full bg-teal-500 transition-all duration-500" style="width: 15%;"></div>
+            </div>
+          </div>
+          
+          <!-- Trigger control actions -->
+          <div class="grid grid-cols-4 gap-2">
+            <button onclick="triggerLabEmotion('happy')" id="btn-lab-happy" class="border-2 border-dark rounded py-2 text-center text-xs font-black bg-accent text-dark shadow-comic-sm transition-all pointer-events-auto hover:bg-cyan-200">
+              기쁨 ☀️
+            </button>
+            <button onclick="triggerLabEmotion('sleeping')" id="btn-lab-sleeping" class="border-2 border-dark rounded py-2 text-center text-xs font-black bg-white text-dark shadow-comic-sm transition-all pointer-events-auto hover:bg-sky-100">
+              숙면 💤
+            </button>
+            <button onclick="triggerLabEmotion('angry')" id="btn-lab-angry" class="border-2 border-dark rounded py-2 text-center text-xs font-black bg-white text-dark shadow-comic-sm transition-all pointer-events-auto hover:bg-red-100">
+              분노 😤
+            </button>
+            <button onclick="triggerLabEmotion('hot')" id="btn-lab-hot" class="border-2 border-dark rounded py-2 text-center text-xs font-black bg-white text-dark shadow-comic-sm transition-all pointer-events-auto hover:bg-orange-100">
+              멜팅 🥵
+            </button>
+          </div>
+        </article>
+        
+      </section>
+      
+    </main>
+    
+    <!-- SVG Definitions for Fallback -->
+    <script>
+      // Dynamic Asset Base Resolution for both Local double-click (file://) and Web Server (http://)
+      const isLocal = window.location.protocol === 'file:';
+      const assetBase = isLocal ? 'public/images/' : 'images/';
+
+      const BINGLE_SVG_EMOTIONS = {
+        happy: `
+          <g>
+            <ellipse cx="60" cy="98" rx="32" ry="7" fill="rgba(40,24,11,0.18)" />
+            <path d="M30 35 C 30 25, 40 22, 60 22 C 80 22, 90 25, 90 35 C 90 60, 93 75, 87 90 C 80 97, 40 97, 33 90 C 27 75, 30 60, 30 35 Z" fill="#d0f4ff" stroke="#28180b" stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M35 38 C 35 30, 42 27, 58 27" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+            <path d="M78 85 C 84 80, 85 70, 85 55" stroke="#a4e4f7" stroke-width="4" stroke-linecap="round" />
+            <circle cx="43" cy="67" r="7" fill="#ff9fa5" opacity="0.8" />
+            <circle cx="77" cy="67" r="7" fill="#ff9fa5" opacity="0.8" />
+            <circle cx="46" cy="58" r="4.5" fill="#28180b" />
+            <circle cx="74" cy="58" r="4.5" fill="#28180b" />
+            <circle cx="48" cy="56" r="1.5" fill="#fff" />
+            <circle cx="76" cy="56" r="1.5" fill="#fff" />
+            <path d="M55 68 Q 60 74, 65 68" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <path d="M26 62 Q 15 54, 18 46" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <path d="M94 62 Q 105 58, 108 66" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <text x="18" y="25" fill="#ffb300" font-weight="black" font-size="16">✨</text>
+            <text x="96" y="40" fill="#ffb300" font-weight="black" font-size="12">✨</text>
+          </g>
+        `,
+        sleeping: `
+          <g transform="rotate(-4 60 60)">
+            <ellipse cx="60" cy="98" rx="34" ry="7" fill="rgba(40,24,11,0.18)" />
+            <path d="M32 38 C 32 28, 42 25, 60 25 C 78 25, 88 28, 88 38 C 88 62, 90 77, 85 92 C 78 97, 42 97, 35 92 C 30 77, 32 62, 32 38 Z" fill="#bfeaff" stroke="#28180b" stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M37 40 C 37 32, 44 29, 58 29" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+            <path d="M42 58 Q 47 62, 52 58" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <path d="M68 58 Q 73 62, 78 58" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="60" cy="68" r="3.5" fill="#28180b" />
+            <circle cx="39" cy="65" r="5" fill="#ffa8b2" opacity="0.6" />
+            <circle cx="81" cy="65" r="5" fill="#ffa8b2" opacity="0.6" />
+            <text x="92" y="24" fill="#0284c7" font-weight="black" font-size="14" font-family="Gaegu">Zzz</text>
+          </g>
+        `,
+        angry: `
+          <g>
+            <ellipse cx="60" cy="98" rx="36" ry="8" fill="rgba(40,24,11,0.18)" />
+            <path d="M30 35 C 30 25, 40 22, 60 22 C 80 22, 90 25, 90 35 C 90 60, 93 75, 87 90 C 80 97, 40 97, 33 90 C 27 75, 30 60, 30 35 Z" fill="#ff8d85" stroke="#28180b" stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M32 64 Q 38 68, 44 64" stroke="#e0301e" stroke-width="3" fill="none" />
+            <path d="M76 64 Q 82 68, 88 64" stroke="#e0301e" stroke-width="3" fill="none" />
+            <path d="M35 32 L 44 40" stroke="#28180b" stroke-width="3" stroke-linecap="round" />
+            <path d="M85 32 L 76 40" stroke="#28180b" stroke-width="3" stroke-linecap="round" />
+            <path d="M42 54 L 51 60 L 42 66" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            <path d="M78 54 L 69 60 L 78 66" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            <path d="M50 72 L 70 72" stroke="#28180b" stroke-width="5.5" stroke-linecap="round" />
+            <text x="22" y="24" fill="#ef4444" font-weight="black" font-size="14">💨</text>
+          </g>
+        `,
+        hot: `
+          <g>
+            <ellipse cx="60" cy="98" rx="38" ry="9" fill="rgba(40,24,11,0.18)" />
+            <path d="M33 50 C 33 30, 40 22, 60 22 C 80 22, 87 30, 87 50 C 87 68, 105 85, 95 97 C 82 104, 38 104, 25 97 C 15 85, 33 68, 33 50 Z" fill="#ffa4a2" stroke="#28180b" stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M15 97 C 15 94, 105 94, 105 97 C 105 106, 15 106, 15 97 Z" fill="#e65a5d" stroke="#28180b" stroke-width="3" />
+            <circle cx="46" cy="58" r="4.5" fill="#28180b" />
+            <circle cx="74" cy="58" r="4.5" fill="#28180b" />
+            <path d="M52 68 Q 60 76, 68 68" stroke="#28180b" stroke-width="4.5" fill="none" stroke-linecap="round" />
+            <path d="M57 71 C 57 77, 63 77, 63 71 Z" fill="#ff768e" stroke="#28180b" stroke-width="2.5" />
+            <circle cx="36" cy="74" r="2.5" fill="#38bdf8" stroke="#28180b" stroke-width="1" />
+            <circle cx="84" cy="78" r="2" fill="#38bdf8" stroke="#28180b" stroke-width="1" />
+          </g>
+        `
+      };
+      
+      // Laboratory interactive handler
+      let labEmotion = 'happy';
+      function triggerLabEmotion(emo) {
+        labEmotion = emo;
+        
+        // Buttons UI sync
+        ['happy', 'sleeping', 'angry', 'hot'].forEach(e => {
+          const btn = document.getElementById(`btn-lab-${e}`);
+          if (btn) {
+            if (e === emo) {
+              btn.className = 'border-2 border-dark rounded py-2 text-center text-xs font-black bg-accent text-dark shadow-comic-sm pointer-events-auto';
+            } else {
+              btn.className = 'border-2 border-dark rounded py-2 text-center text-xs font-black bg-white text-dark shadow-comic-sm pointer-events-auto';
+            }
+          }
+        });
+        
+        // Physics class & overlays mapping
+        let physicsClass = 'bingle-happy-physics';
+        let overlays = '';
+        let stress = 15;
+        let stressStatus = 'SAFE';
+        let stressColor = 'text-teal-600';
+        let barColor = 'bg-teal-500';
+        let label = '기쁨 연구체';
+        let labelEmoji = '☀️';
+        
+        if (emo === 'happy') {
+          physicsClass = 'bingle-happy-physics';
+          overlays = `
+            <div class="absolute top-2 left-2 text-xl sparkle-left pointer-events-none select-none">✨</div>
+            <div class="absolute bottom-6 right-2 text-base sparkle-right pointer-events-none select-none">✨</div>
+          `;
+          stress = 15;
+          stressStatus = 'SAFE';
+          stressColor = 'text-teal-600';
+          barColor = 'bg-teal-500';
+          label = '기쁨 연구체';
+          labelEmoji = '☀️';
+        } else if (emo === 'sleeping') {
+          physicsClass = 'bingle-sleeping-physics';
+          overlays = `
+            <div class="absolute -top-1 right-2 text-cyan-600 font-black text-sm zzz-letter-1 pointer-events-none select-none" style="font-family: 'Gaegu', sans-serif;">Zzz</div>
+            <div class="absolute top-3 -right-2 text-cyan-600 font-black text-xs zzz-letter-2 pointer-events-none select-none" style="font-family: 'Gaegu', sans-serif;">Zzz</div>
+            <div class="absolute -top-5 right-6 text-cyan-600 font-black text-[10px] zzz-letter-3 pointer-events-none select-none" style="font-family: 'Gaegu', sans-serif;">Zzz</div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-cyan-300/60 snore-bubble-anim pointer-events-none select-none"></div>
+          `;
+          stress = 5;
+          stressStatus = 'DEEP MEDITATION';
+          stressColor = 'text-cyan-600';
+          barColor = 'bg-cyan-400';
+          label = '숙면 연구체';
+          labelEmoji = '💤';
+        } else if (emo === 'angry') {
+          physicsClass = 'bingle-angry-physics';
+          overlays = `
+            <div class="absolute -top-3 left-4 text-lg steam-puff-left pointer-events-none select-none">💨</div>
+            <div class="absolute -top-1 right-4 text-lg steam-puff-right pointer-events-none select-none">💨</div>
+          `;
+          stress = 65;
+          stressStatus = 'WARNING';
+          stressColor = 'text-yellow-600';
+          barColor = 'bg-yellow-500';
+          label = '분노 연구체';
+          labelEmoji = '😤';
+        } else if (emo === 'hot') {
+          physicsClass = 'bingle-hot-physics';
+          overlays = `
+            <div class="absolute top-10 left-6 text-sky-400 font-bold text-xs sweat-left pointer-events-none select-none">💧</div>
+            <div class="absolute top-12 right-6 text-sky-400 font-bold text-xs sweat-right pointer-events-none select-none">💧</div>
+          `;
+          stress = 98;
+          stressStatus = 'MELTING OVERHEAT';
+          stressColor = 'text-red-600 animate-pulse';
+          barColor = 'bg-red-500 animate-pulse';
+          label = '멜팅 연구체';
+          labelEmoji = '🥵';
+        }
+        
+        // Render characters
+        const viewport = document.getElementById('lab-bingle-character');
+        const fallback = BINGLE_SVG_EMOTIONS[emo];
+        
+        viewport.innerHTML = `
+          <div class="${physicsClass} w-full h-full relative flex items-center justify-center overflow-visible">
+            <div class="absolute bottom-0 w-24 h-4 bg-black/15 rounded-full blur-[2px] -z-10"></div>
+            <img 
+              src="${assetBase}bingle_${emo}.png" 
+              alt="Bingle" 
+              class="bingle-character-img transition-all duration-300"
+              onerror="this.style.display='none'; document.getElementById('lab-fallback-svg-${emo}').style.display='block';"
+            />
+            <svg id="lab-fallback-svg-${emo}" viewBox="0 0 120 120" class="w-full h-full overflow-visible hidden">
+              ${fallback}
+            </svg>
+            ${overlays}
+          </div>
+        `;
+        
+        // Badge UI
+        document.getElementById('lab-bingle-badge').innerHTML = `#${emo.toUpperCase()} ${labelEmoji} ${label}`;
+        
+        // Gauge sync
+        const stressVal = document.getElementById('lab-stress-value');
+        stressVal.textContent = `${stress}% ${stressStatus}`;
+        stressVal.className = `text-[10px] font-black ${stressColor}`;
+        
+        const stressBar = document.getElementById('lab-stress-bar');
+        stressBar.className = `h-full transition-all duration-500 ${barColor}`;
+        stressBar.style.width = `${stress}%`;
+      }
+      
+      // Ping Open-Meteo Weather API tool
+      async function pingWeatherAPI() {
+        const logContainer = document.getElementById('weather-ping-log');
+        const start = performance.now();
+        
+        logContainer.innerHTML += `\n<div>> [PING SENSOR] CALLING OPEN-METEO OUTDOOR DATA...</div>`;
+        logContainer.scrollTop = logContainer.scrollHeight;
+        
+        try {
+          // fetch Seoul weather
+          const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=37.566&longitude=126.978&current_weather=true`);
+          const data = await res.json();
+          const latency = Math.round(performance.now() - start);
+          
+          if (data && data.current_weather) {
+            const temp = data.current_weather.temperature;
+            logContainer.innerHTML += `<div class="text-[#00ff66]">> [SUCCESS] RESP: 200 OK (${latency}ms)</div>`;
+            logContainer.innerHTML += `<div class="text-[#00ff66]">> [DATA] TEMP: ${temp}°C, WEATHER CODE: ${data.current_weather.weathercode}</div>`;
+          } else {
+            logContainer.innerHTML += `<div class="text-yellow-400">> [WARNING] INCOMPLETE PAYLOAD RECEIVED.</div>`;
+          }
+        } catch (e) {
+          logContainer.innerHTML += `<div class="text-red-500">> [ERROR] SERVICE PING TIMEOUT OR OFFLINE.</div>`;
+        }
+        
+        logContainer.scrollTop = logContainer.scrollHeight;
+      }
+      
+      // Simulated Firebase Realtime DB socket feed generator
+      function generateFirebaseMockLogs() {
+        const logBox = document.getElementById('firebase-socket-log');
+        const tasks = [
+          'DATABASE BACKUP SYNC SUCCEEDED.',
+          'COLLATIVE RETRIEVAL QUEUE CLEARED.',
+          'INVENTORY STATE RECONCILIATION OK.',
+          'HEARTBEAT LOG REPORTED TO CENTRAL CLOUD.',
+          'DIARY JOURNAL CRON SCHEDULER PINGED.'
+        ];
+        
+        setInterval(() => {
+          const randTask = tasks[Math.floor(Math.random() * tasks.length)];
+          const now = new Date().toLocaleTimeString('ko-KR', { hour12: false });
+          const newLog = document.createElement('div');
+          newLog.innerHTML = `<span class="text-gray-500">[${now}]</span> > ${randTask}`;
+          logBox.appendChild(newLog);
+          logBox.scrollTop = logBox.scrollHeight;
+        }, 6000);
+      }
+      
+      // Initialize laboratory character
+      triggerLabEmotion('happy');
+      
+      // Auto-trigger weather ping on load
+      setTimeout(() => {
+        pingWeatherAPI();
+      }, 500);
+      
+      // Start Firebase background simulation logs
+      generateFirebaseMockLogs();
+    </script>
+  </body>
+</html>

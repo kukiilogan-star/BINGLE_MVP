@@ -1,0 +1,2574 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BINGLE 🧊 마음 냉장고 - 서비스 소개 및 IR 프레젠테이션</title>
+    
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ff8c69",
+              secondary: "#ffcb2f",
+              cream: "#fdf8f5",
+              dark: "#28180b",
+              accent: "#67f9e1",
+              forest: "#e2f0d9"
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+      body {
+        font-family: 'Gaegu', 'Nunito', sans-serif;
+        background-color: #3f2d1e;
+        color: #28180b;
+        overflow-x: hidden;
+      }
+      
+      /* 스티치 망점 패턴 */
+      .halftone-bg {
+        background-image: radial-gradient(rgba(40, 24, 11, 0.07) 1.5px, transparent 1.5px);
+        background-size: 8px 8px;
+      }
+      
+      /* 만화책 볼드 보더 */
+      .border-bold {
+        border: 4px solid #28180b;
+      }
+      .border-bold-sm {
+        border: 2px solid #28180b;
+      }
+      
+      /* 만화책 3D 단색 그림자 */
+      .shadow-comic {
+        box-shadow: 6px 6px 0px 0px #28180b;
+      }
+      .shadow-comic-lg {
+        box-shadow: 10px 10px 0px 0px #28180b;
+      }
+      .shadow-comic-sm {
+        box-shadow: 3px 3px 0px 0px #28180b;
+      }
+      
+      /* 탭 피드백 */
+      .btn-comic:active {
+        transform: translate(3px, 3px);
+        box-shadow: 3px 3px 0px 0px #28180b;
+      }
+      .btn-comic-lg:active {
+        transform: translate(5px, 5px);
+        box-shadow: 5px 5px 0px 0px #28180b;
+      }
+      
+      /* 슬라이드 트랜지션 효과 */
+      .slide-container {
+        display: none;
+        opacity: 0;
+        transform: scale(0.98) rotate(-0.5deg);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .slide-container.active {
+        display: flex;
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+      
+      /* 3D 냉장고 양문(Double Doors) 문열기 물리 모션 */
+      .fridge-cabinet {
+        position: relative;
+        perspective: 1000px;
+      }
+      
+      .fridge-doors-wrapper {
+        position: absolute;
+        inset: 0;
+        z-index: 40;
+        display: flex;
+        pointer-events: none;
+      }
+      
+      .fridge-door-left, .fridge-door-right {
+        width: 50%;
+        height: 100%;
+        background-color: #ff8c69;
+        border: 4px solid #28180b;
+        position: relative;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1rem;
+        box-sizing: border-box;
+      }
+      
+      .fridge-door-left {
+        transform-origin: left center;
+        border-right-width: 2px;
+        border-top-left-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+      }
+      
+      .fridge-door-right {
+        transform-origin: right center;
+        border-left-width: 2px;
+        border-top-right-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+      }
+      
+      /* 문 열림 상태 */
+      .fridge-open .fridge-door-left {
+        transform: rotateY(-130deg);
+        box-shadow: 15px 0 30px rgba(0,0,0,0.3);
+      }
+      .fridge-open .fridge-door-right {
+        transform: rotateY(130deg);
+        box-shadow: -15px 0 30px rgba(0,0,0,0.3);
+      }
+      
+      .fridge-interior {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, #e0f2fe 30%, #bae6fd 100%);
+        border: 4px solid #28180b;
+        border-radius: 1.5rem;
+        z-index: 10;
+        overflow: hidden;
+      }
+      
+      /* 캐릭터 둥둥 애니메이션 */
+      @keyframes breathe {
+        0% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-6px) scale(1.02); }
+        100% { transform: translateY(0px) scale(1); }
+      }
+      .breathe-animation {
+        animation: breathe 2.4s infinite ease-in-out;
+      }
+      
+      /* Bingle physics motions */
+      @keyframes chew {
+        0%, 100% { transform: scale(1) translateY(0); }
+        20% { transform: scale(1.08, 0.9) translateY(2px); }
+        40% { transform: scale(0.9, 1.1) translateY(-4px); }
+        60% { transform: scale(1.05, 0.95) translateY(1px); }
+        80% { transform: scale(0.98, 1.02) translateY(-2px); }
+      }
+      .chew-animation {
+        animation: chew 0.55s infinite ease-in-out;
+      }
+      
+      @keyframes happy-anim {
+        0%, 100% { transform: translateY(0) scaleX(1) scaleY(1); }
+        20% { transform: translateY(-8px) scaleX(0.94) scaleY(1.06); }
+        40% { transform: translateY(0) scaleX(1.05) scaleY(0.95); }
+      }
+      .bingle-happy-physics {
+        animation: happy-anim 2.2s infinite ease-in-out;
+      }
+      
+      @keyframes sleeping-anim {
+        0%, 100% { transform: translateY(0) scale(1) rotate(-1deg); }
+        50% { transform: translateY(2px) scale(1.02) rotate(1deg); }
+      }
+      .bingle-sleeping-physics {
+        animation: sleeping-anim 4s infinite ease-in-out;
+      }
+      
+      @keyframes angry-anim {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(-2px, 1px) rotate(-1deg); }
+        75% { transform: translate(2px, -1px) rotate(1deg); }
+      }
+      .bingle-angry-physics {
+        animation: angry-anim 0.6s infinite ease-in-out;
+      }
+      
+      @keyframes hot-anim {
+        0%, 100% { transform: translateY(0) scaleX(1) scaleY(1); }
+        50% { transform: translateY(2px) scaleX(1.04) scaleY(0.9); }
+      }
+      .bingle-hot-physics {
+        animation: hot-anim 1.8s infinite ease-in-out;
+      }
+      
+      /* Zzz drifting */
+      @keyframes zzz-drift {
+        0% { transform: translateY(0) translateX(0); opacity: 0; }
+        30% { opacity: 1; }
+        100% { transform: translateY(-15px) translateX(5px); opacity: 0; }
+      }
+      .zzz-1 { animation: zzz-drift 3s infinite ease-in-out; }
+      .zzz-2 { animation: zzz-drift 3s infinite ease-in-out; animation-delay: 1s; }
+      .zzz-3 { animation: zzz-drift 3s infinite ease-in-out; animation-delay: 2s; }
+      
+      /* Sweat drops sliding */
+      @keyframes sweat-slide {
+        0% { transform: translateY(0); opacity: 0; }
+        30% { opacity: 1; }
+        100% { transform: translateY(12px); opacity: 0; }
+      }
+      .sweat { animation: sweat-slide 2s infinite ease-in; }
+      
+      /* Steam puff */
+      @keyframes steam-puff {
+        0% { transform: translateY(0) scale(0.8); opacity: 0; }
+        30% { opacity: 0.9; }
+        100% { transform: translateY(-12px) scale(1.1); opacity: 0; }
+      }
+      .steam-l { animation: steam-puff 1.2s infinite ease-in-out; }
+      .steam-r { animation: steam-puff 1.2s infinite ease-in-out; animation-delay: 0.6s; }
+      
+      /* Sparkle rotating */
+      @keyframes sparkle-rotate {
+        0% { transform: scale(0.7) rotate(0deg); opacity: 0.6; }
+        50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        100% { transform: scale(0.7) rotate(360deg); opacity: 0.6; }
+      }
+      .sparkle-l { animation: sparkle-rotate 2s infinite linear; }
+      .sparkle-r { animation: sparkle-rotate 2.4s infinite linear; }
+      
+      /* 명상 숲 호흡 팽창/수축 */
+      @keyframes forestBreath {
+        0% { transform: scale(0.85); background-color: #a7f3d0; box-shadow: 0 0 10px rgba(167,243,208,0.4); }
+        45% { transform: scale(1.3); background-color: #34d399; box-shadow: 0 0 25px rgba(52,211,153,0.8); }
+        55% { transform: scale(1.3); background-color: #34d399; box-shadow: 0 0 25px rgba(52,211,153,0.8); }
+        100% { transform: scale(0.85); background-color: #a7f3d0; box-shadow: 0 0 10px rgba(167,243,208,0.4); }
+      }
+      .meditation-core {
+        animation: forestBreath 8s infinite ease-in-out;
+      }
+      
+      /* AI 데이터 파이프라인 흐름 */
+      @keyframes flow-line {
+        0% { stroke-dashoffset: 24; }
+        100% { stroke-dashoffset: 0; }
+      }
+      .animated-flow {
+        stroke-dasharray: 8;
+        animation: flow-line 2s infinite linear;
+      }
+    </style>
+  </head>
+  
+  <body class="min-h-screen flex flex-col p-4 md:p-6 lg:p-8 relative select-none">
+    <div id="halftone-overlay" class="halftone-bg absolute inset-0 pointer-events-none opacity-40 z-0"></div>
+    
+    <!-- TOP HEADER -->
+    <header class="w-full max-w-7xl mx-auto flex items-center justify-between border-bold bg-white p-3.5 rounded-2xl shadow-comic relative z-10 mb-6">
+      <div class="flex items-center gap-3.5">
+        <span class="text-4xl filter drop-shadow-[2px_2px_0_#000]">🧊</span>
+        <div class="flex flex-col">
+          <h1 class="text-2xl md:text-3xl font-black text-dark tracking-tight leading-none">마음 냉장고 BINGLE</h1>
+          <span class="text-[10px] md:text-xs font-black text-primary mt-1">정서 조절 & 행동 활성화 디지털 테라피 플랫폼 (DTx)</span>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-2.5">
+        <!-- Sound Toggle -->
+        <button onclick="toggleAudioNodes()" id="btn-sound-toggle" class="bg-[#e0f2fe] border-2 border-dark font-black text-xs px-3.5 py-1.5 rounded-xl shadow-comic-sm active:translate-y-0.5 btn-comic text-dark flex items-center gap-1.5">
+          <span id="sound-icon" class="material-symbols-outlined text-sm font-black">volume_up</span>
+          <span id="sound-text" class="hidden sm:inline">효과음 ON</span>
+        </button>
+        
+        <!-- Fullscreen Toggle -->
+        <button onclick="toggleFullScreen()" class="bg-[#f0fdf4] border-2 border-dark font-black text-xs px-3.5 py-1.5 rounded-xl shadow-comic-sm active:translate-y-0.5 btn-comic text-dark flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm font-black">fullscreen</span>
+          <span class="hidden sm:inline">전체화면</span>
+        </button>
+      </div>
+    </header>
+    
+    <!-- MAIN PITCH DECK CONTENT AREA -->
+    <main class="w-full max-w-7xl mx-auto flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10 items-stretch">
+      
+      <!-- LEFT SIDEBAR: COMIC STRIP SLIDE NAVIGATOR -->
+      <nav class="lg:col-span-3 bg-[#fdf8f5] border-bold p-4 rounded-3xl shadow-comic flex flex-col gap-3 max-h-[700px] overflow-y-auto no-scrollbar">
+        <h3 class="text-lg font-black text-dark border-b-4 border-dark pb-2 flex items-center justify-between">
+          <span>📚 피치덱 목차</span>
+          <span class="bg-secondary border-2 border-dark text-[10px] px-2 py-0.5 rounded shadow-comic-sm">11 Slides</span>
+        </h3>
+        
+        <div class="flex flex-col gap-2">
+          <!-- Nav Item 1 -->
+          <button onclick="goToSlide(1)" id="nav-1" class="nav-btn w-full bg-white border-2 border-dark p-3 rounded-2xl shadow-comic-sm text-left font-black text-xs flex gap-2.5 items-center transition-all">
+            <span class="w-7 h-7 rounded-full bg-secondary border-2 border-dark flex items-center justify-center text-xs font-black">01</span>
+            <div class="flex flex-col">
+              <span class="text-dark leading-none text-[11px]">인도어 오프닝</span>
+              <span class="text-[9px] text-gray-500 font-bold mt-1">🧊 마음 냉장고 BINGLE</span>
+            </div>
+          </button>
+          
+          <!-- Nav Item 2 -->
+          <button onclick="goToSlide(2)" id="nav-2" class="nav-btn w-full bg-white border-2 border-dark p-3 rounded-2xl shadow-comic-sm text-left font-black text-xs flex gap-2.5 items-center transition-all">
+            <span class="w-7 h-7 rounded-full bg-red-400 border-2 border-dark flex items-center justify-center text-xs font-black text-white">02</span>
+            <div class="flex flex-col">
+              <span class="text-dark leading-none text-[11px]">번아웃 문제 의식</span>
+              <span class="text-[9px] text-gray-500 font-bold mt-1">🥵 녹아내리는 빙글이</span>
+            </div>
+          </button>
+          
+          <!-- Nav Item 3 -->
+          <button onclick="goToSlide(3)" id="nav-3" class="nav-btn w-full bg-white border-2 border-dark p-3 rounded-2xl shadow-comic-sm text-left font-black text-xs flex gap-2.5 items-center transition-all">
+            <span class="w-7 h-7 rounded-full bg-cyan-300 border-2 border-dark flex items-center justify-center text-xs font-black">03</span>
+            <div class="flex flex-col">
+              <span class="text-dark leading-none text-[11px]">대리 돌봄 치유</span>
+              <span class="text-[9px] text-gray-500 font-bold mt-1">🌿 Proxy Care 기제</span>
+            </div>
+          </button>
+          
+          <!-- Nav Item 4 -->
+          <button onclick="goToSlide(4)" id="nav-4" class="nav-btn w-full bg-white border-2 border-dark p-3 rounded-2xl shadow-comic-sm text-left font-black text-xs flex gap-2.5 items-center transition-all">
+            <span class="w-7 h-7 rounded-full bg-accent border-2 border-dark flex items-center justify-center text-xs font-black">04</span>
+            <div class="flex flex-col">
+              <span class="text-dark leading-none text-[11px]">핵심 7대 모듈</span>
+              <span class="text-[9px] text-gray-500 font-bold mt-1">🗺️ 상세 인터페이스 맵</span>
+            </div>
+          </button>
+          
+          <!-- Nav Item 5 -->
+          <button onclick="goToSlide(5)" id="nav-5" class="nav-btn w-full bg-white border-2 border-dark p-3 rounded-2xl shadow-comic-sm text-left font-black text-xs flex gap-2.5 items-center transition-all">
+            <span class="w-7 h-7 rounded-full bg-forest border-2 border-dark flex items-center justify-center text-xs font-black">05</span>
+            <div class="flex flex-col">
+              <span class="text-dark leading-none text-[11px]">만화책 디자인</span>
+              <span class="text-[9px] text-gray-500 font-bold mt-1">🎨 스티치 디자인 시스템</span>
+            </div>
+          </button>
+          
+          <!-- Nav Item 6 -->
+          <button onclick="goToSlide(6)" id="nav-6" class="nav-btn w-full bg-white border-2 border-dark p-3 rounded-2xl shadow-comic-sm text-left font-black text-xs flex gap-2.5 items-center transition-all">
+            <span class="w-7 h-7 rounded-full bg-purple-300 border-2 border-dark flex items-center justify-center text-xs font-black">06</span>
+            <div class="flex flex-col">
+              <span class="text-dark leading-none text-[11px]">AI 텔레메트리</span>
+              <span class="text-[9px] text-gray-500 font-bold mt-1">🧠 KoBERT 분석 & DB 동기</span>
+            </div>
+          </button>
+          
+          <!-- Nav Item 7 -->
+          <button onclick="goToSlide(7)" id="nav-7" class="nav-btn w-full bg-white border-2 border-dark p-3 rounded-2xl shadow-comic-sm text-left font-black text-xs flex gap-2.5 items-center transition-all">
+            <span class="w-7 h-7 rounded-full bg-primary border-2 border-dark flex items-center justify-center text-xs font-black text-white">07</span>
+            <div class="flex flex-col">
+              <span class="text-dark leading-none text-[11px]">수익 모델 & 로드맵</span>
+              <span class="text-[9px] text-gray-500 font-bold mt-1">📈 BM 및 ESG 파급력</span>
+            </div>
+          </button>
+          
+          <!-- Nav Item 8 -->
+          <button onclick="goToSlide(8)" id="nav-8" class="nav-btn w-full bg-white border-2 border-dark p-3 rounded-2xl shadow-comic-sm text-left font-black text-xs flex gap-2.5 items-center transition-all">
+            <span class="w-7 h-7 rounded-full bg-blue-300 border-2 border-dark flex items-center justify-center text-xs font-black">08</span>
+            <div class="flex flex-col">
+              <span class="text-dark leading-none text-[11px]">게임 설명서 & 간식</span>
+              <span class="text-[9px] text-gray-500 font-bold mt-1">🍪 5대 식음료 & 기분 매핑</span>
+            </div>
+          </button>
+          
+          <!-- Nav Item 9 -->
+          <button onclick="goToSlide(9)" id="nav-9" class="nav-btn w-full bg-white border-2 border-dark p-3 rounded-2xl shadow-comic-sm text-left font-black text-xs flex gap-2.5 items-center transition-all">
+            <span class="w-7 h-7 rounded-full bg-teal-300 border-2 border-dark flex items-center justify-center text-xs font-black">09</span>
+            <div class="flex flex-col">
+              <span class="text-dark leading-none text-[11px]">작동 기제 및 트리거 물리</span>
+              <span class="text-[9px] text-gray-500 font-bold mt-1">🚪 도어 개폐, 뽀모도로, 김서림</span>
+            </div>
+          </button>
+          
+          <!-- Nav Item 10 -->
+          <button onclick="goToSlide(10)" id="nav-10" class="nav-btn w-full bg-white border-2 border-dark p-3 rounded-2xl shadow-comic-sm text-left font-black text-xs flex gap-2.5 items-center transition-all">
+            <span class="w-7 h-7 rounded-full bg-orange-300 border-2 border-dark flex items-center justify-center text-xs font-black">10</span>
+            <div class="flex flex-col">
+              <span class="text-dark leading-none text-[11px]">데이터 엔티티 스키마</span>
+              <span class="text-[9px] text-gray-500 font-bold mt-1">📊 BingleState & DB Schema</span>
+            </div>
+          </button>
+          
+          <!-- Nav Item 11 -->
+          <button onclick="goToSlide(11)" id="nav-11" class="nav-btn w-full bg-white border-2 border-dark p-3 rounded-2xl shadow-comic-sm text-left font-black text-xs flex gap-2.5 items-center transition-all">
+            <span class="w-7 h-7 rounded-full bg-green-300 border-2 border-dark flex items-center justify-center text-xs font-black">11</span>
+            <div class="flex flex-col">
+              <span class="text-dark leading-none text-[11px]">엔진 및 기술 아키텍처</span>
+              <span class="text-[9px] text-gray-500 font-bold mt-1">⚙️ React, Springs, Synthesizer</span>
+            </div>
+          </button>
+        </div>
+        
+        <!-- Live Quick Stats Magnet -->
+        <div class="mt-auto bg-[#ffcb2f] border-4 border-dark p-3.5 rounded-2xl shadow-comic-sm rotate-1 text-xs">
+          <div class="font-black border-b border-dark pb-1 text-center">💡 페어 어드바이스</div>
+          <p class="font-bold text-dark/80 mt-1.5 leading-tight">
+            슬라이드마다 배치된 <strong class="text-primary">인터랙티브 샌드박스</strong>를 직접 조작해 보면 BINGLE의 코어 루프를 100% 이해할 수 있습니다!
+          </p>
+        </div>
+      </nav>
+      
+      
+      <!-- RIGHT SLIDE AREA -->
+      <section class="lg:col-span-9 flex flex-col justify-between relative min-h-[580px] bg-cream border-bold p-6 rounded-3xl shadow-comic-lg">
+        
+        <!-- SLIDE 1: COVER (인도어 오프닝) -->
+        <div id="slide-1" class="slide-container w-full h-full grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <!-- Text Pitch -->
+          <div class="md:col-span-7 flex flex-col gap-4 text-left">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="bg-[#ff8c69] border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg]">
+                🏆 창업제안 기말과제 (A+ 수강생 전형)
+              </span>
+              <span class="bg-accent border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg]">
+                AI 헬스케어 웰니스
+              </span>
+            </div>
+            
+            <h2 class="text-4xl md:text-5xl font-black text-dark leading-tight tracking-tight select-none mt-2">
+              마음 냉장고 <span class="text-primary font-black">BINGLE</span>
+            </h2>
+            <p class="text-lg font-bold text-gray-700 leading-snug">
+              "현대인의 스트레스와 번아웃을 시원하게 얼려주는 정서 조절 & 행동 활성화 디지털 테라피 플랫폼"
+            </p>
+            
+            <div class="bg-white border-bold-sm p-4 rounded-2xl shadow-comic-sm text-xs font-bold text-gray-600 leading-relaxed flex flex-col gap-2 mt-2">
+              <div>👨‍⚕️ <strong class="text-dark">정신건강의 보이지 않는 위협:</strong> 스스로 일상 관리가 힘든 번아웃 무기력증 환자들을 위한 행동 치료적 돌봄 서비스.</div>
+              <div>❄️ <strong class="text-dark">대리 돌봄 은유(Proxy Care Metaphor):</strong> 얼음 요정 빙글이가 더워져 녹지 않도록 시원한 치유 미션을 수행하여 유저 자신의 감정 기온을 쾌적한 12°C로 복원시킵니다.</div>
+            </div>
+            
+            <div class="mt-4">
+              <button onclick="triggerSlide1Opening()" class="bg-accent hover:bg-cyan-200 border-bold font-black text-base py-3 px-8 rounded-xl shadow-comic btn-comic-lg text-dark">
+                냉장실 문 열고 빙글이 구출하기 🚪
+              </button>
+            </div>
+          </div>
+          
+          <!-- Fridge Opening Simulator Widget -->
+          <div class="md:col-span-5 flex flex-col items-center justify-center">
+            <div id="slide1-fridge-box" class="w-full max-w-[280px] bg-dark border-4 border-dark shadow-comic rounded-[2rem] relative overflow-hidden flex flex-col" style="height: 380px;">
+              <!-- Interior -->
+              <div id="slide1-fridge-interior" class="fridge-interior flex flex-col">
+                <div class="led-strip"></div>
+                <div class="frost-mist"></div>
+                <div class="flex-1 flex flex-col items-center justify-center relative z-20">
+                  <div class="absolute top-3 bg-white/95 border-2 border-dark font-black text-[9px] px-2.5 py-0.5 rounded shadow-comic-sm animate-pulse">
+                    ❄️ 최적 온도 12°C 도달!
+                  </div>
+                  <!-- Sleeping / Happy character SVG -->
+                  <div id="slide1-bingle-placeholder" class="w-24 h-24 breathe-animation mt-4">
+                    <!-- SVG will be dynamically placed -->
+                  </div>
+                  <div id="slide1-bingle-speech" class="bg-white border-2 border-dark font-black px-3.5 py-1 rounded-xl text-[10px] mt-2 shadow-comic-sm max-w-[85%] text-center opacity-0 transition-all duration-500">
+                    휴우~ 살았다! 안녕 파트너! 🧊😊
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Double Doors -->
+              <div id="slide1-fridge-doors" class="fridge-doors-wrapper">
+                <div class="fridge-door-left">
+                  <div class="bg-[#fffef0] border-2 border-dark p-1.5 shadow-comic-sm -rotate-2 flex flex-col gap-1 pointer-events-auto">
+                    <span class="text-[7px] font-black border-b border-dark pb-0.5 text-center">📌 일일 목표</span>
+                    <span class="text-[6px] font-bold text-gray-500">☑️ 빙글이 구출</span>
+                  </div>
+                  <div onclick="triggerSlide1Opening()" class="handle-left pointer-events-auto"></div>
+                </div>
+                <div class="fridge-door-right items-end">
+                  <div class="bg-[#111827] text-red-500 border-2 border-dark p-1.5 rounded-xl text-center shadow-comic-sm rotate-1 w-[80px] pointer-events-auto">
+                    <div class="text-[6px] opacity-80 uppercase leading-none font-bold">TEMP</div>
+                    <div class="text-xs font-mono font-black mt-0.5 leading-none">85°C 🥵</div>
+                  </div>
+                  <div onclick="triggerSlide1Opening()" class="handle-right pointer-events-auto"></div>
+                </div>
+              </div>
+            </div>
+            <span class="text-[11px] font-bold text-gray-500 mt-3 text-center">※ 냉장고 문이나 손잡이를 클릭해 열어보세요!</span>
+          </div>
+        </div>
+        
+        
+        <!-- SLIDE 2: PROBLEM (🥵 녹아내리는 빙글이 / 번아웃 위기) -->
+        <div id="slide-2" class="slide-container w-full h-full grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-7 flex flex-col gap-4 text-left">
+            <span class="bg-red-400 border-2 border-dark text-white font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+              🥵 번아웃 & 무기력 증상 문제 인식
+            </span>
+            <h3 class="text-3xl font-black text-dark tracking-tight leading-none mt-1">스트레스의 유쾌한 시각화: 용해(Melting)</h3>
+            
+            <div class="text-xs font-bold text-gray-700 leading-relaxed flex flex-col gap-3">
+              <p>
+                현대인의 직장 내 만성적 소진인 <strong class="text-primary">번아웃 증후군</strong>은 눈에 보이지 않아서 스스로 예방하거나 관리하기 어렵습니다. 심리학 및 의학 통계에 따르면 번아웃 방치는 CES-D 우울증 고위험 전이 위험율 <strong class="text-red-500">$r = 0.55$ ($p < .001$)</strong>에 달합니다.
+              </p>
+              
+              <div class="bg-white border-bold-sm p-3.5 rounded-2xl shadow-comic-sm flex flex-col gap-1.5">
+                <div class="flex items-center gap-1.5 text-red-500 font-black">
+                  <span class="material-symbols-outlined text-sm font-black">warning</span>
+                  <span>기존 웰니스/멘탈 앱의 리텐션 한계</span>
+                </div>
+                <p class="text-gray-500 leading-tight">
+                  의지 동기가 바닥난 번아웃 환자에게 "스스로 앱을 켜고 매일 명상하라"고 요구하는 것은 모순입니다 (기존 마인드케어 서비스들의 30일 리텐션율은 3.3% 수준으로 처참함).
+                </p>
+              </div>
+              
+              <p class="text-gray-600">
+                BINGLE은 유저 내면의 정서적 피로와 업무 열기를 <strong class="text-primary">"냉장실 온도 상승"</strong>과 <strong class="text-primary">"빙글이 캐릭터의 멜팅 상태"</strong>로 직관적 설계하여, 사용자 스스로 인지부하 없이 알아차릴 수 있도록 시각화하였습니다.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Bingle Melting Simulator Sandbox -->
+          <div class="md:col-span-5 flex flex-col items-center">
+            <div id="sim-card" class="w-full max-w-[280px] bg-[#e0f2fe] border-4 border-dark p-4 rounded-3xl shadow-comic text-center transition-all duration-300 relative">
+              <div class="flex justify-between items-center border-b-2 border-dark pb-1">
+                <span class="font-black text-[10px] text-dark">🌡️ 실시간 냉각 테스트</span>
+                <span id="sim-temp-display" class="font-mono font-black text-sm text-cyan-600 bg-white border border-dark px-2 rounded">12°C ❄️</span>
+              </div>
+              
+              <!-- Floating character frame -->
+              <div class="w-full h-32 flex items-center justify-center mt-3 relative overflow-visible">
+                <div id="sim-bingle-container" class="w-24 h-24">
+                  <!-- JS dynamically injects state -->
+                </div>
+              </div>
+              
+              <!-- Speech bubble -->
+              <div id="sim-bubble" class="bg-white border-2 border-dark font-black px-3.5 py-1 rounded-xl text-[10px] mt-2 shadow-comic-sm mx-auto max-w-[90%] leading-tight">
+                시원해서 기분 최고! 😊
+              </div>
+              
+              <!-- Slider tool -->
+              <div class="mt-4 pt-2 border-t border-dark/10">
+                <span class="text-[9px] font-black text-gray-500 uppercase block mb-1">🔥 스트레스 / 업무 피로 조절 (0~100)</span>
+                <input oninput="updateMeltingSimulator(this.value)" type="range" min="0" max="100" value="0" class="w-full accent-primary h-2 bg-dark/20 rounded-full cursor-pointer" />
+                <div class="flex justify-between text-[8px] font-black text-gray-400 mt-1">
+                  <span>스트레스 0%</span>
+                  <span>과열 100% 🥵</span>
+                </div>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-gray-500 mt-2.5">슬라이더를 조작해 온도가 오르면 빙글이 표정과 형태가 변합니다!</span>
+          </div>
+        </div>
+        
+        
+        <!-- SLIDE 3: SOLUTION (🌿 대리 돌봄 / Proxy Care 기제) -->
+        <div id="slide-3" class="slide-container w-full h-full grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-7 flex flex-col gap-4 text-left">
+            <span class="bg-cyan-300 border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[1.5deg] w-fit">
+              🌿 행동 활성화 & 대리 돌봄 치료 모델
+            </span>
+            <h3 class="text-3xl font-black text-dark tracking-tight leading-none mt-1">"나를 돌볼 힘이 없을 땐, BINGLE을 돌보세요."</h3>
+            
+            <div class="text-xs font-bold text-gray-700 leading-relaxed flex flex-col gap-2.5">
+              <p>
+                번아웃 환자는 극도의 에너지 고갈로 '자기 돌봄(Self-Care)'의 행동 동기를 상실합니다. 그러나 나보다 연약한 대상을 가엽게 여겨 양육하려는 <strong class="text-primary">대리 돌봄(Proxy Care) 본능</strong>은 또 다른 뇌의 동기 유발 경로를 통해 활성화될 수 있습니다.
+              </p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 my-1">
+                <div class="bg-emerald-50 border-2 border-dark p-2.5 rounded-xl">
+                  <span class="text-xs font-black text-emerald-800 block">이타적 행동 활성화 🏃</span>
+                  <span class="text-[10px] text-gray-500 font-bold leading-tight block mt-0.5">빙글이를 지키는 행동(걷기, 숲 호흡, 일기 성찰)이 결국 유저 자신의 자생적 치료로 전개.</span>
+                </div>
+                <div class="bg-yellow-50 border-2 border-dark p-2.5 rounded-xl">
+                  <span class="text-xs font-black text-yellow-800 block">5대 맞춤 치료 식재료 🍊</span>
+                  <span class="text-[10px] text-gray-500 font-bold leading-tight block mt-0.5">유저의 불안, 무기력, 수면 상태에 맞춰 심리학적으로 정교하게 설계된 5가지 웰니스 간식.</span>
+                </div>
+              </div>
+              
+              <p class="text-gray-600">
+                유저가 획득한 치유 물약과 간식으로 빙글이를 먹여 살리고 온도를 급속 냉각시킴으로써, 사용자와 캐릭터가 감정적으로 공명하며 상생 성장하는 웰빙 루프가 가동됩니다.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Pantry feeding interactive simulator -->
+          <div class="md:col-span-5 flex flex-col items-center">
+            <div class="w-full max-w-[280px] bg-white border-4 border-dark p-4 rounded-3xl shadow-comic relative">
+              <div class="flex justify-between items-center border-b-2 border-dark pb-1.5">
+                <span class="font-black text-[10px] text-dark flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[12px] font-black">kitchen</span> 1층 치유 냉각고
+                </span>
+                <span id="pantry-temp-display" class="font-mono font-black text-xs text-red-500 bg-red-50 border border-dark px-1.5 py-0.5 rounded animate-pulse">75°C 🥵 과열!</span>
+              </div>
+              
+              <!-- Floating Hot character inside -->
+              <div class="w-full h-24 flex items-center justify-center my-2 relative">
+                <div id="pantry-bingle" class="w-20 h-20">
+                  <!-- SVG will be dynamically injected by JS -->
+                </div>
+                <div id="pantry-speech" class="absolute -bottom-1 bg-white border-2 border-dark font-black px-2.5 py-0.5 rounded-lg text-[9px] shadow-comic-sm max-w-[90%] text-center">
+                  더워서 쓰러질 것 같아요... 🥵
+                </div>
+              </div>
+              
+              <!-- Items selection shelf grid -->
+              <div class="grid grid-cols-3 gap-1.5 pt-2 border-t border-dark/10">
+                <button onclick="feedBingleSnack('water', -15)" class="bg-blue-50 hover:bg-blue-100 border-2 border-dark p-1 rounded-xl text-center shadow-comic-sm active:translate-y-0.5 btn-comic">
+                  <span class="text-lg block">💧</span>
+                  <span class="text-[8px] font-black block text-dark leading-none">탄산수</span>
+                  <span class="text-[7px] text-gray-400 font-bold block mt-0.5">-15°C</span>
+                </button>
+                <button onclick="feedBingleSnack('cacao', -63)" class="bg-amber-100 hover:bg-amber-200 border-2 border-dark p-1 rounded-xl text-center shadow-comic-sm active:translate-y-0.5 btn-comic">
+                  <span class="text-lg block">🍫</span>
+                  <span class="text-[8px] font-black block text-dark leading-none">카카오</span>
+                  <span class="text-[7px] text-gray-400 font-bold block mt-0.5">안정 12°C</span>
+                </button>
+                <button onclick="feedBingleSnack('lavender', -20)" class="bg-purple-50 hover:bg-purple-100 border-2 border-dark p-1 rounded-xl text-center shadow-comic-sm active:translate-y-0.5 btn-comic">
+                  <span class="text-lg block">🥛</span>
+                  <span class="text-[8px] font-black block text-dark leading-none">라벤더</span>
+                  <span class="text-[7px] text-gray-400 font-bold block mt-0.5">-20°C</span>
+                </button>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-gray-500 mt-2.5">치유 간식 버튼을 누르면 빙글이를 먹이고 온도가 내려갑니다!</span>
+          </div>
+        </div>
+        
+        
+        <!-- SLIDE 4: CORE MODULES MAP (7대 코어 모듈 맵) -->
+        <div id="slide-4" class="slide-container w-full h-full flex flex-col justify-start">
+          <div class="flex items-center gap-2">
+            <span class="bg-accent border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+              🗺️ BINGLE 핵심 7대 서비스 화면 상세 분석
+            </span>
+          </div>
+          <h3 class="text-2xl font-black text-dark tracking-tight leading-none mt-2">유기적으로 작동되는 8주차 점진적 테라피 루프</h3>
+          
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5 mt-4">
+            <!-- Module 1 -->
+            <button onclick="zoomFeature(1)" class="feature-card-btn bg-white hover:bg-secondary/10 border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-center transition-all flex flex-col items-center justify-between h-28">
+              <span class="text-2xl">🚪</span>
+              <span class="font-black text-[9px] text-dark leading-tight mt-1">① 탄생 스토리<br/>온보딩</span>
+              <span class="bg-[#ffcb2f] border border-dark text-[7px] font-black px-1 rounded">1~2주차</span>
+            </button>
+            
+            <!-- Module 2 -->
+            <button onclick="zoomFeature(2)" class="feature-card-btn bg-white hover:bg-secondary/10 border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-center transition-all flex flex-col items-center justify-between h-28">
+              <span class="text-2xl">⚙️</span>
+              <span class="font-black text-[9px] text-dark leading-tight mt-1">② 스마트 콕핏<br/>홈 뽀모도로</span>
+              <span class="bg-[#ffcb2f] border border-dark text-[7px] font-black px-1 rounded">3~4주차</span>
+            </button>
+            
+            <!-- Module 3 -->
+            <button onclick="zoomFeature(3)" class="feature-card-btn bg-white hover:bg-secondary/10 border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-center transition-all flex flex-col items-center justify-between h-28">
+              <span class="text-2xl">🍎</span>
+              <span class="font-black text-[9px] text-dark leading-tight mt-1">③ 치유 식재료<br/>인벤토리</span>
+              <span class="bg-[#ffcb2f] border border-dark text-[7px] font-black px-1 rounded">5~6주차</span>
+            </button>
+            
+            <!-- Module 4 -->
+            <button onclick="zoomFeature(4)" class="feature-card-btn bg-white hover:bg-secondary/10 border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-center transition-all flex flex-col items-center justify-between h-28">
+              <span class="text-2xl">📝</span>
+              <span class="font-black text-[9px] text-dark leading-tight mt-1">④ 김서림 일기<br/>통계 트래커</span>
+              <span class="bg-[#ffcb2f] border border-dark text-[7px] font-black px-1 rounded">1~8주차</span>
+            </button>
+            
+            <!-- Module 5 -->
+            <button onclick="zoomFeature(5)" class="feature-card-btn bg-white hover:bg-secondary/10 border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-center transition-all flex flex-col items-center justify-between h-28">
+              <span class="text-2xl">🏃</span>
+              <span class="font-black text-[9px] text-dark leading-tight mt-1">⑤ 자이로 GPS<br/>산책 지도</span>
+              <span class="bg-[#ffcb2f] border border-dark text-[7px] font-black px-1 rounded">3~8주차</span>
+            </button>
+            
+            <!-- Module 6 -->
+            <button onclick="zoomFeature(6)" class="feature-card-btn bg-white hover:bg-secondary/10 border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-center transition-all flex flex-col items-center justify-between h-28">
+              <span class="text-2xl">🍃</span>
+              <span class="font-black text-[9px] text-dark leading-tight mt-1">⑥ 마법의 숲<br/>호흡 ASMR</span>
+              <span class="bg-[#ffcb2f] border border-dark text-[7px] font-black px-1 rounded">5~8주차</span>
+            </button>
+            
+            <!-- Module 7 -->
+            <button onclick="zoomFeature(7)" class="feature-card-btn bg-white hover:bg-secondary/10 border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-center transition-all flex flex-col items-center justify-between h-28">
+              <span class="text-2xl">❄️</span>
+              <span class="font-black text-[9px] text-dark leading-tight mt-1">⑦ 이웃 냉장고<br/>소셜 네트워크</span>
+              <span class="bg-[#ffcb2f] border border-dark text-[7px] font-black px-1 rounded">7~8주차</span>
+            </button>
+          </div>
+          
+          <!-- Zoom details container -->
+          <div class="mt-4 bg-white border-4 border-dark p-4 rounded-2xl shadow-comic flex-1 flex flex-col sm:flex-row gap-4 items-center min-h-[170px]">
+            <div id="feature-zoom-avatar" class="w-16 h-16 rounded-full border-2 border-dark bg-secondary flex items-center justify-center text-4xl flex-shrink-0">
+              🚪
+            </div>
+            
+            <div class="flex-1 flex flex-col gap-1.5 text-left w-full">
+              <div class="flex items-center justify-between">
+                <h4 id="feature-zoom-title" class="font-black text-dark text-base">① 탄생 스토리 온보딩 (Story Onboarding)</h4>
+                <span id="feature-zoom-week" class="bg-accent border border-dark text-[9px] font-black px-2 rounded text-dark">1~2주차 (1단계)</span>
+              </div>
+              <p id="feature-zoom-desc" class="text-xs text-gray-600 font-bold leading-normal">
+                유저가 앱에 첫 접속 시, 3D 햅틱 물리 효과로 굳게 잠긴 냉장고 양문(85°C 과열 상태)을 직접 당겨 엽니다. 아늑한 스티치 스타일의 4컷 만화 시퀀스가 동적으로 펼쳐져, 얼음 요정 빙글이와의 정서적 교감 형성을 극대화하는 감동의 탄생 스토리를 선사합니다.
+              </p>
+              
+              <!-- Mini interactive preview slot based on zoom state -->
+              <div id="feature-interactive-sandbox" class="w-full mt-1.5 bg-gray-50 border border-dark/15 rounded-lg p-2 flex items-center justify-center text-[10px] font-black text-gray-500">
+                <!-- Inside will be rendered dynamic widget previews -->
+                <span class="flex items-center gap-1.5">🚪 냉장고 문 회전 Framer Motion 물리 효과 시뮬레이션 가능</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <!-- SLIDE 5: STITCH DESIGN SYSTEM (🎨 만화책 디자인 시스템) -->
+        <div id="slide-5" class="slide-container w-full h-full grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-7 flex flex-col gap-4 text-left">
+            <span class="bg-forest border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+              🎨 Stitch Comic-Book Design System
+            </span>
+            <h3 class="text-3xl font-black text-dark tracking-tight leading-none mt-1">병원 느낌의 차가운 화이트를 배제한 레트로 감성</h3>
+            
+            <div class="text-xs font-bold text-gray-700 leading-relaxed flex flex-col gap-3">
+              <p>
+                BINGLE은 유저에게 정서적인 친근감과 안정감을 선사하기 위해 <strong class="text-primary">"Stitch (스티치)" 핸드드로잉 만화책 디자인 규격</strong>을 엄격히 수립하고 통일된 UI를 제공합니다.
+              </p>
+              
+              <ul class="flex flex-col gap-1.5 list-disc pl-4 text-gray-600">
+                <li><strong class="text-dark">파스텔 배색 가이드:</strong> 개나리 옐로우(#ffcb2f), 코랄 오렌지(#ff8c69) 등을 주색상으로 채택해 방구석 느낌 극대화.</li>
+                <li><strong class="text-dark">볼드 펜선 (Black Border):</strong> 만화가가 직접 펜선을 굵직하게 그린 듯한 3px~8px의 튼튼한 테두리선.</li>
+                <li><strong class="text-dark">하프톤 망점 패턴:</strong> 인쇄 신문 만화의 질감을 표현하는 망점 텍스처 백그라운드 적용.</li>
+                <li><strong class="text-dark">종이 질감 3D 그림자:</strong> 탭할 때마다 쫀득한 타격감을 주는 solid 단색 그림자 모델.</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Design Playground Sandbox -->
+          <div class="md:col-span-5 flex flex-col items-center">
+            <div id="design-sandbox-card" class="w-full max-w-[280px] bg-white border-4 border-dark p-4 rounded-3xl shadow-comic text-center transition-all">
+              <h4 class="font-black text-xs text-dark border-b-2 border-dark pb-1 flex justify-between items-center">
+                <span>🎨 스티치 디자인 플레이그라운드</span>
+                <span class="text-[8px] bg-secondary border border-dark px-1.5 rounded">Real-time Token</span>
+              </h4>
+              
+              <div class="w-full h-24 flex items-center justify-center my-3 relative overflow-hidden bg-[#e0f2fe] border-2 border-dark rounded-xl" id="design-card-preview">
+                <!-- Miniature Happy Bingle -->
+                <div class="w-16 h-16 breathe-animation">
+                  <svg viewBox="0 0 120 120" class="w-full h-full overflow-visible">
+                    <g>
+                      <path d="M30 35 C 30 25, 40 22, 60 22 C 80 22, 90 25, 90 35 C 90 60, 93 75, 87 90 C 80 97, 40 97, 33 90 C 27 75, 30 60, 30 35 Z" fill="#d0f4ff" stroke="#28180b" stroke-width="4.5" stroke-linejoin="round" />
+                      <circle cx="46" cy="58" r="4.5" fill="#28180b" />
+                      <circle cx="74" cy="58" r="4.5" fill="#28180b" />
+                      <path d="M55 68 Q 60 74, 65 68" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" fill="none" />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              
+              <!-- Tokens Controls -->
+              <div class="flex flex-col gap-2.5 pt-2 border-t border-dark/10">
+                <!-- Toggle Halftone -->
+                <div class="flex justify-between items-center text-[10px] font-black text-gray-500">
+                  <span>인쇄 망점 패턴 (Halftone)</span>
+                  <button onclick="toggleSandboxHalftone()" id="btn-sb-halftone" class="bg-accent border border-dark px-2 py-0.5 rounded shadow-comic-sm font-black active:translate-y-0.5 text-[9px] text-dark">
+                    ON
+                  </button>
+                </div>
+                
+                <!-- Border thickness range -->
+                <div class="flex flex-col text-[10px] font-black text-gray-500 text-left">
+                  <div class="flex justify-between">
+                    <span>테두리 굵기 (Border Width)</span>
+                    <span id="val-sb-border">4px</span>
+                  </div>
+                  <input oninput="updateSandboxBorder(this.value)" type="range" min="1" max="8" value="4" class="w-full accent-dark mt-1 h-1.5 bg-dark/20 rounded-full" />
+                </div>
+                
+                <!-- Shadow depth range -->
+                <div class="flex flex-col text-[10px] font-black text-gray-500 text-left">
+                  <div class="flex justify-between">
+                    <span>3D 그림자 입체감 (Shadow Offset)</span>
+                    <span id="val-sb-shadow">5px</span>
+                  </div>
+                  <input oninput="updateSandboxShadow(this.value)" type="range" min="0" max="12" value="5" class="w-full accent-dark mt-1 h-1.5 bg-dark/20 rounded-full" />
+                </div>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-gray-500 mt-2.5">토큰 값을 조절하면 플레이그라운드 카드가 실시간 렌더링됩니다!</span>
+          </div>
+        </div>
+        
+        
+        <!-- SLIDE 6: TECHNICAL ARCHITECTURE & AI (🧠 AI 텔레메트리 & 실시간 동기화) -->
+        <div id="slide-6" class="slide-container w-full h-full grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-7 flex flex-col gap-4 text-left">
+            <span class="bg-purple-300 border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+              🧠 AI 감정 처방 & Real-time Database
+            </span>
+            <h3 class="text-3xl font-black text-dark tracking-tight leading-none mt-1">경량 모바일 연동 및 자연어 감정 스코어링</h3>
+            
+            <div class="text-xs font-bold text-gray-700 leading-relaxed flex flex-col gap-3">
+              <p>
+                BINGLE은 유저의 스마트폰 원시 데이터를 가공하여 AI가 인지적 무기력감을 조절해 줄 최적의 처방을 계산하는 고유 웰니스 백엔드를 갖추고 있습니다.
+              </p>
+              
+              <ul class="flex flex-col gap-1.5 list-disc pl-4 text-gray-600">
+                <li><strong class="text-dark">자연어 감정 분석 (NLP):</strong> 유저가 매일 작성한 김서림 성찰 일기를 기반으로 잠재적 무기력/소진 키워드를 가중 분석하여 <strong class="text-primary">감정 온도(12°C ~ 100°C)</strong>로 정량적 매핑.</li>
+                <li><strong class="text-dark">초개인화 AI 처방 엔진:</strong> 3축 자이로센서의 일일 걸음수 급감 및 수면 이상 데이터를 감지하여, 인지 과부하 없는 초저난도 맞춤 행동 계획 및 5대 웰니스 치유 아이템(소화수, 멜론 등) 자동 처방 배달.</li>
+                <li><strong class="text-dark">Firebase 소켓 실시간 동기화:</strong> 로컬 캐시(LocalStorage)와 실시간 DB 소켓을 결합해 오프라인 단절 속에서도 데이터 손실 0% 보장.</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- AI Diary Analyzer Simulation Sandbox -->
+          <div class="md:col-span-5 flex flex-col items-center">
+            <div class="w-full max-w-[280px] bg-white border-4 border-dark p-4 rounded-3xl shadow-comic text-center relative">
+              <h4 class="font-black text-xs text-dark border-b-2 border-dark pb-1.5 text-left flex items-center gap-1">
+                <span>🧠 AI KoBERT 감정 일기 분석기</span>
+              </h4>
+              
+              <!-- Interactive Input -->
+              <div class="mt-3 flex flex-col gap-2">
+                <textarea id="ai-diary-input" placeholder="오늘 회사에서 너무 일이 꼬여서 답답하고 피곤했다..." class="w-full border-2 border-dark rounded-xl p-2 text-[10px] font-black text-gray-700 focus:outline-none focus:bg-[#fcfefa] h-14 resize-none shadow-comic-sm"></textarea>
+                
+                <button onclick="simulateAIDiaryAnalysis()" class="bg-[#ff8c69] hover:bg-[#ff7b52] border-2 border-dark font-black text-[10px] py-1.5 rounded-xl shadow-comic-sm active:translate-y-0.5 btn-comic text-dark w-full">
+                  AI 감정 온도 분석 & 간식 처방 ⚡
+                </button>
+              </div>
+              
+              <!-- Analysis pipeline visualizer -->
+              <div id="ai-pipeline-visual" class="hidden mt-3 bg-gray-50 border-2 border-dark p-2.5 rounded-xl text-left flex flex-col gap-1.5 relative overflow-hidden">
+                <div class="flex justify-between items-center text-[8px] font-black text-gray-400">
+                  <span>KoBERT Sentiment Core</span>
+                  <span id="ai-sentiment-score" class="text-red-500">불안/스트레스 84%</span>
+                </div>
+                
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-black text-dark">처방 기온:</span>
+                  <span id="ai-temp-pres" class="font-mono font-black text-xs text-red-500 bg-red-50 border border-dark px-1.5 rounded">68°C 🥵</span>
+                </div>
+                
+                <div class="flex items-center gap-2 border-t border-dark/10 pt-1.5">
+                  <span class="text-xs font-black text-dark">추천 솔루션:</span>
+                  <span id="ai-snack-pres" class="bg-cyan-200 border border-dark px-2 rounded-full text-[9px] font-black text-dark flex items-center gap-0.5">
+                    💧 탄산 소화수 1캔 배달
+                  </span>
+                </div>
+                
+                <p id="ai-bingle-feedback" class="text-[8px] font-bold text-gray-500 mt-1 leading-tight">
+                  "가슴이 많이 무거우셨겠어요. 시원한 탄산수 💧 로 답답함을 같이 날려보아요! 제가 응원할게요!"
+                </p>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-gray-500 mt-2.5">텍스트를 자유롭게 적어보고 주황색 분석 버튼을 클릭하세요!</span>
+          </div>
+        </div>
+        
+        
+        <!-- SLIDE 7: BUSINESS MODEL & ROADMAP (📈 수익 구조 & ESG 비전) -->
+        <div id="slide-7" class="slide-container w-full h-full grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-7 flex flex-col gap-4 text-left">
+            <span class="bg-[#ffcb2f] border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+              📈 수익화 비즈니스 구조 & 비전
+            </span>
+            <h3 class="text-3xl font-black text-dark tracking-tight leading-none mt-1">웰니스 선순환 에코시스템 & 3대 캐시카우</h3>
+            
+            <div class="text-xs font-bold text-gray-700 leading-relaxed flex flex-col gap-2.5">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm">
+                  <span class="font-black text-dark block text-[10px]">1. B2C 프리미엄 💎</span>
+                  <span class="text-[8px] text-gray-500 font-bold block mt-1 leading-tight">월 4,900원 구독제. 입체 ASMR 숲길 음원, AI 라디오 편지, 냉장고 꾸미기 한정판 마그넷 리워드 제공.</span>
+                </div>
+                <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm">
+                  <span class="font-black text-dark block text-[10px]">2. B2B EAP 복지 🏢</span>
+                  <span class="text-[8px] text-gray-500 font-bold block mt-1 leading-tight">임직원 1인당 월 2,500원 패키지. IT 기업 맞춤 사내 번아웃 지표 통계 대시보드 인사팀 실시간 제공.</span>
+                </div>
+                <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm">
+                  <span class="font-black text-dark block text-[10px]">3. ESG F&B 마켓 🍏</span>
+                  <span class="text-[8px] text-gray-500 font-bold block mt-1 leading-tight">친환경 비건 푸드, 오가닉 음료, 요가/명상 웰니스 브랜드 제휴 챌린지 퀘스트 마케팅 수수료 15%.</span>
+                </div>
+              </div>
+              
+              <p class="text-gray-600 mt-1">
+                <strong>🌱 로드맵:</strong> 1단계 모바일 네이티브 센서(Apple HealthKit/Google Fit) 정합성 업그레이드 출시 → 2단계 웰니스 브랜드 F&B 할인 기프티콘 마켓 연동 → 3단계 대학병원 연합 임상 무작위 대조군 시험(RCT)을 통한 식약처 2급 디지털치료제(DTx) 공식 기기 품목 승인 획득.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Interactive Projections & Revenue Calculator -->
+          <div class="md:col-span-5 flex flex-col items-center">
+            <div class="w-full max-w-[280px] bg-white border-4 border-dark p-4 rounded-3xl shadow-comic relative">
+              <h4 class="font-black text-xs text-dark border-b-2 border-dark pb-1 text-left flex justify-between items-center">
+                <span>📈 BINGLE 재무 및 소셜 임팩트</span>
+                <span class="text-[7px] text-gray-400 font-mono">BINGLE Calc v1.0</span>
+              </h4>
+              
+              <!-- Sliders -->
+              <div class="flex flex-col gap-3 mt-3">
+                <div class="flex flex-col text-[10px] font-black text-gray-500 text-left">
+                  <div class="flex justify-between">
+                    <span>B2C 유료 정기 구독자 수</span>
+                    <span id="b2c-display-calc" class="text-primary font-black">5,000 명</span>
+                  </div>
+                  <input oninput="calculateProjectedRevenue()" id="calc-b2c-range" type="range" min="0" max="50000" step="500" value="5000" class="w-full accent-primary mt-1 h-1 bg-dark/20 rounded-full cursor-pointer" />
+                </div>
+                
+                <div class="flex flex-col text-[10px] font-black text-gray-500 text-left">
+                  <div class="flex justify-between">
+                    <span>B2B 사내 EAP 복지 가입자 수</span>
+                    <span id="b2b-display-calc" class="text-cyan-600 font-black">10,000 명</span>
+                  </div>
+                  <input oninput="calculateProjectedRevenue()" id="calc-b2b-range" type="range" min="0" max="200000" step="2000" value="10000" class="w-full accent-cyan-600 mt-1 h-1 bg-dark/20 rounded-full cursor-pointer" />
+                </div>
+              </div>
+              
+              <!-- Calculation Output -->
+              <div class="mt-4 bg-[#f0fdf4] border-2 border-dark p-2.5 rounded-xl text-left flex flex-col gap-1.5 relative overflow-hidden">
+                <div class="text-[8px] font-black text-emerald-800 uppercase block">예상 월간 반복 매출 (MRR Projections)</div>
+                <div id="mrr-calc-output" class="text-lg font-black text-emerald-600 font-mono leading-none">₩ 49,500,000 원</div>
+                
+                <div class="flex items-center gap-1.5 border-t border-dark/10 pt-1.5 text-[9px] font-bold text-gray-600 mt-0.5 leading-tight">
+                  <span class="material-symbols-outlined text-[11px] text-emerald-600 font-black">spa</span>
+                  <span>ESG 임팩트: 연간 <strong id="calc-burnout-prevented" class="text-dark">1,240명</strong> 번아웃 탈진 선제 예방 성공!</span>
+                </div>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-gray-500 mt-2.5">슬라이더를 드래그해 구독 규모에 따른 매출을 모사해 보세요!</span>
+          </div>
+        </div>
+
+        <!-- SLIDE 8: GAME MANUAL & HEALING ITEMS -->
+        <div id="slide-8" class="slide-container w-full h-full grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-7 flex flex-col gap-4 text-left">
+            <span class="bg-blue-300 border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+              📖 BINGLE 게임 설명서 & 5대 처방 아이템
+            </span>
+            <h3 class="text-3xl font-black text-dark tracking-tight leading-none mt-1">마음 지표에 따른 식음료 케어 & 감정 상태 매핑</h3>
+            
+            <div class="text-xs font-bold text-gray-700 leading-relaxed flex flex-col gap-2">
+              <p>
+                BINGLE 월드 내의 **마음 냉장고 창고(Pantry)**에는 번아웃 유저의 스트레스 요인 및 신체 활성도를 보완해줄 **5대 핵심 힐링 식음료**가 실시간 진열 및 처방됩니다. 각 간식은 빙글이의 정서 및 생리 상태와 직접 동조됩니다.
+              </p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
+                <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm flex items-start gap-2">
+                  <span class="text-xl">💧</span>
+                  <div>
+                    <span class="font-black text-dark block text-[10px]">탄산 소화수 (Water)</span>
+                    <span class="text-[8px] text-gray-500 font-bold block mt-0.5">온도 -20°C 감소. 답답한 마음을 해소하고 'happy' 상태 유도.</span>
+                  </div>
+                </div>
+                <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm flex items-start gap-2">
+                  <span class="text-xl">🍊</span>
+                  <div>
+                    <span class="font-black text-dark block text-[10px]">자몽 비타민 (Orange)</span>
+                    <span class="text-[8px] text-gray-500 font-bold block mt-0.5">피로 회복, XP 증가. 무기력을 극복하고 'excited' 상태 활성화.</span>
+                  </div>
+                </div>
+                <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm flex items-start gap-2">
+                  <span class="text-xl">🍫</span>
+                  <div>
+                    <span class="font-black text-dark block text-[10px]">카카오 힐러 (Chocolate)</span>
+                    <span class="text-[8px] text-gray-500 font-bold block mt-0.5">스트레스 분해. 번아웃 열기를 식히고 'happy' 평온 매핑.</span>
+                  </div>
+                </div>
+                <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm flex items-start gap-2">
+                  <span class="text-xl">🍈</span>
+                  <div>
+                    <span class="font-black text-dark block text-[10px]">멜론 젤리 (Melon)</span>
+                    <span class="text-[8px] text-gray-500 font-bold block mt-0.5">마음 안착. 불안 지수를 조절하고 'happy' 평온 상태 유도.</span>
+                  </div>
+                </div>
+                <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm flex items-start gap-2 col-span-1 sm:col-span-2">
+                  <span class="text-xl">🥛</span>
+                  <div>
+                    <span class="font-black text-dark block text-[10px]">라벤더 우유 (Milk)</span>
+                    <span class="text-[8px] text-gray-500 font-bold block mt-0.5">불면증 케어. 밤 시간대 수면 유도를 위해 빙글이를 깊은 'sleeping' 정서 상태로 이행.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Interactive Pantry Shelf & Chewing Simulator -->
+          <div class="md:col-span-5 flex flex-col items-center">
+            <div class="w-full max-w-[280px] bg-white border-4 border-dark p-4 rounded-3xl shadow-comic relative overflow-hidden">
+              <div class="halftone-bg absolute inset-0 pointer-events-none opacity-20"></div>
+              
+              <h4 class="font-black text-xs text-dark border-b-2 border-dark pb-1 text-left flex justify-between items-center relative z-10">
+                <span>🍪 실시간 냉장고 간식바</span>
+                <span id="manual-temp-display" class="font-mono text-[9px] bg-cyan-100 border border-dark px-1 rounded text-cyan-700">12°C ❄️</span>
+              </h4>
+              
+              <!-- Food Shelf items -->
+              <div class="grid grid-cols-5 gap-1.5 mt-3 relative z-10 bg-orange-50 border-2 border-dark p-2 rounded-2xl shadow-comic-sm">
+                <button onclick="feedManualBingle('water')" class="bg-white hover:bg-cyan-50 border-2 border-dark p-1 rounded-xl shadow-comic-sm active:translate-y-0.5 flex flex-col items-center btn-comic text-dark">
+                  <span class="text-lg">💧</span>
+                  <span class="text-[7px] font-black text-dark mt-0.5">소화수</span>
+                </button>
+                <button onclick="feedManualBingle('orange')" class="bg-white hover:bg-orange-50 border-2 border-dark p-1 rounded-xl shadow-comic-sm active:translate-y-0.5 flex flex-col items-center btn-comic text-dark">
+                  <span class="text-lg">🍊</span>
+                  <span class="text-[7px] font-black text-dark mt-0.5">자몽</span>
+                </button>
+                <button onclick="feedManualBingle('chocolate')" class="bg-white hover:bg-amber-50 border-2 border-dark p-1 rounded-xl shadow-comic-sm active:translate-y-0.5 flex flex-col items-center btn-comic text-dark">
+                  <span class="text-lg">🍫</span>
+                  <span class="text-[7px] font-black text-dark mt-0.5">카카오</span>
+                </button>
+                <button onclick="feedManualBingle('melon')" class="bg-white hover:bg-emerald-50 border-2 border-dark p-1 rounded-xl shadow-comic-sm active:translate-y-0.5 flex flex-col items-center btn-comic text-dark">
+                  <span class="text-lg">🍈</span>
+                  <span class="text-[7px] font-black text-dark mt-0.5">멜론</span>
+                </button>
+                <button onclick="feedManualBingle('milk')" class="bg-white hover:bg-indigo-50 border-2 border-dark p-1 rounded-xl shadow-comic-sm active:translate-y-0.5 flex flex-col items-center btn-comic text-dark">
+                  <span class="text-lg">🥛</span>
+                  <span class="text-[7px] font-black text-dark mt-0.5">우유</span>
+                </button>
+              </div>
+              
+              <!-- Simulated Bingle Playfield -->
+              <div class="h-36 bg-gradient-to-b from-[#e0f2fe] to-[#bae6fd] border-2 border-dark rounded-2xl mt-3 flex flex-col items-center justify-center relative p-2 shadow-inner">
+                <!-- Speech bubble -->
+                <div id="manual-speech-bubble" class="absolute top-2 bg-white border-2 border-dark text-black font-black text-[9px] px-2 py-1 rounded-xl shadow-comic-sm max-w-[180px] leading-tight select-none z-10">
+                  간식바에서 맛있는 음식을 클릭해 먹여주세요! 😋
+                </div>
+                
+                <!-- Bingle character holder -->
+                <div id="manual-bingle-holder" class="w-24 h-24 mt-4 relative flex items-center justify-center">
+                  <img id="manual-bingle-img" src="/images/bingle_happy.png" class="w-full h-full object-contain filter drop-shadow-[4px_4px_0_rgba(0,0,0,0.15)] pointer-events-none breathe-animation" alt="Bingle" />
+                </div>
+              </div>
+            </div>
+            <span class="text-[9px] font-bold text-gray-500 mt-2">간식을 마우스로 클릭하면 빙글이가 기존 모습 일관성을 유지한 채 냠냠 씹어 먹으며 행복하게 춤춥니다!</span>
+          </div>
+        </div>
+
+        <!-- SLIDE 9: OPERATION TRIGGERS & SIMULATOR -->
+        <div id="slide-9" class="slide-container w-full h-full grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-6 flex flex-col gap-3 text-left">
+            <span class="bg-teal-300 border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+              ⚙️ 작동 기제 및 센서 트리거 물리
+            </span>
+            <h3 class="text-2xl font-black text-dark tracking-tight leading-none mt-1">심리 행동 활성화를 유도하는 5대 트리거</h3>
+            
+            <div class="text-[10px] font-bold text-gray-700 leading-snug flex flex-col gap-2">
+              <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm">
+                <span class="font-black text-dark block text-[11px]">🚪 3D 양문 개폐식 캐비닛 온보딩</span>
+                <span class="text-[9px] text-gray-500 block leading-tight mt-0.5">유저가 스마트폰 화면을 양옆으로 쓸어넘겨(Swipe) 문을 활짝 여는 물리 햅틱 오프닝으로, 일상의 자극적 소음을 차단하고 정서적 아늑함을 선사하는 의식적 전이 기제입니다.</span>
+              </div>
+              <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm">
+                <span class="font-black text-dark block text-[11px]">⏱️ 뽀모도로 포커스 온열 벌칙 (Heating Penalty)</span>
+                <span class="text-[9px] text-gray-500 block leading-tight mt-0.5">집중 타이머 가동 중 집중하지 못하고 스마트폰을 이탈하여 과부하 세션을 유도할 경우, 마음 냉장실 온도가 분당 **+2.5°C** 상승하여 빙글이가 땀 흘리고 녹기 시작해, 이타적 돌봄 행동을 통한 휴식 강제를 트리거합니다.</span>
+              </div>
+              <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm">
+                <span class="font-black text-dark block text-[11px]">🌫️ 성찰을 위한 김서림 문지르기 (Wiping Fog)</span>
+                <span class="text-[9px] text-gray-500 block leading-tight mt-0.5">유리가 뿌옇게 흐려진 캔버스를 마우스로 닦아내(Wipe/Clean) 빙글이와 아이콘을 탐색하는 문지르기 인터랙션을 통해, 억눌린 무기력감과 내면의 감정을 표면 위로 드러내는 상징적 행위 정화를 모사합니다.</span>
+              </div>
+              <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm">
+                <span class="font-black text-dark block text-[11px]">🧘 8초 이완 명상 호흡 동조 (Meditation Cycle)</span>
+                <span class="text-[9px] text-gray-500 block leading-tight mt-0.5">4초 흡기(Inhale), 4초 호기(Exhale) 주기에 따라 호흡 가이드를 동적으로 수축/팽창시켜 유저의 들뜨고 격앙된 심장 박동과 교감신경의 긴장 상태를 직접적으로 공명 다운사이징합니다.</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Interactive Multi-Trigger Simulator Sandbox -->
+          <div class="md:col-span-6 flex flex-col items-center">
+            <div class="w-full max-w-[340px] bg-white border-4 border-dark p-4 rounded-3xl shadow-comic relative min-h-[350px] flex flex-col justify-between overflow-hidden">
+              
+              <!-- Tab Navigation -->
+              <div class="flex border-b-2 border-dark text-[8px] font-black text-dark">
+                <button onclick="switchTriggerTab('door')" id="tab-btn-door" class="flex-1 py-1 bg-secondary border-t-2 border-l-2 border-r-2 border-dark rounded-t-lg active:translate-y-0.5 text-dark">🚪 도어</button>
+                <button onclick="switchTriggerTab('pomo')" id="tab-btn-pomo" class="flex-1 py-1 bg-white border-t-2 border-l-2 border-r-2 border-dark rounded-t-lg active:translate-y-0.5 text-dark">⏱️ 뽀모도로</button>
+                <button onclick="switchTriggerTab('fog')" id="tab-btn-fog" class="flex-1 py-1 bg-white border-t-2 border-l-2 border-r-2 border-dark rounded-t-lg active:translate-y-0.5 text-dark">🌫️ 김서림</button>
+                <button onclick="switchTriggerTab('breath')" id="tab-btn-breath" class="flex-1 py-1 bg-white border-t-2 border-l-2 border-r-2 border-dark rounded-t-lg active:translate-y-0.5 text-dark">🧘 호흡</button>
+              </div>
+              
+              <!-- Dynamic Tab Contents -->
+              <div class="flex-1 flex flex-col justify-center items-center py-4 relative min-h-[220px]">
+                
+                <!-- 1. DOOR TAB -->
+                <div id="trigger-tab-door" class="w-full h-full flex flex-col items-center justify-center">
+                  <!-- Simulated Double Door Fridge -->
+                  <div class="w-48 h-40 bg-dark/10 border-4 border-dark rounded-2xl relative overflow-hidden flex items-center justify-center shadow-inner">
+                    <img id="door-bingle-img" src="/images/bingle_happy.png" class="w-16 h-16 object-contain z-10 breathe-animation" alt="Bingle" />
+                    <!-- Left door -->
+                    <div id="fridge-door-l" class="absolute top-0 left-0 w-1/2 h-full bg-[#ff8c69] border-r-2 border-dark rounded-l-lg transition-transform duration-700 origin-left flex items-center justify-end pr-2 z-20">
+                      <div class="w-2.5 h-10 bg-white border-2 border-dark rounded-full shadow-comic-sm"></div>
+                    </div>
+                    <!-- Right door -->
+                    <div id="fridge-door-r" class="absolute top-0 right-0 w-1/2 h-full bg-[#ff8c69] border-l-2 border-dark rounded-r-lg transition-transform duration-700 origin-right flex items-center justify-start pl-2 z-20">
+                      <div class="w-2.5 h-10 bg-white border-2 border-dark rounded-full shadow-comic-sm"></div>
+                    </div>
+                  </div>
+                  <button onclick="toggleSimulatedFridge()" class="bg-[#ffcb2f] hover:bg-yellow-300 border-2 border-dark font-black text-[9px] px-3 py-1 rounded-xl shadow-comic-sm mt-3 active:translate-y-0.5 btn-comic text-dark">
+                    냉장고 문 열기 / 닫기 🚪
+                  </button>
+                </div>
+                
+                <!-- 2. POMO TAB -->
+                <div id="trigger-tab-pomo" class="w-full h-full hidden flex flex-col items-center justify-center">
+                  <div class="bg-red-50 border-2 border-dark p-3 rounded-2xl text-center w-full max-w-[240px] shadow-comic-sm">
+                    <span id="pomo-timer-display" class="font-mono text-xl font-black text-red-500 tracking-wider">25:00</span>
+                    <div class="flex justify-between items-center text-[8px] font-black text-gray-500 mt-2">
+                      <span>냉장실 온도:</span>
+                      <span id="pomo-temp-display" class="text-red-500 font-bold">12.0°C</span>
+                    </div>
+                    <!-- Small Bingle Avatar -->
+                    <div class="w-12 h-12 my-2 mx-auto">
+                      <img id="pomo-bingle-img" src="/images/bingle_happy.png" class="w-full h-full object-contain filter drop-shadow-[2px_2px_0_rgba(0,0,0,0.1)]" />
+                    </div>
+                    <div class="flex gap-2">
+                      <button id="btn-pomo-sim" onclick="togglePomoSimulation()" class="flex-1 bg-[#ff8c69] border-2 border-dark font-black text-[8px] py-1 rounded-lg shadow-comic-sm active:translate-y-0.5 text-dark btn-comic">포커스 세션 시작 ⏱️</button>
+                      <button onclick="triggerPomoDistraction()" class="bg-[#28180b] text-white border-2 border-dark font-black text-[8px] px-2 py-1 rounded-lg shadow-comic-sm active:translate-y-0.5 btn-comic">스마트폰 이탈! 🔥</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- 3. FOG TAB -->
+                <div id="trigger-tab-fog" class="w-full h-full hidden flex flex-col items-center justify-center relative">
+                  <div class="relative w-48 h-40 border-4 border-dark rounded-2xl overflow-hidden bg-sky-100 flex items-center justify-center shadow-comic-sm">
+                    <img src="/images/bingle_happy.png" class="w-20 h-20 object-contain z-10 breathe-animation" />
+                    <!-- Fog canvas overlay -->
+                    <canvas id="fog-canvas" width="192" height="160" class="absolute inset-0 z-20 cursor-pointer"></canvas>
+                  </div>
+                  <button onclick="resetFogCanvas()" class="bg-[#ffcb2f] border-2 border-dark font-black text-[9px] px-3 py-1 rounded-xl shadow-comic-sm mt-3 active:translate-y-0.5 btn-comic text-dark">
+                    김서림 다시 채우기 🌫️
+                  </button>
+                </div>
+                
+                <!-- 4. BREATH TAB -->
+                <div id="trigger-tab-breath" class="w-full h-full hidden flex flex-col items-center justify-center">
+                  <!-- Breathing Guide core -->
+                  <div class="w-24 h-24 rounded-full border-4 border-dark bg-emerald-50 flex items-center justify-center shadow-comic-sm relative overflow-hidden">
+                    <div id="meditation-breath-node" class="w-12 h-12 rounded-full bg-emerald-200 border-2 border-dark flex items-center justify-center text-[10px] font-black text-emerald-800 shadow-comic-sm select-none transition-all duration-[4000ms] ease-in-out">
+                      흡기 🌬️
+                    </div>
+                  </div>
+                  <span id="breath-status-txt" class="text-[9px] font-black text-emerald-700 mt-3 animate-pulse">4초간 숨을 들이쉬세요 (Inhale)...</span>
+                </div>
+                
+              </div>
+              
+              <span id="trigger-desc-txt" class="text-[9px] font-bold text-gray-500 text-center border-t border-dark/10 pt-2 leading-tight">
+                [도어 탭] 문고리를 드래그해 열면 아늑한 얼음나라 방안의 빙글이가 등장합니다.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 10: DATA ENTITY SCHEMAS -->
+        <div id="slide-10" class="slide-container w-full h-full grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-6 flex flex-col gap-4 text-left">
+            <span class="bg-orange-300 border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+              📊 데이터 엔티티 스키마
+            </span>
+            <h3 class="text-3xl font-black text-dark tracking-tight leading-none mt-1">실시간 동기화 상태 모델 데이터 설계</h3>
+            
+            <div class="text-xs font-bold text-gray-700 leading-relaxed flex flex-col gap-3">
+              <p>
+                BINGLE의 정서 치유 아키텍처는 유저 행동 및 분석 상태를 모듈화하여 실시간 데이터베이스(Firebase RTDB/LocalStorage)에 단절 없이 저장, 고도의 일관성을 보장합니다.
+              </p>
+              
+              <ul class="flex flex-col gap-2 list-disc pl-4 text-gray-600">
+                <li><strong class="text-dark">정의성 (Deterministic State):</strong> 식음료 섭취, 뽀모도로 포커싱, 걷기 걸음수에 따라 빙글이의 체온 및 감정 상태 지표가 결정론적 함수에 의해 오차 없이 전이됩니다.</li>
+                <li><strong class="text-dark">무손실 텔레메트리 (Lossless Telemetry):</strong> 감정 일기와 물리 활동 데이터가 객체 지향 형태로 스키마화되어, B2B 대시보드와 모바일 클라이언트에 지연 없이 웹소켓 동기화됩니다.</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Interactive Schema Terminal Console Mock -->
+          <div class="md:col-span-6 flex flex-col items-center">
+            <div class="w-full max-w-[340px] bg-[#1e1e1e] border-4 border-dark p-4 rounded-3xl shadow-comic relative text-left">
+              <!-- Window Header -->
+              <div class="flex justify-between items-center border-b border-gray-700 pb-2 mb-3">
+                <div class="flex gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-red-500 border border-dark"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 border border-dark"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-green-500 border border-dark"></span>
+                </div>
+                <span class="font-mono text-[8px] text-gray-400 font-bold uppercase tracking-widest">JSON Schema Console</span>
+              </div>
+              
+              <!-- Console Selector Tabs -->
+              <div class="flex flex-wrap gap-1.5 mb-3 text-[8px] font-mono font-black">
+                <button onclick="showConsoleSchema('bingleState')" id="btn-schema-bingle" class="bg-secondary text-dark border-bold-sm px-1.5 py-0.5 rounded cursor-pointer">BingleState</button>
+                <button onclick="showConsoleSchema('tempState')" id="btn-schema-temp" class="bg-gray-700 text-gray-300 border-2 border-transparent px-1.5 py-0.5 rounded cursor-pointer">MindTemp</button>
+                <button onclick="showConsoleSchema('invState')" id="btn-schema-inv" class="bg-gray-700 text-gray-300 border-2 border-transparent px-1.5 py-0.5 rounded cursor-pointer">InventoryDict</button>
+                <button onclick="showConsoleSchema('diaryState')" id="btn-schema-diary" class="bg-gray-700 text-gray-300 border-2 border-transparent px-1.5 py-0.5 rounded cursor-pointer">DiaryLogs</button>
+              </div>
+              
+              <!-- Code block -->
+              <div class="bg-[#121212] border-2 border-dark rounded-xl p-3 h-48 overflow-y-auto no-scrollbar font-mono text-[9px] leading-tight text-emerald-400 relative">
+                <pre class="whitespace-pre-wrap"><code id="console-code-block">{
+  "characterId": "BINGLE_ICE_01",
+  "name": "빙글이",
+  "currentState": "happy",
+  "userLevel": 3,
+  "xp": 340,
+  "isHungry": false,
+  "lastInteractionTime": "2026-05-22T15:00:00Z",
+  "activeBuffs": ["vit_boost"]
+}</code></pre>
+              </div>
+            </div>
+            <span class="text-[9px] font-bold text-gray-500 mt-2.5">각 데이터를 탭하여 BINGLE이 사용하는 핵심 데이터 구조 스키마를 확인하세요!</span>
+          </div>
+        </div>
+
+        <!-- SLIDE 11: TECH STACK & ARCHITECTURE -->
+        <div id="slide-11" class="slide-container w-full h-full grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-7 flex flex-col gap-4 text-left">
+            <span class="bg-green-300 border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+              ⚙️ 엔진 및 기술 스택
+            </span>
+            <h3 class="text-3xl font-black text-dark tracking-tight leading-none mt-1">강력한 인지행동 치유 솔루션 소프트웨어 엔진</h3>
+            
+            <div class="text-xs font-bold text-gray-700 leading-relaxed flex flex-col gap-2.5">
+              <p>
+                BINGLE은 최신 모바일 웹 하드웨어 추상화 계층 및 실시간 데이터 파이프라인, 그리고 자동화 도구들을 적극 결합해 단시간 내에 고기능성 치료 서비스를 프로토타이핑했습니다.
+              </p>
+              
+              <div class="grid grid-cols-2 gap-2 text-[9px] font-bold text-gray-600">
+                <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm">
+                  <strong class="text-dark block text-[10px]">⚛️ React & Vite</strong>
+                  <span>컴포넌트 단위의 복잡한 3D 캐릭터 상태 변경 및 상태 전이 엔진의 유기적 모바일 UI 결합 지원.</span>
+                </div>
+                <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm">
+                  <strong class="text-dark block text-[10px]">✨ Framer Motion</strong>
+                  <span>물리 탄성 스프링(Spring) 모델 및 드래그, 스쿼시 햅틱 마찰력 렌더링.</span>
+                </div>
+                <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm">
+                  <strong class="text-dark block text-[10px]">🔊 Web Audio API Synth</strong>
+                  <span>무거운 파일 리소스 없이 브라우저 실시간 주파수를 조작해 치유용 바이노럴 비트 합성.</span>
+                </div>
+                <div class="bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm">
+                  <strong class="text-dark block text-[10px]">🔥 Firebase Realtime DB</strong>
+                  <span>애플워치 및 만보계 걸음수 텔레메트리 웹소켓 실시간 연계 동기화.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Interactive Technology Board -->
+          <div class="md:col-span-5 flex flex-col items-center">
+            <div class="w-full max-w-[280px] bg-white border-4 border-dark p-4 rounded-3xl shadow-comic relative overflow-hidden">
+              <div class="halftone-bg absolute inset-0 pointer-events-none opacity-20"></div>
+              
+              <h4 class="font-black text-xs text-dark border-b-2 border-dark pb-1.5 text-left flex items-center gap-1 relative z-10">
+                <span>⚙️ 기술 스택 작동 보드</span>
+              </h4>
+              
+              <div class="flex flex-col gap-2 mt-3 relative z-10 text-left">
+                <button onclick="playTechDemo('audio')" class="bg-white hover:bg-cyan-50 border-2 border-dark p-2 rounded-xl shadow-comic-sm active:translate-y-0.5 flex justify-between items-center btn-comic text-dark">
+                  <div class="flex flex-col">
+                    <strong class="text-[9px]">Web Audio Synthesizer</strong>
+                    <span class="text-[7px] text-gray-500 font-bold">브라우저 내장 오디오 노드 실시간 사운드 합성</span>
+                  </div>
+                  <span class="bg-cyan-300 border-2 border-dark px-1.5 py-0.5 rounded text-[8px] font-black text-dark">음 합성 연주 🔊</span>
+                </button>
+                
+                <button onclick="playTechDemo('motion')" class="bg-white hover:bg-emerald-50 border-2 border-dark p-2 rounded-xl shadow-comic-sm active:translate-y-0.5 flex justify-between items-center btn-comic text-dark">
+                  <div class="flex flex-col">
+                    <strong class="text-[9px]">Framer Motion Springs</strong>
+                    <span class="text-[7px] text-gray-500 font-bold">탄성 물리 시뮬레이션 및 드래그 햅틱 피드백</span>
+                  </div>
+                  <span class="bg-emerald-300 border-2 border-dark px-1.5 py-0.5 rounded text-[8px] font-black text-dark">스프링 팽창 🌀</span>
+                </button>
+                
+                <!-- Bouncy Spring Ball Preview -->
+                <div id="motion-preview-box" class="hidden h-14 bg-gray-50 border-2 border-dark rounded-xl flex items-center justify-center relative overflow-hidden">
+                  <div id="motion-spring-ball" class="w-8 h-8 rounded-full bg-[#ff8c69] border-2 border-dark shadow-comic-sm cursor-pointer select-none font-black text-[9px] flex items-center justify-center transition-all duration-300 text-dark">🧊</div>
+                </div>
+                
+                <div class="bg-orange-50 border-2 border-dark p-2 rounded-xl text-[8px] font-bold text-gray-600 leading-tight">
+                  🚀 <strong>배포 환경 (Streamlit & GitHub):</strong> 
+                  Streamlit 클라우드 허브를 사용하여 깃허브 코드 저장소를 연동하였으며, 이 프레젠테이션과 실시간 동작 앱이 단 하나의 포털 허브(`streamlit_app.py`) 안에서 반응형으로 호스팅되어 제공됩니다.
+                </div>
+              </div>
+            </div>
+            <span class="text-[9px] font-bold text-gray-500 mt-2">각 기술 스택 버튼을 클릭하여 브라우저에서 실시간으로 사운드 합성 연주 및 물리 애니메이션을 경험하세요!</span>
+          </div>
+        </div>
+
+        <!-- FOOTER PRESENTATION CONTROLS -->
+        <footer class="w-full flex justify-between items-center border-t border-dark/15 pt-4 mt-6">
+          <div class="flex items-center gap-2">
+            <!-- Prev Button -->
+            <button onclick="prevSlide()" class="bg-white border-2 border-dark font-black text-xs w-9 h-9 rounded-full flex items-center justify-center shadow-comic-sm active:translate-y-0.5 btn-comic text-dark">
+              <span class="material-symbols-outlined text-sm font-black">arrow_back</span>
+            </button>
+            
+            <!-- Next Button -->
+            <button onclick="nextSlide()" class="bg-secondary border-2 border-dark font-black text-xs w-9 h-9 rounded-full flex items-center justify-center shadow-comic-sm active:translate-y-0.5 btn-comic text-dark">
+              <span class="material-symbols-outlined text-sm font-black">arrow_forward</span>
+            </button>
+            
+            <span class="text-xs font-black text-gray-500 ml-1.5">
+              Slide <span id="current-slide-badge">1</span> / 11
+            </span>
+          </div>
+          
+          <!-- Autoplay Button -->
+          <div class="flex items-center gap-2">
+            <button onclick="toggleAutoplay()" id="btn-autoplay" class="bg-white hover:bg-gray-100 border-2 border-dark font-black text-xs px-3.5 py-1.5 rounded-xl shadow-comic-sm active:translate-y-0.5 btn-comic text-dark flex items-center gap-1.5">
+              <span id="autoplay-icon" class="material-symbols-outlined text-sm font-black">play_arrow</span>
+              <span id="autoplay-text">자동 재생</span>
+            </button>
+          </div>
+        </footer>
+        
+      </section>
+      
+    </main>
+    
+    <!-- AUDIO NODES AND BACKEND LOGIC -->
+    <script>
+      // 1. STATE VARIABLES
+      let currentSlide = 1;
+      let autoplayInterval = null;
+      let isAutoplayActive = false;
+      
+      // Web Audio Synth setup
+      let audioCtx = null;
+      let isAudioEnabled = false;
+      
+      // Melting state values
+      let currentStress = 0;
+      
+      // SVG constants for rendering Bingle characters inside elements
+      const EMOTION_SVGS = {
+        happy: `
+          <g>
+            <path d="M30 35 C 30 25, 40 22, 60 22 C 80 22, 90 25, 90 35 C 90 60, 93 75, 87 90 C 80 97, 40 97, 33 90 C 27 75, 30 60, 30 35 Z" fill="#d0f4ff" stroke="#28180b" stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M35 38 C 35 30, 42 27, 58 27" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+            <circle cx="43" cy="67" r="7" fill="#ff9fa5" opacity="0.8" />
+            <circle cx="77" cy="67" r="7" fill="#ff9fa5" opacity="0.8" />
+            <circle cx="46" cy="58" r="4.5" fill="#28180b" />
+            <circle cx="74" cy="58" r="4.5" fill="#28180b" />
+            <circle cx="48" cy="56" r="1.5" fill="#fff" />
+            <circle cx="76" cy="56" r="1.5" fill="#fff" />
+            <path d="M55 68 Q 60 74, 65 68" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <text x="18" y="25" fill="#ffb300" font-weight="black" font-size="16">✨</text>
+            <text x="96" y="40" fill="#ffb300" font-weight="black" font-size="12">✨</text>
+          </g>
+        `,
+        sleeping: `
+          <g transform="rotate(-4 60 60)">
+            <path d="M32 38 C 32 28, 42 25, 60 25 C 78 25, 88 28, 88 38 C 88 62, 90 77, 85 92 C 78 97, 42 97, 35 92 C 30 77, 32 62, 32 38 Z" fill="#bfeaff" stroke="#28180b" stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M37 40 C 37 32, 44 29, 58 29" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+            <path d="M42 58 Q 47 62, 52 58" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <path d="M68 58 Q 73 62, 78 58" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            <circle cx="60" cy="68" r="3.5" fill="#28180b" />
+            <circle cx="39" cy="65" r="5" fill="#ffa8b2" opacity="0.6" />
+            <circle cx="81" cy="65" r="5" fill="#ffa8b2" opacity="0.6" />
+            <text x="92" y="24" fill="#0284c7" font-weight="black" font-size="14" font-family="Gaegu">Zzz</text>
+          </g>
+        `,
+        angry: `
+          <g>
+            <path d="M30 35 C 30 25, 40 22, 60 22 C 80 22, 90 25, 90 35 C 90 60, 93 75, 87 90 C 80 97, 40 97, 33 90 C 27 75, 30 60, 30 35 Z" fill="#ff8d85" stroke="#28180b" stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M35 32 L 44 40" stroke="#28180b" stroke-width="3" stroke-linecap="round" />
+            <path d="M85 32 L 76 40" stroke="#28180b" stroke-width="3" stroke-linecap="round" />
+            <path d="M42 54 L 51 60 L 42 66" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            <path d="M78 54 L 69 60 L 78 66" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            <path d="M50 72 L 70 72" stroke="#28180b" stroke-width="5.5" stroke-linecap="round" />
+            <text x="22" y="24" fill="#ef4444" font-weight="black" font-size="14">💨</text>
+          </g>
+        `,
+        hot: `
+          <g>
+            <path d="M33 50 C 33 30, 40 22, 60 22 C 80 22, 87 30, 87 50 C 87 68, 105 85, 95 97 C 82 104, 38 104, 25 97 C 15 85, 33 68, 33 50 Z" fill="#ffa4a2" stroke="#28180b" stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M40 52 L 48 60 M 48 52 L 40 60" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" />
+            <path d="M72 52 L 80 60 M 80 52 L 72 60" stroke="#28180b" stroke-width="4.5" stroke-linecap="round" />
+            <path d="M52 68 Q 60 76, 68 68" stroke="#28180b" stroke-width="4.5" fill="none" stroke-linecap="round" />
+            <circle cx="36" cy="74" r="2.5" fill="#38bdf8" stroke="#28180b" stroke-width="1" />
+            <circle cx="84" cy="78" r="2" fill="#38bdf8" stroke="#28180b" stroke-width="1" />
+          </g>
+        `
+      };
+      
+      const FEATURE_INFOS = {
+        1: {
+          title: "① 탄생 스토리 온보딩 (Story Onboarding)",
+          week: "1~2주차 (1단계)",
+          desc: "유저가 앱에 첫 접속 시, 3D 햅틱 물리 효과로 굳게 잠긴 냉장고 양문(85°C 과열 상태)을 직접 당겨 엽니다. 아늑한 스티치 스타일의 4컷 만화 시퀀스가 동적으로 펼쳐져, 얼음 요정 빙글이와의 정서적 교감 형성을 극대화하는 감동의 탄생 스토리를 선사합니다.",
+          avatar: "🚪",
+          sandbox: `<div class="bg-amber-100 border border-dark/20 p-2.5 rounded-lg flex items-center justify-between text-[10px] w-full font-black">
+                     <span>🚪 [Framer-Motion] 3D 도어 스윙 각도: 좌우 130° 대칭 반경</span>
+                     <button onclick="playDemoSynth('open')" class="bg-white border-2 border-dark px-3 py-1 rounded shadow-comic-sm font-black active:translate-y-0.5">효과음 재생</button>
+                    </div>`
+        },
+        2: {
+          title: "② 아늑한 냉각 조종석 홈 (Game Hub)",
+          week: "3~4주차 (2단계)",
+          desc: "뽀모도로 메커니즘을 마음 냉장고 개폐 방식과 은유로 융합한 핵심 스마트 대시보드. 유저가 업무 집중 세션을 켜면 문이 열려 냉기가 올라가며(초당 +2.5°C), 타이머 완료 시 급속 냉화(-20°C)와 라벤더 꿀잠 모드가 작동되어 완벽한 정서 경계를 관리합니다.",
+          avatar: "⏳",
+          sandbox: `<div class="bg-emerald-50 border border-dark/20 p-2.5 rounded-lg flex items-center justify-between text-[10px] w-full font-black">
+                     <span>⏳ 포커스 타이머 구동 속도: 60fps 가속 카운터 탑재</span>
+                     <button onclick="playDemoSynth('timer')" class="bg-white border-2 border-dark px-3 py-1 rounded shadow-comic-sm font-black active:translate-y-0.5">타이머 효과음</button>
+                    </div>`
+        },
+        3: {
+          title: "③ 치유 식재료 창고 (Pantry Warehouse)",
+          week: "5~6주차 (3단계)",
+          desc: "심리학적 정서 케어 기능이 설계된 5대 간식 아이템 시스템. 불안은 즉시 터뜨려주는 탄산 소화수(💧), 소진과 번아웃은 적정 12°C로 바로 동결해주는 카카오 힐러(🍫), 무기력에는 비타민(🍊), 회복 젤리(🍈), 수면 케어 라벤더 우유(🥛)로 개인 정서를 조율합니다.",
+          avatar: "🍏",
+          sandbox: `<div class="bg-sky-50 border border-dark/20 p-2.5 rounded-lg flex items-center justify-between text-[10px] w-full font-black">
+                     <span>🧬 인벤토리 수량 데이터: Firebase Realtime DB 동적 매핑</span>
+                     <button onclick="playDemoSynth('sparkle')" class="bg-white border-2 border-dark px-3 py-1 rounded shadow-comic-sm font-black active:translate-y-0.5">간식 냠냠 피치</button>
+                    </div>`
+        },
+        4: {
+          title: "④ 김서림 달력일기 & 트래커 (Calendar Diary & Stats)",
+          week: "1~8주차 (1~4단계)",
+          desc: "손가락으로 뽀얗게 서린 김서림을 닦아내는 감성을 묘사한 일기 모듈. 기분 점수를 남기면 매주 고화질 수채화풍 포스카 스티커와 함께 [카카오 힐러 🍫]가 누적되며, SVG 궤적으로 스트레스 마음 온도의 상향/하향 지점 그래프를 시각 통계로 정밀 출력합니다.",
+          avatar: "📝",
+          sandbox: `<div class="bg-purple-50 border border-dark/20 p-2.5 rounded-lg w-full flex flex-col gap-1.5 text-[9px] font-black text-gray-500">
+                     <span class="text-dark">📊 5월 스트레스 온도 변동 곡선 (SVG Path Bezier Curve 예제)</span>
+                     <svg viewBox="0 0 200 40" class="w-full h-8 bg-white border border-dark/15 rounded">
+                       <path d="M10 30 Q 50 10, 90 28 T 170 12" fill="none" stroke="#ff8c69" stroke-width="3" />
+                       <circle cx="50" cy="19" r="4" fill="#ffcb2f" stroke="#28180b" stroke-width="1.5" />
+                       <circle cx="170" cy="12" r="4" fill="#67f9e1" stroke="#28180b" stroke-width="1.5" />
+                     </svg>
+                    </div>`
+        },
+        5: {
+          title: "⑤ 자이로 & GPS 연동 산책 지도 (Map Walk)",
+          week: "3~8주차 (2~4단계)",
+          desc: "가속도계 센서 및 GPS 궤도를 결합해 유저의 웰니스 걷기를 돕는 모드. 산들바람 고개(500보)와 빙하 정상(1,200보) 체크포인트를 설정하여 보상을 연동하고, HTML5 Canvas 벡터 가속 드로잉 기술로 꼬불꼬불한 점선 산책 지도 트레일을 한땀한땀 직접 연출합니다.",
+          avatar: "🏃",
+          sandbox: `<div class="bg-red-50 border border-dark/20 p-2.5 rounded-lg w-full flex flex-col gap-1.5 text-[9px] font-black text-gray-500">
+                     <span class="text-dark">🚶 GPS 가속 물리 점선 그리기 (Canvas 드로잉 시뮬레이션)</span>
+                     <canvas id="mini-map-canvas" width="260" height="40" class="bg-white border border-dark/15 rounded"></canvas>
+                    </div>`
+        },
+        6: {
+          title: "⑥ 마법의 숲 자연 몰입 (Forest World)",
+          week: "5~8주차 (3~4단계)",
+          desc: "안정과 이완을 위한 깊은 심호흡 명상 가이드방. 8초 주기(수축 4초 / 팽창 4초)로 몽환적인 그라데이션 명상 코어가 팽창하는 애니메이션에 맞춰 5회 호흡 완료 시, 브라우저가 다이렉트로 합성하는 숲속 바람 ASMR 및 차가운 파도 이완 뇌파음을 재생해 깊은 평온을 건넵니다.",
+          avatar: "🍃",
+          sandbox: `<div class="bg-emerald-50 border border-dark/20 p-2.5 rounded-lg flex items-center justify-between text-[10px] w-full font-black">
+                     <span>🍃 뇌파ASMR: Web Audio API 백그라운드 핑크 노이즈 필터링 가동</span>
+                     <button onclick="playDemoSynth('breathe')" class="bg-white border-2 border-dark px-3 py-1 rounded shadow-comic-sm font-black active:translate-y-0.5">명상 웅~ 톤</button>
+                    </div>`
+        },
+        7: {
+          title: "⑦ 이웃 냉장고 소셜 지원 (Neighbors Fridge)",
+          week: "7~8주차 (4단계)",
+          desc: "과도한 상호 소통의 정서적 피로감을 원천 차단하기 위해 익명 기반의 '이웃 얼음 동굴'을 오픈합니다. 서로의 녹아내리는 냉장고 온도를 훔쳐보고 맑은 냉기와 💧 마음 탄산 소화수를 간접 딜리버리해 줌으로써 따뜻한 유대 공동체 보호막을 이룹니다.",
+          avatar: "❄️",
+          sandbox: `<div class="bg-sky-50 border border-dark/20 p-2.5 rounded-lg flex items-center justify-between text-[10px] w-full font-black">
+                     <span>❄️ Cozy Social: 이웃 번아웃 온도 위험도 실시간 모니터링 연동</span>
+                     <button onclick="playDemoSynth('success')" class="bg-white border-2 border-dark px-3 py-1 rounded shadow-comic-sm font-black active:translate-y-0.5">하트 전송음</button>
+                    </div>`
+        }
+      };
+      
+      // 2. RETRO SOUND EFFECTS (Web Audio API Synth)
+      function initAudio() {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+      }
+      
+      function toggleAudioNodes() {
+        initAudio();
+        const btn = document.getElementById('btn-sound-toggle');
+        const icon = document.getElementById('sound-icon');
+        const txt = document.getElementById('sound-text');
+        
+        isAudioEnabled = !isAudioEnabled;
+        if (isAudioEnabled) {
+          btn.classList.remove('bg-[#e0f2fe]');
+          btn.classList.add('bg-accent');
+          icon.textContent = 'volume_up';
+          txt.textContent = '효과음 ON';
+          playSynthSound(587.33, 'sine', 0.08, 0.15); // D5 chime
+          setTimeout(() => playSynthSound(880, 'sine', 0.08, 0.2), 80); // A5 chime
+        } else {
+          btn.classList.remove('bg-accent');
+          btn.classList.add('bg-[#e0f2fe]');
+          icon.textContent = 'volume_off';
+          txt.textContent = '효과음 OFF';
+        }
+      }
+      
+      function playSynthSound(freq, type = 'sine', vol = 0.1, duration = 0.2) {
+        if (!isAudioEnabled || !audioCtx) return;
+        try {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+          
+          gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+          
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          
+          osc.start();
+          osc.stop(audioCtx.currentTime + duration);
+        } catch (e) {
+          console.warn("Audio Context blocked or failed:", e);
+        }
+      }
+      
+      function playDemoSynth(type) {
+        initAudio();
+        if (!isAudioEnabled) toggleAudioNodes();
+        
+        if (type === 'click') {
+          playSynthSound(440, 'sine', 0.1, 0.08); // simple cute click
+        } else if (type === 'open') {
+          // Refrigerator open whoosh sound
+          playSynthSound(220, 'triangle', 0.15, 0.3);
+          setTimeout(() => playSynthSound(440, 'sine', 0.1, 0.2), 50);
+          setTimeout(() => playSynthSound(880, 'sine', 0.08, 0.4), 120);
+        } else if (type === 'success') {
+          // Retro coins
+          playSynthSound(523.25, 'sine', 0.08, 0.12); // C5
+          setTimeout(() => playSynthSound(659.25, 'sine', 0.08, 0.12), 60); // E5
+          setTimeout(() => playSynthSound(783.99, 'sine', 0.08, 0.12), 120); // G5
+          setTimeout(() => playSynthSound(1046.50, 'sine', 0.12, 0.25), 180); // C6
+        } else if (type === 'alarm') {
+          // Alert warning
+          playSynthSound(880, 'square', 0.06, 0.15);
+          setTimeout(() => playSynthSound(880, 'square', 0.06, 0.15), 180);
+        } else if (type === 'sparkle') {
+          // high pitch bubbles
+          playSynthSound(1200, 'sine', 0.06, 0.1);
+          setTimeout(() => playSynthSound(1500, 'sine', 0.05, 0.1), 40);
+          setTimeout(() => playSynthSound(1800, 'sine', 0.05, 0.15), 80);
+        } else if (type === 'breathe') {
+          // low warm sound
+          playSynthSound(165, 'triangle', 0.15, 0.6);
+          setTimeout(() => playSynthSound(220, 'triangle', 0.12, 0.8), 200);
+        } else if (type === 'timer') {
+          playSynthSound(330, 'square', 0.08, 0.1);
+          setTimeout(() => playSynthSound(440, 'square', 0.08, 0.1), 100);
+        }
+      }
+      
+      
+      // 3. NAVIGATION MANAGEMENT
+      function goToSlide(slideNum) {
+        playDemoSynth('click');
+        
+        // Remove active class from old slide & nav
+        document.querySelectorAll('.slide-container').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(el => {
+          el.classList.remove('bg-secondary', 'shadow-none');
+          el.classList.add('bg-white');
+        });
+        
+        currentSlide = slideNum;
+        
+        // Add active classes
+        const targetSlide = document.getElementById(`slide-${slideNum}`);
+        if (targetSlide) targetSlide.classList.add('active');
+        
+        const targetNav = document.getElementById(`nav-${slideNum}`);
+        if (targetNav) {
+          targetNav.classList.remove('bg-white');
+          targetNav.classList.add('bg-secondary');
+        }
+        
+        document.getElementById('current-slide-badge').textContent = slideNum;
+        
+        // Perform actions based on active slide initialization
+        if (slideNum === 1) {
+          renderSlide1Bingle('sleeping');
+        } else if (slideNum === 2) {
+          updateMeltingSimulator(currentStress);
+        } else if (slideNum === 3) {
+          renderPantryBingle('hot', 75);
+        } else if (slideNum === 4) {
+          zoomFeature(1);
+        } else if (slideNum === 5) {
+          renderSandboxPreview();
+        } else if (slideNum === 8) {
+          // Slide 8 manual bingle reset
+          const img = document.getElementById('manual-bingle-img');
+          const speech = document.getElementById('manual-speech-bubble');
+          const temp = document.getElementById('manual-temp-display');
+          if (img) {
+            img.src = '/images/bingle_happy.png';
+            img.className = 'w-full h-full object-contain filter drop-shadow-[4px_4px_0_rgba(0,0,0,0.15)] pointer-events-none breathe-animation';
+          }
+          if (speech) speech.textContent = "간식바에서 맛있는 음식을 클릭해 먹여주세요! 😋";
+          if (temp) temp.textContent = "12°C ❄️";
+        } else if (slideNum === 9) {
+          // Slide 9 trigger simulator default tab
+          switchTriggerTab('door');
+        } else if (slideNum === 10) {
+          // Slide 10 schema selector default tab
+          showConsoleSchema('bingleState');
+        }
+        
+        // Stop breathing loop if leaving slide 9
+        if (slideNum !== 9) {
+          stopBreathingSimulation();
+        }
+        
+        // Auto scroll navigator if necessary
+        const targetNavItem = document.getElementById(`nav-${slideNum}`);
+        if (targetNavItem) {
+          targetNavItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+      
+      function prevSlide() {
+        let prev = currentSlide - 1;
+        if (prev < 1) prev = 11;
+        goToSlide(prev);
+      }
+      
+      function nextSlide() {
+        let next = currentSlide + 1;
+        if (next > 11) next = 1;
+        goToSlide(next);
+      }
+      
+      // Autoplay feature
+      function toggleAutoplay() {
+        playDemoSynth('click');
+        const btn = document.getElementById('btn-autoplay');
+        const icon = document.getElementById('autoplay-icon');
+        const txt = document.getElementById('autoplay-text');
+        
+        isAutoplayActive = !isAutoplayActive;
+        
+        if (isAutoplayActive) {
+          btn.classList.remove('bg-white');
+          btn.classList.add('bg-[#ff8c69]');
+          icon.textContent = 'pause';
+          txt.textContent = '일시 정지';
+          
+          autoplayInterval = setInterval(() => {
+            nextSlide();
+          }, 8000); // changes slides every 8 seconds
+        } else {
+          btn.classList.remove('bg-[#ff8c69]');
+          btn.classList.add('bg-white');
+          icon.textContent = 'play_arrow';
+          txt.textContent = '자동 재생';
+          
+          clearInterval(autoplayInterval);
+        }
+      }
+      
+      
+      // 4. INTERACTIVE WIDGET LOGIC
+      
+      // --- SLIDE 1 ---
+      function renderSlide1Bingle(stateKey) {
+        const container = document.getElementById('slide1-bingle-placeholder');
+        if (!container) return;
+        
+        let physics = 'bingle-sleeping-physics';
+        let overlays = '';
+        
+        if (stateKey === 'sleeping') {
+          physics = 'bingle-sleeping-physics';
+          overlays = `
+            <div class="absolute -top-1 right-1 text-cyan-600 font-black text-[10px] zzz-1 select-none">Zzz</div>
+            <div class="absolute top-2 -right-2 text-cyan-600 font-black text-[8px] zzz-2 select-none">Zzz</div>
+            <div class="absolute -top-3 right-3 text-cyan-600 font-black text-[7px] zzz-3 select-none">Zzz</div>
+          `;
+        } else {
+          physics = 'bingle-happy-physics';
+          overlays = `
+            <div class="absolute top-0 left-0 text-base sparkle-l select-none">✨</div>
+            <div class="absolute bottom-2 right-0 text-xs sparkle-r select-none">✨</div>
+          `;
+        }
+        
+        container.innerHTML = `
+          <div class="w-full h-full relative ${physics}">
+            <div class="absolute bottom-0 w-16 h-3 bg-black/15 rounded-full blur-[2px] -z-10"></div>
+            <svg viewBox="0 0 120 120" class="w-full h-full overflow-visible z-10">
+              ${EMOTION_SVGS[stateKey]}
+            </svg>
+            ${overlays}
+          </div>
+        `;
+      }
+      
+      function triggerSlide1Opening() {
+        const cabinet = document.getElementById('slide1-fridge-box');
+        const speech = document.getElementById('slide1-bingle-speech');
+        
+        if (cabinet.classList.contains('fridge-open')) {
+          // Close door
+          playDemoSynth('click');
+          cabinet.classList.remove('fridge-open');
+          speech.style.opacity = '0';
+          renderSlide1Bingle('sleeping');
+        } else {
+          // Open door
+          playDemoSynth('open');
+          cabinet.classList.add('fridge-open');
+          setTimeout(() => {
+            speech.style.opacity = '1';
+            renderSlide1Bingle('happy');
+          }, 350);
+        }
+      }
+      
+      
+      // --- SLIDE 2 ---
+      function updateMeltingSimulator(val) {
+        currentStress = parseInt(val);
+        const card = document.getElementById('sim-card');
+        const tempText = document.getElementById('sim-temp-display');
+        const container = document.getElementById('sim-bingle-container');
+        const bubble = document.getElementById('sim-bubble');
+        
+        if (!card || !tempText || !container || !bubble) return;
+        
+        // Calculate temperature: 12°C is minimum, 100°C is maximum
+        let temp = Math.round(12 + (currentStress / 100) * 88);
+        
+        let emo = 'happy';
+        let bubbleMsg = '시원해서 기분 최고! 😊';
+        let bgGradient = 'radial-gradient(circle, #e0f2fe 0%, #bae6fd 100%)';
+        let strokeColor = '#0369a1';
+        let physics = 'bingle-happy-physics';
+        let overlays = '';
+        
+        if (currentStress < 25) {
+          emo = 'happy';
+          bubbleMsg = '시원해서 살 맛 난다! ❄️😊';
+          bgGradient = 'radial-gradient(circle, #e0f2fe 30%, #bae6fd 100%)';
+          strokeColor = '#0369a1';
+          physics = 'bingle-happy-physics';
+          overlays = `
+            <div class="absolute top-0 left-0 text-base sparkle-l">✨</div>
+            <div class="absolute bottom-2 right-0 text-xs sparkle-r">✨</div>
+          `;
+        } else if (currentStress < 55) {
+          emo = 'sleeping';
+          bubbleMsg = '살짝 졸리네요... 후암~ 💤';
+          bgGradient = 'radial-gradient(circle, #f0fdf4 30%, #dcfce7 100%)';
+          strokeColor = '#15803d';
+          physics = 'bingle-sleeping-physics';
+          overlays = `
+            <div class="absolute -top-1 right-2 text-cyan-700 font-black text-xs zzz-1">Zzz</div>
+            <div class="absolute top-2 -right-1 text-cyan-700 font-black text-[9px] zzz-2">Zzz</div>
+          `;
+        } else if (currentStress < 80) {
+          emo = 'hot';
+          bubbleMsg = '슬슬 더워요... 문 닫아주세요! 🥵';
+          bgGradient = 'radial-gradient(circle, #fff7ed 30%, #ffedd5 100%)';
+          strokeColor = '#c2410c';
+          physics = 'bingle-hot-physics';
+          overlays = `
+            <div class="absolute top-6 left-2 text-sky-400 font-bold text-xs sweat pointer-events-none">💧</div>
+            <div class="absolute top-8 right-2 text-sky-400 font-bold text-xs sweat pointer-events-none" style="animation-delay: 0.8s;">💧</div>
+          `;
+        } else {
+          emo = 'angry';
+          bubbleMsg = '녹아내려요! 냉방 긴급 가동! 😤';
+          bgGradient = 'radial-gradient(circle, #ffe4e6 30%, #fecdd3 100%)';
+          strokeColor = '#be123c';
+          physics = 'bingle-angry-physics';
+          overlays = `
+            <div class="absolute -top-1 left-2 text-sm steam-l">💨</div>
+            <div class="absolute top-0 right-2 text-sm steam-r">💨</div>
+          `;
+          playDemoSynth('alarm');
+        }
+        
+        // Apply card styling
+        card.style.background = bgGradient;
+        card.style.borderColor = '#28180b';
+        tempText.textContent = `${temp}°C ${temp > 50 ? '🥵' : '❄️'}`;
+        tempText.className = `font-mono font-black text-xs bg-white border border-dark px-1.5 py-0.5 rounded ${temp > 50 ? 'text-red-500' : 'text-cyan-600'}`;
+        bubble.textContent = bubbleMsg;
+        
+        // Inject Character SVG with physics and overlays
+        container.innerHTML = `
+          <div class="w-full h-full relative ${physics}">
+            <div class="absolute bottom-0 w-16 h-3 bg-black/15 rounded-full blur-[2px] -z-10"></div>
+            <svg viewBox="0 0 120 120" class="w-full h-full overflow-visible z-10">
+              ${EMOTION_SVGS[emo]}
+            </svg>
+            ${overlays}
+          </div>
+        `;
+      }
+      
+      
+      // --- SLIDE 3 ---
+      let pantryTemp = 75;
+      function renderPantryBingle(emo, temp) {
+        const container = document.getElementById('pantry-bingle');
+        const speech = document.getElementById('pantry-speech');
+        const tempBadge = document.getElementById('pantry-temp-display');
+        
+        if (!container || !speech || !tempBadge) return;
+        
+        let physics = 'bingle-hot-physics';
+        let overlays = '';
+        let bubbleMsg = '더워요... 얼른 식혀줘요! 🥵';
+        
+        if (emo === 'hot') {
+          physics = 'bingle-hot-physics';
+          overlays = `<div class="absolute top-6 right-2 text-sky-400 text-xs sweat">💧</div>`;
+        } else if (emo === 'happy') {
+          physics = 'bingle-happy-physics';
+          overlays = `<div class="absolute -top-1 left-0 text-xs sparkle-l">✨</div>`;
+          bubbleMsg = '캬~ 온몸이 시원하고 든든해요! 🧊😊';
+        } else if (emo === 'sleeping') {
+          physics = 'bingle-sleeping-physics';
+          overlays = `<div class="absolute -top-2 right-1 text-cyan-600 font-black text-[9px] zzz-1">Zzz</div>`;
+          bubbleMsg = '밀크를 마셨더니 졸리네요... 잘자요! 💤';
+        }
+        
+        // Temperature badge
+        tempBadge.textContent = `${temp}°C ${temp > 12 ? '🥵 과열!' : '❄️ 안전'}`;
+        tempBadge.className = `font-mono font-black text-xs border border-dark px-1.5 py-0.5 rounded ${temp > 12 ? 'text-red-500 bg-red-50 animate-pulse' : 'text-cyan-600 bg-cyan-50'}`;
+        speech.textContent = bubbleMsg;
+        
+        container.innerHTML = `
+          <div class="w-full h-full relative ${physics}">
+            <div class="absolute bottom-0 w-12 h-3 bg-black/15 rounded-full blur-[2px] -z-10"></div>
+            <svg viewBox="0 0 120 120" class="w-full h-full overflow-visible z-10">
+              ${EMOTION_SVGS[emo]}
+            </svg>
+            ${overlays}
+          </div>
+        `;
+      }
+      
+      function feedBingleSnack(type, delta) {
+        playDemoSynth('sparkle');
+        
+        let oldTemp = pantryTemp;
+        if (type === 'cacao') {
+          pantryTemp = 12; // straight to safety
+        } else {
+          pantryTemp = Math.max(12, pantryTemp + delta);
+        }
+        
+        // determine next emotion
+        let nextEmo = 'happy';
+        if (type === 'lavender') nextEmo = 'sleeping';
+        
+        renderPantryBingle(nextEmo, pantryTemp);
+        
+        // spawn flying sparkle emoji overlay
+        const container = document.getElementById('pantry-bingle');
+        const particle = document.createElement('div');
+        particle.textContent = type === 'water' ? '💧' : (type === 'cacao' ? '🍫' : '🥛');
+        particle.className = 'absolute text-xl animate-ping select-none';
+        particle.style.top = '25%';
+        particle.style.left = '45%';
+        container.appendChild(particle);
+        setTimeout(() => particle.remove(), 1000);
+        
+        // Reset back to hot in 5 seconds to let them play again
+        setTimeout(() => {
+          if (pantryTemp === 12 || pantryTemp < 30) {
+            pantryTemp = 75;
+            renderPantryBingle('hot', 75);
+          }
+        }, 5000);
+      }
+      
+      
+      // --- SLIDE 4 ---
+      let canvasInterval = null;
+      function zoomFeature(id) {
+        playDemoSynth('click');
+        
+        // Highlights the selected small card
+        document.querySelectorAll('.feature-card-btn').forEach((el, index) => {
+          if (index === (id - 1)) {
+            el.classList.remove('bg-white');
+            el.classList.add('bg-secondary', 'border-bold');
+          } else {
+            el.classList.remove('bg-secondary', 'border-bold');
+            el.classList.add('bg-white');
+          }
+        });
+        
+        const fInfo = FEATURE_INFOS[id];
+        if (!fInfo) return;
+        
+        document.getElementById('feature-zoom-avatar').textContent = fInfo.avatar;
+        document.getElementById('feature-zoom-title').textContent = fInfo.title;
+        document.getElementById('feature-zoom-week').textContent = fInfo.week;
+        document.getElementById('feature-zoom-desc').textContent = fInfo.desc;
+        
+        const sandbox = document.getElementById('feature-interactive-sandbox');
+        sandbox.innerHTML = fInfo.sandbox;
+        
+        // Stop any old canvas animation
+        if (canvasInterval) {
+          clearInterval(canvasInterval);
+          canvasInterval = null;
+        }
+        
+        // If it's the Walk Map (ID 5), start Canvas dot path tracer simulator!
+        if (id === 5) {
+          setTimeout(() => initMiniCanvasSimulation(), 100);
+        }
+      }
+      
+      function initMiniCanvasSimulation() {
+        const canvas = document.getElementById('mini-map-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let points = [];
+        let curPointIndex = 0;
+        
+        // Create wiggly trail points
+        for (let i = 0; i < 26; i++) {
+          points.push({
+            x: 10 + i * 10,
+            y: 20 + Math.sin(i * 0.8) * 8
+          });
+        }
+        
+        canvasInterval = setInterval(() => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          
+          // Draw dashed path
+          ctx.beginPath();
+          ctx.setLineDash([3, 3]);
+          ctx.strokeStyle = '#28180b';
+          ctx.lineWidth = 2;
+          ctx.moveTo(points[0].x, points[0].y);
+          for (let i = 1; i < points.length; i++) {
+            ctx.lineTo(points[i].x, points[i].y);
+          }
+          ctx.stroke();
+          
+          // Draw walked paths solid
+          ctx.beginPath();
+          ctx.setLineDash([]);
+          ctx.strokeStyle = '#ff8c69';
+          ctx.lineWidth = 3;
+          ctx.moveTo(points[0].x, points[0].y);
+          for (let i = 1; i <= curPointIndex; i++) {
+            ctx.lineTo(points[i].x, points[i].y);
+          }
+          ctx.stroke();
+          
+          // Draw checkpoints
+          ctx.fillStyle = '#ffcb2f';
+          ctx.strokeStyle = '#28180b';
+          ctx.lineWidth = 1.5;
+          
+          // Point A
+          ctx.beginPath();
+          ctx.arc(80, 20 + Math.sin(8 * 0.8) * 8, 4, 0, Math.PI * 2);
+          ctx.fill(); ctx.stroke();
+          
+          // Point B
+          ctx.beginPath();
+          ctx.arc(180, 20 + Math.sin(18 * 0.8) * 8, 4, 0, Math.PI * 2);
+          ctx.fill(); ctx.stroke();
+          
+          // Draw cute walking cursor dot
+          ctx.fillStyle = '#67f9e1';
+          ctx.beginPath();
+          ctx.arc(points[curPointIndex].x, points[curPointIndex].y, 6, 0, Math.PI * 2);
+          ctx.fill(); ctx.stroke();
+          
+          curPointIndex = (curPointIndex + 1) % points.length;
+        }, 150);
+      }
+      
+      
+      // --- SLIDE 5 ---
+      let sbHalftone = true;
+      let sbBorder = 4;
+      let sbShadow = 5;
+      
+      function renderSandboxPreview() {
+        const card = document.getElementById('design-sandbox-card');
+        const valBorder = document.getElementById('val-sb-border');
+        const valShadow = document.getElementById('val-sb-shadow');
+        
+        if (!card || !valBorder || !valShadow) return;
+        
+        // update values
+        valBorder.textContent = `${sbBorder}px`;
+        valShadow.textContent = `${sbShadow}px`;
+        
+        // apply styles
+        card.style.borderWidth = `${sbBorder}px`;
+        card.style.boxShadow = `${sbShadow}px ${sbShadow}px 0px 0px #28180b`;
+        
+        const preview = document.getElementById('design-card-preview');
+        if (preview) {
+          preview.className = `w-full h-24 flex items-center justify-center my-3 relative overflow-hidden bg-[#e0f2fe] border-2 border-dark rounded-xl ${sbHalftone ? 'halftone-bg' : ''}`;
+        }
+      }
+      
+      function toggleSandboxHalftone() {
+        playDemoSynth('click');
+        sbHalftone = !sbHalftone;
+        document.getElementById('btn-sb-halftone').textContent = sbHalftone ? 'ON' : 'OFF';
+        document.getElementById('btn-sb-halftone').className = sbHalftone ? 'bg-accent border border-dark px-2 py-0.5 rounded shadow-comic-sm font-black active:translate-y-0.5 text-[9px] text-dark' : 'bg-gray-200 border border-dark px-2 py-0.5 rounded shadow-comic-sm font-black active:translate-y-0.5 text-[9px] text-dark';
+        renderSandboxPreview();
+      }
+      
+      function updateSandboxBorder(val) {
+        sbBorder = parseInt(val);
+        renderSandboxPreview();
+      }
+      
+      function updateSandboxShadow(val) {
+        sbShadow = parseInt(val);
+        renderSandboxPreview();
+      }
+      
+      
+      // --- SLIDE 6 ---
+      function simulateAIDiaryAnalysis() {
+        const text = document.getElementById('ai-diary-input').value.trim();
+        const pipeline = document.getElementById('ai-pipeline-visual');
+        const score = document.getElementById('ai-sentiment-score');
+        const temp = document.getElementById('ai-temp-pres');
+        const snack = document.getElementById('ai-snack-pres');
+        const bingleFeedback = document.getElementById('ai-bingle-feedback');
+        
+        if (!text) {
+          alert("일기 내용을 가볍게 적어주세요!");
+          return;
+        }
+        
+        playDemoSynth('click');
+        playDemoSynth('sparkle');
+        
+        // Show mock loading pipeline
+        pipeline.classList.remove('hidden');
+        
+        // Mock keywords
+        let containsAnxiety = /답답|우울|피곤|힘들|스트레스|짜증|회사|부장|업무/gi.test(text);
+        let containsJoy = /맑|기분|좋|행복|산책|성공|해소|신남/gi.test(text);
+        
+        let sentimentPct = 50;
+        let tempVal = 42;
+        let snackPrescription = '🍈 회복 멜론 젤리';
+        let feedbackMsg = '"기분이 비교적 평탄하네요! 달콤한 멜론 젤리 🍈 로 아늑함을 더해보는 건 어떨까요?"';
+        
+        if (containsAnxiety) {
+          sentimentPct = Math.round(70 + Math.random() * 25);
+          tempVal = Math.round(55 + Math.random() * 30);
+          
+          if (tempVal > 75) {
+            snackPrescription = '🍫 번아웃 카카오 힐러';
+            feedbackMsg = '"정말 지치고 뜨거운 하루였나 봐요. 번아웃 열기를 식힐 진한 초코 🍫 처방해 드려요! 힘내요 파트너."';
+          } else {
+            snackPrescription = '💧 탄산 소화수 1캔';
+            feedbackMsg = '"가슴이 답답하고 불안하시군요. 탄산 마음 소화수 💧 로 스트레스를 뻥 뚫어드릴게요!"';
+          }
+        } else if (containsJoy) {
+          sentimentPct = Math.round(10 + Math.random() * 15);
+          tempVal = 12; // perfect temperature
+          snackPrescription = '🍊 활력 자몽 비타민';
+          feedbackMsg = '"와우! 기분이 무척 상쾌하고 평온하군요! 비타민 🍊 으로 에너지를 가득 채워드릴게요! 😊"';
+        }
+        
+        score.textContent = `스트레스 유발 감정 강도: ${sentimentPct}%`;
+        score.className = sentimentPct > 60 ? 'text-red-500 font-black' : 'text-emerald-600 font-black';
+        
+        temp.textContent = `${tempVal}°C ${tempVal > 30 ? '🥵' : '❄️'}`;
+        temp.className = `font-mono font-black text-xs border border-dark px-1.5 rounded ${tempVal > 30 ? 'text-red-500 bg-red-50' : 'text-cyan-600 bg-cyan-50'}`;
+        
+        snack.textContent = snackPrescription;
+        bingleFeedback.textContent = feedbackMsg;
+      }
+      
+      
+      // --- SLIDE 7 ---
+      function calculateProjectedRevenue() {
+        const b2cVal = parseInt(document.getElementById('calc-b2c-range').value);
+        const b2bVal = parseInt(document.getElementById('calc-b2b-range').value);
+        
+        const dispB2C = document.getElementById('b2c-display-calc');
+        const dispB2B = document.getElementById('b2b-display-calc');
+        const mrrOutput = document.getElementById('mrr-calc-output');
+        const statsOutput = document.getElementById('calc-burnout-prevented');
+        
+        if (!dispB2C || !dispB2B || !mrrOutput || !statsOutput) return;
+        
+        dispB2C.textContent = `${b2cVal.toLocaleString()} 명`;
+        dispB2B.textContent = `${b2bVal.toLocaleString()} 명`;
+        
+        // Calculations
+        // B2C: 4,900 KRW
+        // B2B: 2,500 KRW
+        let b2cRevenue = b2cVal * 4900;
+        let b2bRevenue = b2bVal * 2500;
+        let totalMRR = b2cRevenue + b2bRevenue;
+        
+        // ESG impact index: 1 out of 10 average prevention success
+        let preventedCount = Math.round((b2cVal + b2bVal) * 0.08);
+        
+        mrrOutput.textContent = `₩ ${totalMRR.toLocaleString()} 원`;
+        statsOutput.textContent = `${preventedCount.toLocaleString()}명`;
+      }
+      
+      
+      
+      
+      // --- SLIDE 8: MANUAL BINGLE FEEDING ---
+      function feedManualBingle(type) {
+        playDemoSynth('sparkle');
+        const bingleImg = document.getElementById('manual-bingle-img');
+        const speech = document.getElementById('manual-speech-bubble');
+        const tempDisp = document.getElementById('manual-temp-display');
+        if (!bingleImg || !speech || !tempDisp) return;
+        
+        // Switch to eating PNG
+        bingleImg.src = 'public/images/bingle_eating.png';
+        // Fallback check if public directory isn't mounted at root (Vite vs local file)
+        bingleImg.onerror = function() {
+          bingleImg.src = 'images/bingle_eating.png';
+          bingleImg.onerror = null;
+        };
+        bingleImg.classList.remove('breathe-animation');
+        bingleImg.classList.add('chew-animation');
+        
+        let bubbleMsg = '';
+        let targetTemp = '12°C ❄️';
+        let endImg = 'public/images/bingle_happy.png';
+        
+        if (type === 'water') {
+          bubbleMsg = "캬~ 톡 쏘는 탄산 소화수! 답답함이 싹 가셔요! 💧";
+          targetTemp = '0°C ❄️';
+          endImg = 'public/images/bingle_happy.png';
+        } else if (type === 'orange') {
+          bubbleMsg = "자몽 비타민 에너지 충전 완료! 정말 상큼하고 신나요! 🍊⚡";
+          targetTemp = '15°C ⚡';
+          endImg = 'public/images/bingle_excited.png';
+        } else if (type === 'chocolate') {
+          bubbleMsg = "진하고 달콤한 카카오 힐러! 피로와 번아웃을 녹여버려요 🍫";
+          targetTemp = '12°C ❄️';
+          endImg = 'public/images/bingle_happy.png';
+        } else if (type === 'melon') {
+          bubbleMsg = "부드럽고 쫄깃한 멜론 젤리! 불안함이 사르르 가라앉아요 🍈";
+          targetTemp = '13°C 😊';
+          endImg = 'public/images/bingle_happy.png';
+        } else if (type === 'milk') {
+          bubbleMsg = "라벤더 우유 덕분에 온몸이 노곤노곤 따뜻해져요... 🥛💤";
+          targetTemp = '11°C 💤';
+          endImg = 'public/images/bingle_sleeping.png';
+        }
+        
+        speech.textContent = bubbleMsg;
+        tempDisp.textContent = targetTemp;
+        
+        // Wait 1.8 seconds and return Bingle to its normal state
+        setTimeout(() => {
+          bingleImg.src = endImg;
+          bingleImg.onerror = function() {
+            bingleImg.src = endImg.replace('public/', '');
+            bingleImg.onerror = null;
+          };
+          bingleImg.classList.remove('chew-animation');
+          bingleImg.classList.add('breathe-animation');
+          speech.textContent = "정말 맛있게 잘 먹었습니다! 다음엔 어떤 걸 줄 건가요? 😋";
+        }, 1800);
+      }
+      
+      // --- SLIDE 9: OPERATION TRIGGERS & SENSORS ---
+      let isSimFridgeOpen = false;
+      function toggleSimulatedFridge() {
+        const leftDoor = document.getElementById('fridge-door-l');
+        const rightDoor = document.getElementById('fridge-door-r');
+        const bingleImg = document.getElementById('door-bingle-img');
+        if (!leftDoor || !rightDoor || !bingleImg) return;
+        
+        isSimFridgeOpen = !isSimFridgeOpen;
+        if (isSimFridgeOpen) {
+          leftDoor.style.transform = 'perspective(500px) rotateY(-125deg)';
+          rightDoor.style.transform = 'perspective(500px) rotateY(125deg)';
+          bingleImg.src = 'public/images/bingle_happy.png';
+          bingleImg.onerror = function() {
+            bingleImg.src = 'images/bingle_happy.png';
+            bingleImg.onerror = null;
+          };
+          playDemoSynth('open');
+          document.getElementById('trigger-desc-txt').textContent = "🚪 [도어 오픈] 냉장실 문이 열려 아늑한 얼음 세상과 행복한 빙글이가 반갑게 반겨줍니다!";
+        } else {
+          leftDoor.style.transform = 'perspective(500px) rotateY(0deg)';
+          rightDoor.style.transform = 'perspective(500px) rotateY(0deg)';
+          playDemoSynth('click');
+          document.getElementById('trigger-desc-txt').textContent = "🚪 [도어 클로즈] 아늑한 마음 냉각 캐비닛 문이 닫혔습니다. 마음 온도 보존 중...";
+        }
+      }
+      
+      let pomoActive = false;
+      let pomoTimer = null;
+      let pomoSec = 1500; // 25:00
+      let pomoTemp = 12.0;
+      function togglePomoSimulation() {
+        playDemoSynth('click');
+        const btn = document.getElementById('btn-pomo-sim');
+        const timerDisp = document.getElementById('pomo-timer-display');
+        const bingleImg = document.getElementById('pomo-bingle-img');
+        if (!btn || !timerDisp || !bingleImg) return;
+        
+        pomoActive = !pomoActive;
+        if (pomoActive) {
+          btn.textContent = "집중 일시정지 ⏸️";
+          btn.className = "flex-1 bg-amber-400 border-2 border-dark font-black text-[8px] py-1 rounded-lg shadow-comic-sm active:translate-y-0.5 text-dark btn-comic";
+          
+          pomoTimer = setInterval(() => {
+            pomoSec = Math.max(0, pomoSec - 15); // Speed up for simulation
+            let min = Math.floor(pomoSec / 60);
+            let sec = pomoSec % 60;
+            timerDisp.textContent = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+            
+            pomoTemp = Math.round((pomoTemp + 0.1) * 100) / 100;
+            document.getElementById('pomo-temp-display').textContent = `${pomoTemp.toFixed(1)}°C`;
+            
+            if (pomoSec === 0) {
+              clearInterval(pomoTimer);
+              pomoTimer = null;
+              pomoActive = false;
+              playDemoSynth('success');
+              btn.textContent = "포커스 완료! 🎉";
+              btn.className = "flex-1 bg-emerald-400 border-2 border-dark font-black text-[8px] py-1 rounded-lg shadow-comic-sm active:translate-y-0.5 text-dark btn-comic";
+              bingleImg.src = 'public/images/bingle_excited.png';
+              bingleImg.onerror = function() {
+                bingleImg.src = 'images/bingle_excited.png';
+                bingleImg.onerror = null;
+              };
+              pomoTemp = -20.0;
+              document.getElementById('pomo-temp-display').textContent = `${pomoTemp.toFixed(1)}°C`;
+              document.getElementById('trigger-desc-txt').textContent = "⏱️ [뽀모도로 완료] 25분 몰입 성공! 냉각 엔진이 가동되어 급속 냉화(-20°C)가 작동됩니다!";
+            }
+          }, 400);
+        } else {
+          clearInterval(pomoTimer);
+          pomoTimer = null;
+          btn.textContent = "포커스 세션 시작 ⏱️";
+          btn.className = "flex-1 bg-[#ff8c69] border-2 border-dark font-black text-[8px] py-1 rounded-lg shadow-comic-sm active:translate-y-0.5 text-dark btn-comic";
+        }
+      }
+      
+      function triggerPomoDistraction() {
+        if (!pomoActive) {
+          alert("먼저 포커스 세션을 활성화해 주세요!");
+          return;
+        }
+        playDemoSynth('alarm');
+        
+        pomoTemp = Math.round((pomoTemp + 2.5) * 100) / 100;
+        document.getElementById('pomo-temp-display').textContent = `${pomoTemp.toFixed(1)}°C`;
+        
+        const bingleImg = document.getElementById('pomo-bingle-img');
+        if (bingleImg) {
+          if (pomoTemp > 30.0) {
+            bingleImg.src = 'public/images/bingle_angry.png';
+            bingleImg.onerror = function() {
+              bingleImg.src = 'images/bingle_angry.png';
+              bingleImg.onerror = null;
+            };
+            document.getElementById('trigger-desc-txt').textContent = `🔥 [스마트폰 이탈 벌칙] 집중력 저해 감지로 냉장실 온도 급상승 (+2.5°C)! 빙글이가 녹아내려 짜증을 냅니다!`;
+          } else if (pomoTemp > 18.0) {
+            bingleImg.src = 'public/images/bingle_hot.png';
+            bingleImg.onerror = function() {
+              bingleImg.src = 'images/bingle_hot.png';
+              bingleImg.onerror = null;
+            };
+            document.getElementById('trigger-desc-txt').textContent = `🔥 [스마트폰 이탈 벌칙] 집중력 저해 감지로 냉장실 온도 상승 (+2.5°C)! 빙글이가 더워하기 시작합니다!`;
+          }
+        }
+      }
+      
+      let isFogDrawing = false;
+      let fogCanvasInitialized = false;
+      function initFogCanvas() {
+        const canvas = document.getElementById('fog-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width;
+        const h = canvas.height;
+        
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = 'rgba(215, 230, 240, 0.96)';
+        ctx.fillRect(0, 0, w, h);
+        
+        ctx.fillStyle = '#28180b';
+        ctx.font = 'bold 9px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('마우스나 손가락으로 문질러', w / 2, h / 2 - 8);
+        ctx.fillText('빙글이를 드러내주세요! 🌫️', w / 2, h / 2 + 10);
+        
+        const drawFogWipe = (x, y) => {
+          ctx.globalCompositeOperation = 'destination-out';
+          ctx.beginPath();
+          ctx.arc(x, y, 18, 0, Math.PI * 2);
+          ctx.fill();
+        };
+        
+        canvas.onmousedown = (e) => {
+          isFogDrawing = true;
+          const rect = canvas.getBoundingClientRect();
+          drawFogWipe(e.clientX - rect.left, e.clientY - rect.top);
+          playDemoSynth('sparkle');
+        };
+        
+        canvas.onmousemove = (e) => {
+          if (!isFogDrawing) return;
+          const rect = canvas.getBoundingClientRect();
+          drawFogWipe(e.clientX - rect.left, e.clientY - rect.top);
+        };
+        
+        window.addEventListener('mouseup', () => {
+          isFogDrawing = false;
+        });
+        
+        canvas.ontouchstart = (e) => {
+          isFogDrawing = true;
+          const rect = canvas.getBoundingClientRect();
+          const touch = e.touches[0];
+          drawFogWipe(touch.clientX - rect.left, touch.clientY - rect.top);
+          playDemoSynth('sparkle');
+        };
+        
+        canvas.ontouchmove = (e) => {
+          if (!isFogDrawing) return;
+          const rect = canvas.getBoundingClientRect();
+          const touch = e.touches[0];
+          drawFogWipe(touch.clientX - rect.left, touch.clientY - rect.top);
+        };
+        
+        canvas.ontouchend = () => {
+          isFogDrawing = false;
+        };
+        
+        fogCanvasInitialized = true;
+      }
+      
+      function resetFogCanvas() {
+        playDemoSynth('click');
+        initFogCanvas();
+        document.getElementById('trigger-desc-txt').textContent = "🌫️ [김서림 리셋] 유리가 다시 뿌옇게 흐려졌습니다. 문질러서 서리를 제거해 주세요!";
+      }
+      
+      let breathInterval = null;
+      let breathState = 'inhale';
+      function startBreathingSimulation() {
+        if (breathInterval) clearInterval(breathInterval);
+        const node = document.getElementById('meditation-breath-node');
+        const txt = document.getElementById('breath-status-txt');
+        if (!node || !txt) return;
+        
+        breathState = 'inhale';
+        node.style.transform = 'scale(1.25)';
+        node.style.backgroundColor = '#34d399';
+        node.textContent = '흡기 🌬️';
+        txt.textContent = '4초간 숨을 천천히 들이쉬세요 (Inhale)...';
+        
+        breathInterval = setInterval(() => {
+          if (breathState === 'inhale') {
+            breathState = 'exhale';
+            node.style.transform = 'scale(0.85)';
+            node.style.backgroundColor = '#a7f3d0';
+            node.textContent = '호기 💨';
+            txt.textContent = '4초간 온몸의 긴장을 풀며 숨을 내쉬세요 (Exhale)...';
+            playDemoSynth('breathe');
+          } else {
+            breathState = 'inhale';
+            node.style.transform = 'scale(1.25)';
+            node.style.backgroundColor = '#34d399';
+            node.textContent = '흡기 🌬️';
+            txt.textContent = '4초간 숨을 천천히 들이쉬세요 (Inhale)...';
+            playDemoSynth('breathe');
+          }
+        }, 4000);
+      }
+      
+      function stopBreathingSimulation() {
+        if (breathInterval) {
+          clearInterval(breathInterval);
+          breathInterval = null;
+        }
+      }
+      
+      function switchTriggerTab(tabName) {
+        playDemoSynth('click');
+        const tabs = ['door', 'pomo', 'fog', 'breath'];
+        tabs.forEach(t => {
+          const el = document.getElementById(`trigger-tab-${t}`);
+          const btn = document.getElementById(`tab-btn-${t}`);
+          if (el) el.classList.add('hidden');
+          if (btn) {
+            btn.className = "flex-1 py-1 bg-white border-t-2 border-l-2 border-r-2 border-dark rounded-t-lg active:translate-y-0.5 text-dark";
+          }
+        });
+        
+        const activeTab = document.getElementById(`trigger-tab-${tabName}`);
+        const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+        if (activeTab) activeTab.classList.remove('hidden');
+        if (activeBtn) {
+          activeBtn.className = "flex-1 py-1 bg-secondary border-t-2 border-l-2 border-r-2 border-dark rounded-t-lg active:translate-y-0.5 text-dark font-black";
+        }
+        
+        if (tabName !== 'breath') {
+          stopBreathingSimulation();
+        } else {
+          startBreathingSimulation();
+        }
+        
+        if (tabName === 'fog' && !fogCanvasInitialized) {
+          setTimeout(() => initFogCanvas(), 100);
+        }
+        
+        const desc = document.getElementById('trigger-desc-txt');
+        if (!desc) return;
+        
+        if (tabName === 'door') {
+          desc.textContent = "🚪 [도어 탭] 문을 드래그해 열면 아늑한 얼음나라 방안의 빙글이가 등장합니다.";
+        } else if (tabName === 'pomo') {
+          desc.textContent = "⏱️ [뽀모도로 탭] 세션 시작 후 스마트폰 이탈 클릭 시 가중 열기 벌칙(+2.5°C)이 가동됩니다.";
+        } else if (tabName === 'fog') {
+          desc.textContent = "🌫️ [김서림 탭] 뿌옇게 서린 유리를 드래그해 닦아 숨겨진 빙글이를 드러내세요!";
+        } else if (tabName === 'breath') {
+          desc.textContent = "🧘 [호흡 탭] 8초 들숨/날숨 메트로놈에 맞춰 심신 이완 명상을 동조합니다.";
+        }
+      }
+      
+      // --- SLIDE 10: DATA SCHEMA CONSOLE ---
+      const CONSOLE_SCHEMAS = {
+        bingleState: {
+          "characterId": "BINGLE_ICE_01",
+          "name": "빙글이",
+          "currentState": "happy",
+          "userLevel": 3,
+          "xp": 340,
+          "isHungry": false,
+          "lastInteractionTime": "2026-05-22T15:00:00Z",
+          "activeBuffs": ["vit_boost"]
+        },
+        tempState: {
+          "currentTemperature": 12.0,
+          "stressLevel": 15,
+          "meltingThreshold": 50.0,
+          "isMelting": false,
+          "heatingRate": 0.04,
+          "lastUpdated": "2026-05-22T15:02:10Z"
+        },
+        invState: {
+          "waterCount": 5,
+          "orangeCount": 3,
+          "chocolateCount": 12,
+          "melonCount": 4,
+          "milkCount": 2,
+          "unlockedSkins": ["default", "christmas_ice"]
+        },
+        diaryState: [
+          {
+            "diaryId": "log_20260522",
+            "rawText": "오늘 프로젝트 마감이 다가와서 너무 피곤하고 짜증났다.",
+            "sentimentAnalysis": {
+              "score": 0.78,
+              "detectedKeywords": ["피곤", "짜증"]
+            },
+            "prescription": {
+              "itemType": "chocolate",
+              "recommendedTemp": 12.0
+            },
+            "timestamp": "2026-05-22T15:04:15Z"
+          }
+        ]
+      };
+      
+      function showConsoleSchema(schemaKey) {
+        playDemoSynth('click');
+        const codeBlock = document.getElementById('console-code-block');
+        if (!codeBlock) return;
+        
+        codeBlock.textContent = JSON.stringify(CONSOLE_SCHEMAS[schemaKey], null, 2);
+        
+        const btns = {
+          bingle: document.getElementById('btn-schema-bingle'),
+          temp: document.getElementById('btn-schema-temp'),
+          inv: document.getElementById('btn-schema-inv'),
+          diary: document.getElementById('btn-schema-diary')
+        };
+        
+        Object.keys(btns).forEach(key => {
+          if (!btns[key]) return;
+          btns[key].className = "bg-gray-700 text-gray-300 border-2 border-transparent px-1.5 py-0.5 rounded cursor-pointer";
+        });
+        
+        let activeKey = 'bingle';
+        if (schemaKey === 'tempState') activeKey = 'temp';
+        else if (schemaKey === 'invState') activeKey = 'inv';
+        else if (schemaKey === 'diaryState') activeKey = 'diary';
+        
+        if (btns[activeKey]) {
+          btns[activeKey].className = "bg-secondary text-dark border-bold-sm px-1.5 py-0.5 rounded cursor-pointer";
+        }
+      }
+      
+      // --- SLIDE 11: TECHNOLOGY DEMOS ---
+      function playTechDemo(techKey) {
+        playDemoSynth('click');
+        if (techKey === 'audio') {
+          playDemoSynth('success');
+          setTimeout(() => playDemoSynth('sparkle'), 300);
+          setTimeout(() => playSynthSound(1318.51, 'sine', 0.1, 0.4), 600); // High E6 chime
+        } else if (techKey === 'motion') {
+          const previewBox = document.getElementById('motion-preview-box');
+          const ball = document.getElementById('motion-spring-ball');
+          if (!previewBox || !ball) return;
+          
+          previewBox.classList.remove('hidden');
+          
+          // Custom spring animation using squash & stretch transforms
+          ball.style.transform = 'scale(1.8) translateY(-12px)';
+          ball.style.backgroundColor = '#67f9e1';
+          
+          setTimeout(() => {
+            ball.style.transform = 'scale(0.7, 1.4) translateY(6px)';
+            ball.style.backgroundColor = '#ffcb2f';
+          }, 300);
+          
+          setTimeout(() => {
+            ball.style.transform = 'scale(1.2, 0.8) translateY(-3px)';
+            ball.style.backgroundColor = '#ffa4a2';
+          }, 600);
+          
+          setTimeout(() => {
+            ball.style.transform = 'scale(1.0) translateY(0)';
+            ball.style.backgroundColor = '#ff8c69';
+          }, 900);
+        }
+      }
+
+
+      // --- FULLSCREEN CONTROLLER ---
+      function toggleFullScreen() {
+        playDemoSynth('click');
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => {
+            console.warn(`Error attempting to enable full-screen mode: ${err.message}`);
+          });
+        } else {
+          document.exitFullscreen();
+        }
+      }
+      
+      
+      // --- INITIALIZATION ---
+      window.onload = function() {
+        goToSlide(1);
+        calculateProjectedRevenue();
+      };
+      
+      // Handle keyboard keys for navigation
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowRight' || event.key === ' ') {
+          nextSlide();
+        } else if (event.key === 'ArrowLeft') {
+          prevSlide();
+        }
+      });
+    </script>
+  </body>
+</html>

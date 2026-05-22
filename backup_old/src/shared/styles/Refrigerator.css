@@ -1,0 +1,109 @@
+.refrigerator-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  max-width: 430px; /* Mobile width */
+  margin: 0 auto;
+  overflow: hidden;
+  background: #f0f4f8;
+  display: flex;
+  flex-direction: column;
+}
+
+.fridge-bg-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.fridge-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fridge-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(0, 0, 0, 0) 20%,
+    rgba(0, 0, 0, 0) 80%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+.character-stage {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* Lighting Effects */
+.fridge-light {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.top-light {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent);
+}
+
+.bottom-glow {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: radial-gradient(circle at center bottom, rgba(135, 206, 250, 0.2), transparent);
+}
+
+/* Character Specific Styles */
+.ice-cube-wrapper {
+  transition: filter 0.3s ease;
+}
+
+.ice-cube-reflection {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0.3);
+  width: 80%;
+  height: 30px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
+  filter: blur(5px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.character-label {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #2c3e50;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}

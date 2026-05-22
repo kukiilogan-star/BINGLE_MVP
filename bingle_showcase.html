@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BINGLE 🧊 마음 냉장고 - 서비스 소개 및 실시간 모바일 데모</title>
+    
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ff8c69",
+              secondary: "#ffcb2f",
+              cream: "#fdf8f5",
+              dark: "#28180b",
+              accent: "#67f9e1",
+              forest: "#e2f0d9"
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+      body {
+        font-family: 'Gaegu', 'Nunito', sans-serif;
+        background-color: #3f2d1e;
+        color: #28180b;
+        overflow-x: hidden;
+      }
+      
+      /* 스티치 망점 패턴 */
+      .halftone-bg {
+        background-image: radial-gradient(rgba(40, 24, 11, 0.07) 1.5px, transparent 1.5px);
+        background-size: 8px 8px;
+      }
+      
+      /* 만화책 볼드 보더 */
+      .border-bold {
+        border: 4px solid #28180b;
+      }
+      .border-bold-sm {
+        border: 2px solid #28180b;
+      }
+      
+      /* 만화책 3D 단색 그림자 */
+      .shadow-comic {
+        box-shadow: 6px 6px 0px 0px #28180b;
+      }
+      .shadow-comic-lg {
+        box-shadow: 12px 12px 0px 0px #28180b;
+      }
+      .shadow-comic-sm {
+        box-shadow: 3px 3px 0px 0px #28180b;
+      }
+    </style>
+  </head>
+  
+  <body class="min-h-screen flex flex-col items-center justify-center p-4 lg:p-8 relative select-none">
+    <!-- Retro Halftone Background -->
+    <div id="halftone-overlay" class="halftone-bg absolute inset-0 pointer-events-none opacity-30 z-0"></div>
+    
+    <!-- MAIN GRID WRAPPER (Widescreen Showcase) -->
+    <main class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+      
+      <!-- LEFT COLUMN: Highly Stylized Service Explanation & Pitch Deck Card -->
+      <section class="lg:col-span-7 bg-[#fdf8f5] border-bold p-6 rounded-3xl shadow-comic-lg flex flex-col justify-between text-left h-full">
+        
+        <!-- Header Brand Badge -->
+        <div class="flex flex-col gap-3">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="bg-[#ff8c69] border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg]">
+              🧊 자극 제어 및 정서 조절 마음 안착 플랫폼
+            </span>
+            <span class="bg-accent border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg]">
+              Stitch Design System
+            </span>
+            <a href="bingle_status.html" class="bg-secondary hover:bg-yellow-200 border-2 border-dark text-dark font-black px-3.5 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] flex items-center gap-1 transition-all active:translate-y-0.5 active:shadow-none cursor-pointer">
+              <span>📊 개발 진행 상황판 바로가기</span>
+              <span class="material-symbols-outlined text-[10px] font-black">arrow_forward</span>
+            </a>
+          </div>
+          
+          <div class="flex items-center gap-3 mt-1.5">
+            <span class="text-5xl filter drop-shadow-[2px_2px_0_#000]">🧊</span>
+            <h1 class="text-4xl font-black text-dark tracking-tight">마음 냉장고 BINGLE</h1>
+          </div>
+          
+          <p class="text-base font-bold text-gray-700 leading-snug mt-1">
+            "현대인의 만성 번아웃과 무기력증을 시원하고 가볍게 치유해주는 인지행동 상호작용 플랫폼"
+          </p>
+        </div>
+        
+        <!-- Core therapeutic loop illustration panel (Proxy Care) -->
+        <div class="bg-white border-bold p-4 rounded-2xl shadow-comic flex flex-col gap-3 mt-4">
+          <h3 class="text-lg font-black text-dark border-b-2 border-dark pb-1 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-primary text-lg font-black">spa</span>
+            대리 돌봄(Proxy Care) 치료 은유 루프
+          </h3>
+          <p class="text-xs font-bold text-gray-600 leading-relaxed">
+            극도에 달한 스트레스 상황에서 스스로를 돌볼 힘을 잃어버린 유저에게, 귀여운 **얼음 요정 빙글이**라는 애착 케어 대상을 안겨줍니다. <strong>"내가 뜨거워지면 얼음 요정인 빙글이가 녹아내려요! 빙글이를 구하기 위해 냉장고 온도를 시원한 12°C로 되돌려주세요!"</strong>라는 이타적 보호 장치로 유저가 심적 저항 없이 자연스럽게 스스로의 마음을 보살피도록 행동 활성화를 유도합니다.
+          </p>
+          <div class="grid grid-cols-3 gap-2 text-center text-[10px] font-black text-gray-700">
+            <div class="bg-red-50 border-2 border-dark p-1.5 rounded-xl">
+              <span class="block text-sm">🥵</span>
+              <span class="block text-red-500 mt-0.5">일상의 스트레스</span>
+              <span class="text-[8px] text-gray-400 block font-bold leading-none mt-0.5">냉장실 마음 온도 상승</span>
+            </div>
+            <div class="bg-yellow-50 border-2 border-dark p-1.5 rounded-xl">
+              <span class="block text-sm">🏃</span>
+              <span class="block text-amber-600 mt-0.5">빙글이 구출 미션</span>
+              <span class="text-[8px] text-gray-400 block font-bold leading-none mt-0.5">산책 퀘스트 & 마음 일기</span>
+            </div>
+            <div class="bg-cyan-50 border-2 border-dark p-1.5 rounded-xl">
+              <span class="block text-sm">❄️</span>
+              <span class="block text-cyan-600 mt-0.5">안전 온도 12°C 도달</span>
+              <span class="text-[8px] text-gray-400 block font-bold leading-none mt-0.5">정서 평온 상태 회복 완료</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Grid of 7 core modules explained in premium comic style -->
+        <div class="flex flex-col gap-2.5 mt-4">
+          <h3 class="text-base font-black text-dark flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-secondary text-xl font-black">widgets</span>
+            BINGLE 점진적 치유를 구성하는 핵심 7대 모듈
+          </h3>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-xs font-bold leading-normal flex gap-2">
+              <span class="text-2xl flex-shrink-0">🚪</span>
+              <div>
+                <strong class="text-dark block text-[11px]">① 햅틱 냉장고 도어 온보딩</strong>
+                <span class="text-[10px] text-gray-500 leading-tight block mt-0.5">냉장고 문을 양옆으로 활짝 여는 물리 햅틱 오프닝으로 빙글이와의 첫 교감을 극대화합니다.</span>
+              </div>
+            </div>
+            
+            <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-xs font-bold leading-normal flex gap-2">
+              <span class="text-2xl flex-shrink-0">⚙️</span>
+              <div>
+                <strong class="text-dark block text-[11px]">② 스마트 콕핏 (Focus Pomodoro)</strong>
+                <span class="text-[10px] text-gray-500 leading-tight block mt-0.5">뽀모도로 타이머 구동을 냉장고 환기 기제와 연결하여 점진적 일상 통제감을 복원합니다.</span>
+              </div>
+            </div>
+            
+            <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-xs font-bold leading-normal flex gap-2">
+              <span class="text-2xl flex-shrink-0">🍫</span>
+              <div>
+                <strong class="text-dark block text-[11px]">③ 치유 간식 Pantry (상태 보완책)</strong>
+                <span class="text-[10px] text-gray-500 leading-tight block mt-0.5">불안 완화(탄산수), 집중(카카오 힐러) 등 마음 지표에 따라 맞춤 쿨링 식품을 처방합니다.</span>
+              </div>
+            </div>
+            
+            <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-xs font-bold leading-normal flex gap-2">
+              <span class="text-2xl flex-shrink-0">📝</span>
+              <div>
+                <strong class="text-dark block text-[11px]">④ 김서림 일기 & 트래커</strong>
+                <span class="text-[10px] text-gray-500 leading-tight block mt-0.5">김이 서린 유리를 지워 마음을 고백하는 정성적 기록과 마음 온도의 통계 트래커를 연계합니다.</span>
+              </div>
+            </div>
+            
+            <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-xs font-bold leading-normal flex gap-2 text-left col-span-1 sm:col-span-2">
+              <span class="text-2xl flex-shrink-0">🏃</span>
+              <div>
+                <strong class="text-dark block text-[11px]">⑤ GPS & 자이로 센서 연동 지도 / ⑥ 뇌파 동조 ASMR 사운드</strong>
+                <span class="text-[10px] text-gray-500 leading-tight block mt-0.5">스마트폰 자이로 GPS 하드웨어 융합 산책 퀘스트와 웹 오디오 신디사이저로 생성해 내는 실시간 바이노럴 비트 ASMR 이완 공명으로 치료 효과를 신체 행동으로 전이시킵니다.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Scientific and BM background summary footer -->
+        <footer class="mt-4 pt-3 border-t-2 border-dark/15 flex justify-between items-center text-[10px] font-black text-gray-400">
+          <span>🧠 실시간 인지행동 치유 가이드 플랫폼</span>
+          <span class="text-primary">BINGLE Care Dashboard v1.5</span>
+        </footer>
+      </section>
+      
+      <!-- RIGHT COLUMN: Embeds the actual fully functional Bingle App directly via Iframe -->
+      <section class="lg:col-span-5 flex flex-col items-center justify-center relative">
+        
+        <!-- Iframe embedding container, sizing perfectly to hold the bingle_demo.html smartphone frame -->
+        <div class="w-[390px] h-[820px] relative overflow-hidden flex justify-center items-center">
+          <!-- Loaded with ?embed=true to render ONLY the simulated smartphone device mockup -->
+          <iframe 
+            src="bingle_demo.html?embed=true" 
+            class="w-full h-full border-none rounded-[3.2rem]" 
+            scrolling="no"
+            id="bingle-iframe"
+          ></iframe>
+        </div>
+        
+        <!-- Floating Reset button -->
+        <div class="absolute -bottom-6 flex gap-2">
+          <button 
+            onclick="document.getElementById('bingle-iframe').src='bingle_demo.html?embed=true';" 
+            class="bg-dark hover:bg-gray-800 border-2 border-dark text-white font-black text-[10px] px-3.5 py-1.5 rounded-lg shadow-comic-sm active:translate-y-0.5 active:shadow-none flex items-center gap-1.5 transition-all"
+          >
+            <span class="material-symbols-outlined text-[12px] font-bold">restart_alt</span>
+            <span>웹서비스 다시 불러오기</span>
+          </button>
+        </div>
+        
+      </section>
+      
+    </main>
+  </body>
+</html>

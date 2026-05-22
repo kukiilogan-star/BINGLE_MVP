@@ -1,0 +1,245 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&amp;family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Nunito', 'Nunito Sans', sans-serif;
+            background-color: #fff8f5;
+        }
+        .comic-panel {
+            border: 2px solid #56423d;
+            box-shadow: 4px 4px 0px 0px rgba(86, 66, 61, 0.1);
+            transition: transform 0.2s ease-out;
+        }
+        .speech-bubble {
+            position: absolute;
+            background: white;
+            border: 2px solid #56423d;
+            border-radius: 1.5rem;
+            padding: 0.75rem 1rem;
+            filter: drop-shadow(2px 2px 0px rgba(86, 66, 61, 0.1));
+        }
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #56423d;
+        }
+        .speech-bubble-inner::after {
+            content: '';
+            position: absolute;
+            bottom: -7px;
+            left: 21px;
+            width: 0;
+            height: 0;
+            border-left: 9px solid transparent;
+            border-right: 9px solid transparent;
+            border-top: 9px solid white;
+        }
+        .squishy-button {
+            box-shadow: 0 4px 0 0 #7e2b10;
+            transition: all 0.1s ease-out;
+        }
+        .squishy-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 0px 0 0 #7e2b10;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#fff8f5",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-bright": "#fff8f5",
+                      "on-surface-variant": "#56423d",
+                      "on-primary-fixed-variant": "#7e2b10",
+                      "on-primary-fixed": "#3a0a00",
+                      "surface-container-high": "#ffe3cf",
+                      "on-background": "#28180b",
+                      "on-secondary-fixed": "#291800",
+                      "background": "#fff8f5",
+                      "inverse-on-surface": "#ffede2",
+                      "on-tertiary-container": "#004940",
+                      "primary-fixed-dim": "#ffb59f",
+                      "tertiary": "#006b5e",
+                      "tertiary-fixed": "#67f9e1",
+                      "error-container": "#ffdad6",
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#44dcc5",
+                      "primary-container": "#ff8c69",
+                      "surface-container-low": "#fff1e9",
+                      "primary-fixed": "#ffdbd1",
+                      "surface-container": "#ffeadc",
+                      "outline-variant": "#dcc0b9",
+                      "surface-container-highest": "#fbddc7",
+                      "secondary": "#825500",
+                      "on-tertiary-fixed": "#00201b",
+                      "surface-variant": "#fbddc7",
+                      "inverse-primary": "#ffb59f",
+                      "surface-dim": "#f2d4bf",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#752409",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-container": "#0ac1ab",
+                      "on-error-container": "#93000a",
+                      "on-surface": "#28180b",
+                      "inverse-surface": "#3f2d1e",
+                      "on-secondary-container": "#704800",
+                      "primary": "#9e4225",
+                      "outline": "#89726b",
+                      "on-tertiary-fixed-variant": "#005046",
+                      "secondary-fixed-dim": "#ffb951",
+                      "surface-tint": "#9e4225",
+                      "on-secondary-fixed-variant": "#633f00",
+                      "secondary-container": "#fdb64b",
+                      "error": "#ba1a1a",
+                      "secondary-fixed": "#ffddb3"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "card-padding": "24px",
+                      "gutter-mobile": "16px",
+                      "margin-desktop": "40px",
+                      "gutter-desktop": "24px",
+                      "margin-mobile": "20px"
+              },
+              "fontFamily": {
+                      "label-md": ["Nunito"],
+                      "display-lg": ["Nunito"],
+                      "headline-lg": ["Nunito"],
+                      "headline-md": ["Nunito"],
+                      "headline-lg-mobile": ["Nunito"],
+                      "body-lg": ["Nunito"],
+                      "body-md": ["Nunito"],
+                      "label-sm": ["Nunito"]
+              },
+              "fontSize": {
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "800"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "800"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style data-stitch-cursor="">*{cursor:crosshair!important}[contenteditable="true"]:focus,.cursor-text:focus{cursor:text!important}</style><style data-stitch-scroll-lock="">html,body{overflow:hidden!important}</style></head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col items-center">
+<!-- Top Navigation Anchor -->
+<header class="w-full top-0 sticky bg-surface border-b-2 border-on-surface-variant/10 shadow-sm z-50 flex justify-between items-center px-margin-mobile py-4">
+<div class="flex items-center gap-2 hover:scale-105 transition-transform active:scale-95 duration-150 ease-out cursor-pointer">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">temp_preferences_custom</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-black text-primary tracking-tight">BINGLE</h1>
+</div>
+<div class="hover:scale-105 transition-transform active:scale-95 duration-150 ease-out cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant">settings_heart</span>
+</div>
+</header>
+<main class="w-full max-w-[1200px] px-margin-mobile md:px-margin-desktop py-8 flex-grow">
+<!-- Intro Header Section -->
+<div class="text-center mb-10">
+<span class="inline-block px-4 py-1 bg-tertiary-container/20 text-on-tertiary-container font-label-md text-label-md rounded-full mb-2">마법의 책 첫 페이지</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">모험이 시작됩니다!</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant opacity-80">빙글이와 함께 따뜻한 마음의 여행을 떠나볼까요?</p>
+</div>
+<!-- 4-Panel Comic Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+<!-- Panel 1: Intro -->
+<div class="comic-panel bg-surface-container-lowest rounded-lg overflow-hidden flex flex-col relative aspect-square md:aspect-auto h-[320px] md:h-[400px]">
+<div class="flex-grow relative bg-surface-container-low overflow-hidden">
+<img alt="Bingle waving at the door" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkfytbjCQRkTSYMY5s2wev7TFqyN7jzEOYXmNhqi0Q1I5kN1ZkaRvy8vsNv6UBBhMCTRS1XMI_jv3Gqn5oF3m4AGcSZ_l2qvMCoez_2PmqRAKOcERrWQrT1uorpGWNf0NyO5u88lB6b4EJD6SBB1xZJWPGJBCppnf9KwBPiWQ5697dfCvfoOsI8YRKtvUq_DzCdQOzf1_-KGj1Wau4QAI9JJJ3fhuA0GykI3leG-PSDa4Yg_5i01FzMTzwlYA7cFuuwI5DtpMRLICz">
+<div class="speech-bubble top-6 left-6 speech-bubble-inner">
+<p class="font-label-md text-label-md text-on-surface">안녕! 나는 빙글이야 ☀️</p>
+</div>
+</div>
+<div class="p-4 bg-surface-container border-t-2 border-on-surface-variant/10 text-center">
+<p class="font-label-md text-label-md text-on-surface-variant italic">낯선 친구의 다정한 인사</p>
+</div>
+</div>
+<!-- Panel 2: Feelings -->
+<div class="comic-panel bg-surface-container-lowest rounded-lg overflow-hidden flex flex-col aspect-square md:aspect-auto h-[320px] md:h-[400px]">
+<div class="flex-grow bg-surface-container-low">
+<img alt="Magical temperature gauge" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYgIkVvD6btpibhKpNf9jb7txLAJ4DD8eMs25msnIT75zMoRBY5UaCfr83KVNP41LtA3SsMVuPUA8MPbTz4sJR3vJLV_MfalkM7rzpGh99qcRQGoXnrTtbGuUrnhkDs7kKDAcRyWkTTKwrteR8IJXmNtsw8FuzrxKxsDtmrIwmjKR6r-EZdlbgjUKj-ovJLj7tgkURaDeA5QSeabUcmcLMxyjlJqVrjWxjPzMkqW_LTUY0mZwF5i8ZCzY6iTI-3xaEdtxBOWYuGQFh">
+</div>
+<div class="p-6 bg-surface-container border-t-2 border-on-surface-variant/10">
+<p class="font-headline-md text-headline-md text-on-secondary-container text-center">오늘 마음의 온도는 몇 도야?</p>
+</div>
+</div>
+<!-- Panel 3: World Discovery -->
+<div class="comic-panel bg-surface-container-lowest rounded-lg overflow-hidden flex flex-col aspect-square md:aspect-auto h-[320px] md:h-[400px]">
+<div class="flex-grow bg-surface-container-low">
+<img alt="Magical refrigerator worlds" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxTaTcwea3jm8ZgS0hJfEePwlvDkqiYmzSO-w6XO9YA-pFf_Q1HmENHR-Ib019FARop0OTjRzIpRXRTTbtOfTQUETf_MyrZt7DK24TRkvYIiDEsl8hExKLrdB99N4IbGw7BwyTXsXUK634BeAb9i2dHYGInKp_nN36YkEm6sXYJqd5JUiY3vWAlJJlJicSp-wYBXplGT2AcOH5na37wTaqvfmPcH7eio0X43rpgeuhUrC2q4yszbyv5W2vfsSPnne6YROFnwhkf5wm">
+</div>
+<div class="p-6 bg-surface-container border-t-2 border-on-surface-variant/10">
+<p class="font-headline-md text-headline-md text-on-surface-variant text-center">냉장고 안엔 따뜻한 세계가 있어</p>
+</div>
+</div>
+<!-- Panel 4: Action/CTA -->
+<div class="comic-panel bg-surface-container-highest rounded-lg overflow-hidden flex flex-col items-center justify-center p-8 text-center aspect-square md:aspect-auto h-[320px] md:h-[400px] relative">
+<!-- Decorative Stickers -->
+<div class="absolute top-4 right-4 rotate-12">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="absolute bottom-12 left-4 -rotate-12">
+<span class="material-symbols-outlined text-secondary text-5xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div class="mb-6">
+<div class="w-20 h-20 bg-primary-container rounded-full flex items-center justify-center mb-4 mx-auto shadow-sm">
+<span class="material-symbols-outlined text-on-primary-container text-4xl">auto_stories</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">당신만의 이야기가 기다려요</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">빙글이와 함께 여행을 떠날 준비가 되었나요?</p>
+</div>
+<button class="squishy-button w-full py-4 bg-primary-container hover:bg-primary-container/90 rounded-xl flex items-center justify-center gap-3 group">
+<span class="font-headline-md text-headline-md text-on-primary-container">빙글이와 여행 시작하기 🍊</span>
+<span class="material-symbols-outlined text-on-primary-container group-hover:translate-x-1 transition-transform">arrow_forward_ios</span>
+</button>
+</div>
+</div>
+<!-- Extra spacing for bottom nav -->
+<div class="h-32"></div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-lg bg-surface-container border-t-2 border-on-surface-variant/20 shadow-[0_-4px_12px_rgba(86,66,61,0.15)] flex justify-around items-center h-20 px-gutter-mobile">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 shadow-[0_4px_0_0_rgba(130,85,0,1)] active:translate-y-1 active:shadow-none transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-label-md text-label-md">Story</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">thermostat</span>
+<span class="font-label-md text-label-md">Feelings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">brush</span>
+<span class="font-label-md text-label-md">Stickers</span>
+</a>
+</nav>
+
+
+</body></html>
