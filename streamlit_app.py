@@ -179,7 +179,7 @@ st.sidebar.markdown("""
 """, unsafe_allow_html=True)
 
 st.sidebar.markdown("### 🏆 깃허브 공식 저장소 정보")
-st.sidebar.code("https://github.com/chaejun12/NP1_repo", language="text")
+st.sidebar.code("https://github.com/kukiilogan-star/BINGLE_MVP", language="text")
 st.sidebar.info("💡 본 포털은 해당 GitHub 저장소와 실시간으로 동기화되어 Streamlit Cloud에서 글로벌 웹으로 제공됩니다.")
 
 # Main app title banner
@@ -419,20 +419,20 @@ with tab3:
         <span class="neo-badge" style="background-color: #3b82f6; color: white;">REPOSITORY & DEPLOY</span>
         <h3 class="neo-header" style="margin-top: 0; color: #1e3a8a;">🚀 GitHub 공식 연결 저장소 및 Streamlit Cloud 배포 안내</h3>
         <p style="font-size: 0.95rem; color: #1e3a8a; font-weight: 600; line-height: 1.6;">
-            현재 작성 완료된 <b>모바일 피치덱 포털</b>을 지정해주신 GitHub 저장소(<code>chaejun12/NP1_repo</code>)에 직접 푸시하고 Streamlit에 배포하는 터미널 프로토콜입니다.
+            현재 작성 완료된 <b>모바일 피치덱 포털</b>을 지정해주신 GitHub 저장소(<code>kukiilogan-star/BINGLE_MVP</code>)에 직접 푸시하고 Streamlit에 배포하는 터미널 프로토콜입니다.
         </p>
         <hr style="border-top: 1px solid #3b82f6; opacity: 0.3; margin: 1rem 0;">
         <h4 class="neo-header" style="font-size: 1.1rem; color: #1e3a8a; margin-top: 0.5rem;">📥 1. 로컬 저장소 원격 연동 및 커밋 명령어</h4>
         <pre style="background-color: #1e293b; padding: 1rem; border-radius: 12px; font-family: monospace; font-size: 0.85rem; color: #f8fafc; font-weight: normal; line-height: 1.5; overflow-x: auto;">
-# 1. 원격 주소를 chaejun12/NP1_repo 로 명확히 지정
+# 1. 원격 주소를 kukiilogan-star/BINGLE_MVP 로 명확히 지정
 git remote remove origin 2>/dev/null || true
-git remote add origin https://github.com/chaejun12/NP1_repo.git
+git remote add origin https://github.com/kukiilogan-star/BINGLE_MVP.git
 
 # 2. 변경된 스크린샷과 수정한 스트림릿 코드 일체 스테이징
 git add .
 
 # 3. 커밋 생성
-git commit -m "feat: Update Pitch Deck split screen layout with actual phone frame mockup and chaejun12 repo"
+git commit -m "feat: Update Pitch Deck split screen layout with actual phone frame mockup and BINGLE_MVP repo"
 
 # 4. GitHub 저장소로 강제 푸시 (저장소와 상태 강제 싱크)
 git push -u origin main --force
@@ -441,7 +441,7 @@ git push -u origin main --force
         <ol style="font-size: 0.88rem; color: #1e3a8a; font-weight: 700; line-height: 1.8;">
             <li><a href="https://share.streamlit.io" target="_blank" style="color: #2563eb; text-decoration: underline;">Streamlit Community Cloud</a>에 접속 후 GitHub 계정으로 가입/로그인</li>
             <li>대시보드 페이지 우측 상단의 <b>[New app]</b> 버튼 클릭</li>
-            <li><b>Repository</b> 입력칸에 <code>chaejun12/NP1_repo</code> 선택</li>
+            <li><b>Repository</b> 입력칸에 <code>kukiilogan-star/BINGLE_MVP</code> 선택</li>
             <li><b>Branch</b>에 <code>main</code> 설정</li>
             <li><b>Main file path</b>에 <code>streamlit_app.py</code> 기입 후 <b>[Deploy!]</b> 클릭</li>
             <li>빌드가 완료되면 고유 <code>.streamlit.app</code> 주소가 생성되어, 전 세계 누구나 웹 모바일 뷰어와 인터랙티브 데모를 실시간 조회할 수 있습니다!</li>
