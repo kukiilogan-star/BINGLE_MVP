@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import BingleCharacter from '../../shared/ui/BingleCharacter.jsx';
 import FoodVector from '../../shared/ui/FoodVector.jsx';
+import fridgeShelvesBg from '../../../public/images/fridge_shelves_bg.png';
 
 export default function PantryWarehouse({ gameState, updateGameState, gainXP, showToast }) {
   const currentTemp = gameState?.mindTemperature ?? 25;
@@ -294,7 +295,7 @@ export default function PantryWarehouse({ gameState, updateGameState, gainXP, sh
       style={{
         backgroundImage: isSleeping
           ? 'linear-gradient(180deg, #0a1128 0%, #101f42 50%, #1d3570 100%)'
-          : `url('${import.meta.env.BASE_URL || '/'}images/fridge_shelves_bg.png')`
+          : `url(${fridgeShelvesBg})`
       }}
     >
       {/* Starry Night Sky shimmering stars when sleeping */}

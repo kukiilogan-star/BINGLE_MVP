@@ -4,6 +4,9 @@ import BingleCharacter, { BingleVectorCharacter } from '../../shared/ui/BingleCh
 import FoodVector from '../../shared/ui/FoodVector.jsx';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import fridgeShelvesBg from '../../../public/images/fridge_shelves_bg.png';
+
+
 export default function GameHub({ gameState, updateGameState, gainXP, navigate, screens, showToast }) {
   const userLevel = gameState?.level || 1;
   const userXp = gameState?.xp || 0;
@@ -566,7 +569,7 @@ export default function GameHub({ gameState, updateGameState, gainXP, navigate, 
               style={{
                 backgroundImage: characterState === 'sleeping' 
                   ? 'linear-gradient(180deg, #0a1128 0%, #101f42 50%, #1d3570 100%)' 
-                  : `url('${import.meta.env.BASE_URL || '/'}images/fridge_shelves_bg.png')`,
+                  : `url('${fridgeShelvesBg}')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}

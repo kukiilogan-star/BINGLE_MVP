@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import BingleCharacter from '../../shared/ui/BingleCharacter.jsx';
+import iceIglooBg from '../../../public/images/ice_igloo_bg.png';
 
 const INITIAL_NEIGHBORS = [
   {
@@ -281,7 +282,7 @@ export default function NeighborsFridge({ gameState, updateGameState, gainXP, sh
                 <div 
                   className="w-full aspect-square flex flex-col border-b-4 border-black relative overflow-hidden p-4 items-center justify-center"
                   style={{
-                    backgroundImage: `url('${import.meta.env.BASE_URL || '/'}images/ice_igloo_bg.png')`,
+                    backgroundImage: `url(${iceIglooBg})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}

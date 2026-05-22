@@ -3,6 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '../../shared/store/useGameStore';
 import { ThermometerSun, Zap, Activity, Watch, MapPin } from 'lucide-react';
 
+import bingleHappy from '../../../public/images/bingle_happy.png';
+import bingleAngry from '../../../public/images/bingle_angry.png';
+import bingleHot from '../../../public/images/bingle_hot.png';
+import bingleSleeping from '../../../public/images/bingle_sleeping.png';
+import bingleCrying from '../../../public/images/bingle_crying.png';
+import bingleExcited from '../../../public/images/bingle_excited.png';
+
+
 const DIALOGUES = {
   happy: ["오늘도 같이 걷자! 🧊", "네가 있어서 덜 녹는 것 같아 ✨", "시원하고 기분 최고야!"],
   hot: ["너무 더워... 녹아내릴 것 같아 🥵", "마음의 온도를 낮춰줘...", "후하... 심호흡이 필요해!"],
@@ -108,15 +116,13 @@ const ComicDashboard = () => {
     setDialogueIdx(prev => prev + 1);
   };
 
-  const basePath = import.meta.env.BASE_URL || '/';
-
   const bingleImageMap = {
-    happy: `${basePath}images/bingle_happy.png`,
-    angry: `${basePath}images/bingle_angry.png`,
-    hot: `${basePath}images/bingle_hot.png`,
-    sleeping: `${basePath}images/bingle_sleeping.png`,
-    crying: `${basePath}images/bingle_crying.png`,
-    excited: `${basePath}images/bingle_excited.png`,
+    happy: bingleHappy,
+    angry: bingleAngry,
+    hot: bingleHot,
+    sleeping: bingleSleeping,
+    crying: bingleCrying,
+    excited: bingleExcited,
   };
 
   return (

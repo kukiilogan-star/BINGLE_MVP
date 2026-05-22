@@ -2,6 +2,18 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FoodVector from './FoodVector.jsx';
 
+// Import assets natively to allow Vite to hash them and defeat mobile browser caches automatically!
+import bingleHappy from '../../../public/images/bingle_happy.png';
+import bingleSleeping from '../../../public/images/bingle_sleeping.png';
+import bingleAngry from '../../../public/images/bingle_angry.png';
+import bingleHot from '../../../public/images/bingle_hot.png';
+import bingleCrying from '../../../public/images/bingle_crying.png';
+import bingleExcited from '../../../public/images/bingle_excited.png';
+import bingleTired from '../../../public/images/bingle_tired.png';
+import bingleShocked from '../../../public/images/bingle_shocked.png';
+import bingleFrozen from '../../../public/images/bingle_frozen.png';
+import bingleEating from '../../../public/images/bingle_eating.png';
+
 // ── DEFAULT PNG BINGLE CHARACTER (BREATHING & ALIVE) ─────────────────
 export default function BingleCharacter({ state = 'happy', size = 160, className = '', style = {}, onClick, feedTrigger = 0, fedItemType = 'water', isHungry = false }) {
   const isClickable = !!onClick;
@@ -36,20 +48,18 @@ export default function BingleCharacter({ state = 'happy', size = 160, className
     }
   }, [speechBubble]);
 
-  const basePath = import.meta.env.BASE_URL || '/';
-
-  // Map emotional states to the original PNG images provided by the user
+  // Map emotional states to the imported assets
   const imageMap = {
-    happy: `${basePath}images/bingle_happy.png`,
-    sleeping: `${basePath}images/bingle_sleeping.png`,
-    angry: `${basePath}images/bingle_angry.png`,
-    hot: `${basePath}images/bingle_hot.png`,
-    crying: `${basePath}images/bingle_crying.png`,
-    excited: `${basePath}images/bingle_excited.png`,
-    tired: `${basePath}images/bingle_tired.png`,
-    shocked: `${basePath}images/bingle_shocked.png`,
-    frozen: `${basePath}images/bingle_frozen.png`,
-    eating: `${basePath}images/bingle_eating.png`,
+    happy: bingleHappy,
+    sleeping: bingleSleeping,
+    angry: bingleAngry,
+    hot: bingleHot,
+    crying: bingleCrying,
+    excited: bingleExcited,
+    tired: bingleTired,
+    shocked: bingleShocked,
+    frozen: bingleFrozen,
+    eating: bingleEating,
   };
 
   // If Bingle is currently feeding, show eating image! Otherwise if dragged nearby, show excited!
@@ -59,7 +69,7 @@ export default function BingleCharacter({ state = 'happy', size = 160, className
         ? (['sleeping', 'tired', 'happy', 'frozen'].includes(state) ? 'excited' : state)
         : state);
 
-  const imageSrc = imageMap[effectiveState] || `${basePath}images/bingle_happy.png`;
+  const imageSrc = imageMap[effectiveState] || bingleHappy;
 
   // Hover 3D Parallax mouse tracking
   const handleMouseMove = (e) => {
