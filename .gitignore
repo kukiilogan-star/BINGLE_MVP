@@ -36,3 +36,5 @@ Thumbs.db
 
 # Large images we don't want to sync if they are generated on desktop
 /bingle_slide_*.png
+.vercel
+.env*
