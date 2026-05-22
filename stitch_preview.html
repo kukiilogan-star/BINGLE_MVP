@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BINGLE WarmFridge — Stitch Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: #fff8f5;
+      color: #28180b;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      width: 100%;
+      background: linear-gradient(135deg, #ff8c69 0%, #fdb64b 100%);
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 20px rgba(158,66,37,0.15);
+    }
+    header h1 {
+      font-size: 22px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    header span { font-size: 28px; }
+    .tabs {
+      display: flex;
+      gap: 8px;
+      padding: 16px 24px;
+      background: #fff1e9;
+      width: 100%;
+      overflow-x: auto;
+      border-bottom: 2px solid #ffeadc;
+    }
+    .tab-btn {
+      padding: 8px 20px;
+      border-radius: 9999px;
+      border: 2px solid #ffdbd1;
+      background: white;
+      color: #9e4225;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .tab-btn:hover { background: #ffdbd1; }
+    .tab-btn.active {
+      background: #9e4225;
+      color: white;
+      border-color: #9e4225;
+    }
+    .preview-container {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 24px;
+      background: #f2d4bf;
+    }
+    .phone-frame {
+      background: #1a0f08;
+      border-radius: 44px;
+      padding: 14px;
+      box-shadow: 0 30px 80px rgba(158,66,37,0.3), 0 0 0 2px rgba(255,255,255,0.08);
+      position: relative;
+    }
+    .phone-notch {
+      width: 120px;
+      height: 28px;
+      background: #1a0f08;
+      border-radius: 0 0 20px 20px;
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+    .phone-screen {
+      width: 390px;
+      height: 750px;
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+    }
+    .phone-screen iframe {
+      width: 390px;
+      height: 900px;
+      border: none;
+      transform-origin: top left;
+      transform: scale(0.833);
+      position: absolute;
+      top: 0; left: 0;
+    }
+    .info-bar {
+      margin-top: 16px;
+      background: rgba(158,66,37,0.1);
+      border: 1px solid #ffdbd1;
+      border-radius: 12px;
+      padding: 10px 16px;
+      font-size: 12px;
+      color: #56423d;
+      text-align: center;
+      max-width: 420px;
+    }
+    .info-bar strong { color: #9e4225; }
+  </style>
+</head>
+<body>
+  <header>
+    <span>🧊</span>
+    <h1>BINGLE WarmFridge — Stitch Preview</h1>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('main_map', this)">🗺️ Warm Fridge Main Map</button>
+    <button class="tab-btn" onclick="switchTab('onboarding', this)">✨ Onboarding Panel</button>
+    <button class="tab-btn" onclick="switchTab('emotion_sync', this)">💓 Emotion Sync</button>
+    <button class="tab-btn" onclick="switchTab('forest_world', this)">🌿 Forest World</button>
+  </div>
+
+  <div class="preview-container">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <iframe id="preview-iframe" src="stitch_main_map.html" title="Stitch Screen Preview"></iframe>
+        </div>
+      </div>
+      <div class="info-bar">
+        <strong id="screen-title">Warm Fridge Main Map</strong> — BINGLE_WarmFridge_Game (Stitch 원본)
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const screens = {
+      main_map:     { file: 'stitch_main_map.html',    title: 'Warm Fridge Main Map' },
+      onboarding:   { file: 'stitch_onboarding.html',  title: 'Onboarding Panel 1' },
+      emotion_sync: { file: 'stitch_emotion_sync.html', title: 'Emotion Sync' },
+      forest_world: { file: 'stitch_forest_world.html', title: 'Forest World Gameplay' },
+    };
+
+    function switchTab(key, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const s = screens[key];
+      document.getElementById('preview-iframe').src = s.file;
+      document.getElementById('screen-title').textContent = s.title;
+    }
+  </script>
+</body>
+</html>
