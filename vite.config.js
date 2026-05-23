@@ -7,8 +7,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: 'index.html',
-        presentation: 'bingle_presentation.html'
+        main: 'index.html'
       }
     }
   },
