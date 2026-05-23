@@ -1239,7 +1239,7 @@
     <script>
       // Fallback for broken images (e.g., when loaded directly via file:// or generic static servers)
       window.addEventListener('error', function(e) {
-        if (e.target && e.target.tagName === 'IMG') {
+        if (e.target && e.target.tagName === 'IMG' && !window.location.pathname.includes('/dist/')) {
           const src = e.target.getAttribute('src');
           if (src && src.startsWith('images/') && !src.startsWith('public/')) {
             e.target.src = 'public/' + src;
@@ -1247,8 +1247,8 @@
         }
       }, true);
 
-      // Setup file:// protocol path adaptations
-      if (window.location.protocol === 'file:') {
+      // Setup file:// protocol path adaptations (Only when outside /dist/ directory)
+      if (window.location.protocol === 'file:' && !window.location.pathname.includes('/dist/')) {
         // Intercept future dynamic assignments on file:// protocol
         const originalSrcDescriptor = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src');
         if (originalSrcDescriptor) {
