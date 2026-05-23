@@ -38,7 +38,8 @@
         font-family: 'Gaegu', 'Nunito', sans-serif;
         background-color: #3f2d1e;
         color: #28180b;
-        overflow-x: hidden;
+        height: 100vh;
+        overflow: hidden;
       }
       
       /* Neobrutalist Stylings */
@@ -74,29 +75,29 @@
       .slide-container {
         display: none;
         opacity: 0;
-        transform: translateY(10px);
-        transition: all 0.35s ease;
+        height: 100%;
       }
       .slide-container.active {
         display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         opacity: 1;
-        transform: translateY(0);
       }
       
       /* Mobile Mockup styling */
       .phone-frame {
-        width: 320px;
-        height: 650px;
+        width: 300px;
+        height: 580px;
         border: 10px solid #28180b;
         border-radius: 40px;
-        box-shadow: 12px 12px 0px 0px #28180b;
+        box-shadow: 8px 8px 0px 0px #28180b;
         background-color: #000;
         position: relative;
         overflow: hidden;
       }
       .phone-notch {
-        width: 120px;
-        height: 20px;
+        width: 110px;
+        height: 18px;
         background-color: #28180b;
         border-bottom-left-radius: 12px;
         border-bottom-right-radius: 12px;
@@ -110,7 +111,7 @@
       /* Animations matching React physics */
       @keyframes breathe {
         0%, 100% { transform: translateY(0px) scaleY(1) scaleX(1); }
-        50% { transform: translateY(-8px) scaleY(1.06) scaleX(0.95); }
+        50% { transform: translateY(-6px) scaleY(1.04) scaleX(0.96); }
       }
       .breathe-anim {
         animation: breathe 3s infinite ease-in-out;
@@ -118,10 +119,10 @@
       
       @keyframes shiver {
         0%, 100% { transform: translate(0, 0) scale(1); }
-        20% { transform: translate(-2px, 1px) rotate(-1deg); }
-        40% { transform: translate(1px, -1px) scale(0.98); }
-        60% { transform: translate(-1px, 2px) rotate(1deg); }
-        80% { transform: translate(2px, -2px) scale(1.02); }
+        20% { transform: translate(-1.5px, 1px) rotate(-0.5deg); }
+        40% { transform: translate(1px, -1px) scale(0.99); }
+        60% { transform: translate(-1px, 1.5px) rotate(0.5deg); }
+        80% { transform: translate(1.5px, -1.5px) scale(1.01); }
       }
       .shiver-anim {
         animation: shiver 0.25s infinite linear;
@@ -129,9 +130,9 @@
       
       @keyframes chew {
         0%, 100% { transform: scale(1) translateY(0); }
-        25% { transform: scale(1.12, 0.88) translateY(4px); }
-        50% { transform: scale(0.88, 1.12) translateY(-6px); }
-        75% { transform: scale(1.05, 0.95) translateY(2px); }
+        25% { transform: scale(1.08, 0.92) translateY(3px); }
+        50% { transform: scale(0.92, 1.08) translateY(-4px); }
+        75% { transform: scale(1.04, 0.96) translateY(1px); }
       }
       .chew-anim {
         animation: chew 0.5s infinite ease-in-out;
@@ -146,365 +147,370 @@
       }
     </style>
   </head>
-  <body class="halftone-bg min-h-screen flex flex-col p-4 md:p-6 lg:p-8">
+  <body class="halftone-bg h-screen flex flex-col p-3 overflow-hidden">
     
-    <!-- HEADER BAR -->
-    <header class="w-full max-w-7xl mx-auto bg-[#ffcb2f] border-bold p-4 rounded-3xl shadow-comic flex flex-col md:flex-row justify-between items-center gap-4 mb-6 relative">
+    <!-- HEADER BAR (FIXED HEIGHT) -->
+    <header class="w-full max-w-[1400px] mx-auto bg-[#ffcb2f] border-bold p-3 rounded-2xl shadow-comic flex justify-between items-center h-16 flex-shrink-0 mb-3 relative z-[99]">
       <div class="flex items-center gap-3">
-        <span class="text-4xl">🧊</span>
+        <span class="text-3xl">🧊</span>
         <div class="flex flex-col text-left">
-          <h1 class="text-3xl font-black text-dark tracking-tight leading-none">BINGLE (마음 냉장고)</h1>
-          <span class="text-[11px] font-bold text-dark/75 mt-1">정서 조절 & 행동 활성화 디지털 테라피 스타트업 IR Pitch Deck</span>
+          <h1 class="text-2xl font-black text-dark tracking-tight leading-none">BINGLE (마음 냉장고)</h1>
+          <span class="text-[10px] font-bold text-dark/75 mt-0.5">정서 조절 & 행동 활성화 디지털 테라피 스타트업 IR Pitch Deck</span>
         </div>
       </div>
       
-      <div class="flex flex-wrap items-center gap-3">
-        <a href="https://kukiilogan-star.github.io/BINGLE_MVP/" target="_blank" class="bg-accent hover:bg-cyan-200 border-bold-sm px-4 py-1.5 rounded-xl text-xs font-black text-dark shadow-comic-sm btn-comic flex items-center gap-1.5 transition-all">
-          <span class="material-symbols-outlined text-sm font-black">rocket_launch</span>
+      <div class="flex items-center gap-3">
+        <a href="https://kukiilogan-star.github.io/BINGLE_MVP/" target="_blank" class="bg-accent hover:bg-cyan-200 border-bold-sm px-3.5 py-1 rounded-xl text-xs font-black text-dark shadow-comic-sm btn-comic flex items-center gap-1.5 transition-all">
+          <span class="material-symbols-outlined text-xs font-black">rocket_launch</span>
           라이브 서비스 바로가기
         </a>
-        <div class="bg-white border-bold-sm px-3.5 py-1.5 rounded-xl text-xs font-bold text-gray-500 shadow-comic-sm">
-          📅 기말고사 IR 심사위원 제출용
+        <div class="bg-white border-bold-sm px-3 py-1 rounded-xl text-xs font-bold text-gray-500 shadow-comic-sm">
+          📅 IR 발표용 스마트 뷰어
         </div>
       </div>
     </header>
 
-    <!-- MAIN BODY -->
-    <main class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
+    <!-- MAIN BODY: NON-WRAPPING COHESIVE DASHBOARD -->
+    <main class="w-full max-w-[1400px] mx-auto flex flex-row gap-3 flex-1 overflow-hidden h-[calc(100vh-85px)]">
       
-      <!-- LEFT SIDEBAR: SELECTOR SLIDES -->
-      <nav class="lg:col-span-3 bg-[#fdf8f5] border-bold p-4 rounded-3xl shadow-comic flex flex-col gap-2.5 max-h-[720px] overflow-y-auto no-scrollbar">
-        <div class="text-[10px] font-black text-gray-400 uppercase tracking-wider text-left pl-1 pb-1 border-b-2 border-dark/10">IR Slide Deck</div>
+      <!-- LEFT SIDEBAR: SELECTOR SLIDES (FIXED WIDTH, ALWAYS PERSISTENT) -->
+      <nav class="w-64 flex-shrink-0 bg-[#fdf8f5] border-bold p-3 rounded-2xl shadow-comic flex flex-col gap-2 h-full overflow-y-auto no-scrollbar">
+        <div class="text-[9px] font-black text-gray-400 uppercase tracking-wider text-left pl-1 pb-1 border-b-2 border-dark/10">IR Slide Deck</div>
         
         <!-- Navigation Buttons 1 to 11 -->
-        <button onclick="goToSlide(1)" id="nav-1" class="nav-btn w-full bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-left font-black text-[11px] flex gap-2 items-center transition-all">
-          <span class="w-6 h-6 rounded-full bg-orange-300 border-2 border-dark flex items-center justify-center text-[10px]">01</span>
-          <div class="flex flex-col">
-            <span class="text-dark leading-none">오프닝 커버 (Cover)</span>
-            <span class="text-[8px] text-gray-500 font-bold mt-0.5">마음 냉장고 BINGLE 소개</span>
+        <button onclick="goToSlide(1)" id="nav-1" class="nav-btn w-full bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm text-left font-black text-[10px] flex gap-2 items-center transition-all">
+          <span class="w-5 h-5 rounded-full bg-orange-300 border-2 border-dark flex items-center justify-center text-[9px] flex-shrink-0">01</span>
+          <div class="flex flex-col overflow-hidden">
+            <span class="text-dark leading-none truncate">오프닝 커버 (Cover)</span>
+            <span class="text-[8px] text-gray-400 font-bold mt-0.5 truncate">마음 냉장고 BINGLE 소개</span>
           </div>
         </button>
         
-        <button onclick="goToSlide(2)" id="nav-2" class="nav-btn w-full bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-left font-black text-[11px] flex gap-2 items-center transition-all">
-          <span class="w-6 h-6 rounded-full bg-red-300 border-2 border-dark flex items-center justify-center text-[10px]">02</span>
-          <div class="flex flex-col">
-            <span class="text-dark leading-none">문제 인식 (Problem)</span>
-            <span class="text-[8px] text-gray-500 font-bold mt-0.5">현대인의 번아웃과 우울 전이</span>
+        <button onclick="goToSlide(2)" id="nav-2" class="nav-btn w-full bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm text-left font-black text-[10px] flex gap-2 items-center transition-all">
+          <span class="w-5 h-5 rounded-full bg-red-300 border-2 border-dark flex items-center justify-center text-[9px] flex-shrink-0">02</span>
+          <div class="flex flex-col overflow-hidden">
+            <span class="text-dark leading-none truncate">문제 인식 (Problem)</span>
+            <span class="text-[8px] text-gray-400 font-bold mt-0.5 truncate">현대인의 번아웃과 우울</span>
           </div>
         </button>
         
-        <button onclick="goToSlide(3)" id="nav-3" class="nav-btn w-full bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-left font-black text-[11px] flex gap-2 items-center transition-all">
-          <span class="w-6 h-6 rounded-full bg-teal-300 border-2 border-dark flex items-center justify-center text-[10px]">03</span>
-          <div class="flex flex-col">
-            <span class="text-dark leading-none">해결 방안 (Solution)</span>
-            <span class="text-[8px] text-gray-500 font-bold mt-0.5">이타적 대리 돌봄 메커니즘</span>
+        <button onclick="goToSlide(3)" id="nav-3" class="nav-btn w-full bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm text-left font-black text-[10px] flex gap-2 items-center transition-all">
+          <span class="w-5 h-5 rounded-full bg-teal-300 border-2 border-dark flex items-center justify-center text-[9px] flex-shrink-0">03</span>
+          <div class="flex flex-col overflow-hidden">
+            <span class="text-dark leading-none truncate">해결 방안 (Solution)</span>
+            <span class="text-[8px] text-gray-400 font-bold mt-0.5 truncate">이타적 대리 돌봄</span>
           </div>
         </button>
         
-        <button onclick="goToSlide(4)" id="nav-4" class="nav-btn w-full bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-left font-black text-[11px] flex gap-2 items-center transition-all">
-          <span class="w-6 h-6 rounded-full bg-pink-300 border-2 border-dark flex items-center justify-center text-[10px]">04</span>
-          <div class="flex flex-col">
-            <span class="text-dark leading-none">핵심 기능 1: 온보딩 진단</span>
-            <span class="text-[8px] text-gray-500 font-bold mt-0.5">스토리 만화 & 번아웃 스크리닝</span>
+        <button onclick="goToSlide(4)" id="nav-4" class="nav-btn w-full bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm text-left font-black text-[10px] flex gap-2 items-center transition-all">
+          <span class="w-5 h-5 rounded-full bg-pink-300 border-2 border-dark flex items-center justify-center text-[9px] flex-shrink-0">04</span>
+          <div class="flex flex-col overflow-hidden">
+            <span class="text-dark leading-none truncate">핵심 기능 1: 온보딩 진단</span>
+            <span class="text-[8px] text-gray-400 font-bold mt-0.5 truncate">스토리툰 & 번아웃 분류</span>
           </div>
         </button>
         
-        <button onclick="goToSlide(5)" id="nav-5" class="nav-btn w-full bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-left font-black text-[11px] flex gap-2 items-center transition-all">
-          <span class="w-6 h-6 rounded-full bg-yellow-300 border-2 border-dark flex items-center justify-center text-[10px]">05</span>
-          <div class="flex flex-col">
-            <span class="text-dark leading-none">핵심 기능 2: 뽀모도로 홈</span>
-            <span class="text-[8px] text-gray-500 font-bold mt-0.5">기온 연동 쿨러 대시보드</span>
+        <button onclick="goToSlide(5)" id="nav-5" class="nav-btn w-full bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm text-left font-black text-[10px] flex gap-2 items-center transition-all">
+          <span class="w-5 h-5 rounded-full bg-yellow-300 border-2 border-dark flex items-center justify-center text-[9px] flex-shrink-0">05</span>
+          <div class="flex flex-col overflow-hidden">
+            <span class="text-dark leading-none truncate">핵심 기능 2: 뽀모도로 홈</span>
+            <span class="text-[8px] text-gray-400 font-bold mt-0.5 truncate">온도 연동 몰입 대시보드</span>
           </div>
         </button>
         
-        <button onclick="goToSlide(6)" id="nav-6" class="nav-btn w-full bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-left font-black text-[11px] flex gap-2 items-center transition-all">
-          <span class="w-6 h-6 rounded-full bg-green-300 border-2 border-dark flex items-center justify-center text-[10px]">06</span>
-          <div class="flex flex-col">
-            <span class="text-dark leading-none">핵심 기능 3: 치유 상점</span>
-            <span class="text-[8px] text-gray-500 font-bold mt-0.5">5대 맞춤 식재료 피딩 콘솔</span>
+        <button onclick="goToSlide(6)" id="nav-6" class="nav-btn w-full bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm text-left font-black text-[10px] flex gap-2 items-center transition-all">
+          <span class="w-5 h-5 rounded-full bg-green-300 border-2 border-dark flex items-center justify-center text-[9px] flex-shrink-0">06</span>
+          <div class="flex flex-col overflow-hidden">
+            <span class="text-dark leading-none truncate">핵심 기능 3: 치유 상점</span>
+            <span class="text-[8px] text-gray-400 font-bold mt-0.5 truncate">5대 맞춤 식재료 피딩</span>
           </div>
         </button>
         
-        <button onclick="goToSlide(7)" id="nav-7" class="nav-btn w-full bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-left font-black text-[11px] flex gap-2 items-center transition-all">
-          <span class="w-6 h-6 rounded-full bg-indigo-300 border-2 border-dark flex items-center justify-center text-[10px]">07</span>
-          <div class="flex flex-col">
-            <span class="text-dark leading-none">핵심 기능 4: 감정 통계</span>
-            <span class="text-[8px] text-gray-500 font-bold mt-0.5">달력 일기 & 기온 리포트</span>
+        <button onclick="goToSlide(7)" id="nav-7" class="nav-btn w-full bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm text-left font-black text-[10px] flex gap-2 items-center transition-all">
+          <span class="w-5 h-5 rounded-full bg-indigo-300 border-2 border-dark flex items-center justify-center text-[9px] flex-shrink-0">07</span>
+          <div class="flex flex-col overflow-hidden">
+            <span class="text-dark leading-none truncate">핵심 기능 4: 감정 통계</span>
+            <span class="text-[8px] text-gray-400 font-bold mt-0.5 truncate">성찰 일기 & 온도 그래프</span>
           </div>
         </button>
         
-        <button onclick="goToSlide(8)" id="nav-8" class="nav-btn w-full bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-left font-black text-[11px] flex gap-2 items-center transition-all">
-          <span class="w-6 h-6 rounded-full bg-emerald-300 border-2 border-dark flex items-center justify-center text-[10px]">08</span>
-          <div class="flex flex-col">
-            <span class="text-dark leading-none">핵심 기능 5: GPS 만보 산책</span>
-            <span class="text-[8px] text-gray-500 font-bold mt-0.5">자이로 캘리브레이션 지도</span>
+        <button onclick="goToSlide(8)" id="nav-8" class="nav-btn w-full bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm text-left font-black text-[10px] flex gap-2 items-center transition-all">
+          <span class="w-5 h-5 rounded-full bg-emerald-300 border-2 border-dark flex items-center justify-center text-[9px] flex-shrink-0">08</span>
+          <div class="flex flex-col overflow-hidden">
+            <span class="text-dark leading-none truncate">핵심 기능 5: GPS 만보 산책</span>
+            <span class="text-[8px] text-gray-400 font-bold mt-0.5 truncate">실시간 보행 궤적 지도</span>
           </div>
         </button>
         
-        <button onclick="goToSlide(9)" id="nav-9" class="nav-btn w-full bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-left font-black text-[11px] flex gap-2 items-center transition-all">
-          <span class="w-6 h-6 rounded-full bg-sky-300 border-2 border-dark flex items-center justify-center text-[10px]">09</span>
-          <div class="flex flex-col">
-            <span class="text-dark leading-none">핵심 기능 6: 뇌파 명상 숲</span>
-            <span class="text-[8px] text-gray-500 font-bold mt-0.5">8초 들숨날숨 비주얼 코어</span>
+        <button onclick="goToSlide(9)" id="nav-9" class="nav-btn w-full bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm text-left font-black text-[10px] flex gap-2 items-center transition-all">
+          <span class="w-5 h-5 rounded-full bg-sky-300 border-2 border-dark flex items-center justify-center text-[9px] flex-shrink-0">09</span>
+          <div class="flex flex-col overflow-hidden">
+            <span class="text-dark leading-none truncate">핵심 기능 6: 뇌파 명상 숲</span>
+            <span class="text-[8px] text-gray-400 font-bold mt-0.5 truncate">8초 호흡 메트로놈 숲</span>
           </div>
         </button>
         
-        <button onclick="goToSlide(10)" id="nav-10" class="nav-btn w-full bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-left font-black text-[11px] flex gap-2 items-center transition-all">
-          <span class="w-6 h-6 rounded-full bg-violet-300 border-2 border-dark flex items-center justify-center text-[10px]">10</span>
-          <div class="flex flex-col">
-            <span class="text-dark leading-none">수익 창출 (Business Model)</span>
-            <span class="text-[8px] text-gray-500 font-bold mt-0.5">정기구독, 브랜드 제휴, B2B EAP</span>
+        <button onclick="goToSlide(10)" id="nav-10" class="nav-btn w-full bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm text-left font-black text-[10px] flex gap-2 items-center transition-all">
+          <span class="w-5 h-5 rounded-full bg-violet-300 border-2 border-dark flex items-center justify-center text-[9px] flex-shrink-0">10</span>
+          <div class="flex flex-col overflow-hidden">
+            <span class="text-dark leading-none truncate">수익 창출 (Business Model)</span>
+            <span class="text-[8px] text-gray-400 font-bold mt-0.5 truncate">구독, 브랜드 제휴, B2B EAP</span>
           </div>
         </button>
         
-        <button onclick="goToSlide(11)" id="nav-11" class="nav-btn w-full bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm text-left font-black text-[11px] flex gap-2 items-center transition-all">
-          <span class="w-6 h-6 rounded-full bg-rose-300 border-2 border-dark flex items-center justify-center text-[10px]">11</span>
-          <div class="flex flex-col">
-            <span class="text-dark leading-none">비전 & 기술 (Roadmap)</span>
-            <span class="text-[8px] text-gray-500 font-bold mt-0.5">KoBERT AI, 2급 DTx 인허가 목표</span>
+        <button onclick="goToSlide(11)" id="nav-11" class="nav-btn w-full bg-white border-2 border-dark p-2 rounded-xl shadow-comic-sm text-left font-black text-[10px] flex gap-2 items-center transition-all">
+          <span class="w-5 h-5 rounded-full bg-rose-300 border-2 border-dark flex items-center justify-center text-[9px] flex-shrink-0">11</span>
+          <div class="flex flex-col overflow-hidden">
+            <span class="text-dark leading-none truncate">비전 & 기술 (Roadmap)</span>
+            <span class="text-[8px] text-gray-400 font-bold mt-0.5 truncate">KoBERT AI, DTx 승인 계획</span>
           </div>
         </button>
         
         <!-- Live Quick Stats Magnet -->
-        <div class="mt-auto bg-[#ffd275] border-4 border-dark p-3.5 rounded-2xl shadow-comic-sm text-[10px] text-left">
-          <div class="font-black border-b border-dark pb-1 text-center">💡 심사 가이드</div>
-          <p class="font-bold text-dark/80 mt-1.5 leading-snug">
+        <div class="mt-auto bg-[#ffd275] border-4 border-dark p-2.5 rounded-xl shadow-comic-sm text-[9px] text-left flex-shrink-0">
+          <div class="font-black border-b border-dark pb-0.5 text-center">💡 사용 가이드</div>
+          <p class="font-bold text-dark/80 mt-1 leading-snug">
             오른편 **핸드폰 모바일 화면**은 실제 동작하는 인터랙티브 앱과 똑같이 만들어져 있습니다. 직접 화면을 스크롤하거나 슬라이더, 입력창을 조작해 보세요!
           </p>
         </div>
       </nav>
       
-      <!-- MIDDLE PANEL: SLIDES CONTENT (60% COLUMN WIDTH) -->
-      <section class="lg:col-span-5 bg-cream border-bold p-5 rounded-3xl shadow-comic flex flex-col justify-between relative min-h-[600px]">
+      <!-- MIDDLE PANEL: SLIDES CONTENT (FLEXIBLE WIDTH, LOCKED BOTTOM NAV, SCROLL CONTENT ONLY) -->
+      <section class="flex-1 bg-cream border-bold p-5 rounded-2xl shadow-comic flex flex-col justify-between h-full overflow-hidden relative">
         
-        <!-- SLIDE 1: COVER -->
-        <div id="slide-1" class="slide-container w-full h-full flex flex-col justify-between gap-4 text-left">
-          <div class="flex flex-col gap-3">
-            <span class="bg-[#ff8c69] border-2 border-dark text-dark font-black px-3 py-0.5 text-[10px] rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
-              🚀 AI 헬스케어 & 라이프스타일 웰니스
-            </span>
-            <h2 class="text-3xl font-black text-dark leading-tight mt-1">
-              마음 냉장고 <span class="text-primary">BINGLE</span>
-            </h2>
-            <p class="text-sm font-bold text-gray-700 leading-snug">
-              현대인의 스트레스와 만성 번아웃을 시원하게 케어하는 **정서 조절 & 행동 활성화 디지털 테라피(DTx)** 플랫폼
-            </p>
+        <!-- SCROLLABLE CONTENT BODY (KEEPS VIEWPORT STATIC) -->
+        <div class="flex-1 overflow-y-auto pr-1 no-scrollbar mb-4">
+          
+          <!-- SLIDE 1: COVER -->
+          <div id="slide-1" class="slide-container w-full">
+            <div class="flex flex-col gap-3">
+              <span class="bg-[#ff8c69] border-2 border-dark text-dark font-black px-3 py-0.5 text-[9px] rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+                🚀 AI 헬스케어 & 라이프스타일 웰니스
+              </span>
+              <h2 class="text-3xl font-black text-dark leading-tight mt-1">
+                마음 냉장고 <span class="text-primary font-black">BINGLE</span>
+              </h2>
+              <p class="text-xs font-bold text-gray-700 leading-snug">
+                현대인의 스트레스와 만성 번아웃을 시원하게 케어하는 **정서 조절 & 행동 활성화 디지털 테라피(DTx)** 플랫폼
+              </p>
+              
+              <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
+                <div>👨‍⚕️ <strong class="text-dark">정신건강의 보이지 않는 사각지대 돌봄:</strong> 자발적인 회복 의지가 방전된 유저들을 위해 임상적 인지행동 치유 설계를 일화적 방식으로 녹여낸 플랫폼.</div>
+                <div>🧊 <strong class="text-dark">대리 돌봄(Proxy Care) 메커니즘:</strong> 유저가 나 자신을 돌볼 동기가 고갈된 번아웃 상태에서도, 연약한 얼음 요정 빙글이를 돌보는 행동을 통해, 역설적으로 자기 자신의 기온을 최적 온도 <strong>12°C</strong>로 복원하는 은유형 정서 활성화.</div>
+              </div>
+            </div>
             
-            <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
-              <div>👨‍⚕️ <strong class="text-dark">정신건강의 사각지대:</strong> 만성적 탈진 상태인 번아웃 환자를 스크리닝하고, 일상의 회복 탄력성을 되찾아주는 혁신 디지털 서비스.</div>
-              <div>🧊 <strong class="text-dark">대리 돌봄(Proxy Care) 메커니즘:</strong> 유저가 의지 고갈 상태에서도 얼음 요정 빙글이를 돌보는 행동을 통해, 역설적으로 자기 자신의 기온을 최적 온도 <strong>12°C</strong>로 강하시켜 상생 회복하는 은유형 인지행동 치유.</div>
+            <div class="border-t-2 border-dark/10 pt-3 mt-4 flex flex-col gap-1.5">
+              <div class="text-[9px] text-gray-400 font-bold">공동 창업 멤버</div>
+              <div class="flex gap-4">
+                <span class="text-xs font-black text-dark">👤 풀스택 대표: Logan (1인 개발)</span>
+                <span class="text-xs font-black text-[#006b5e]">🤖 AI 어시스턴트: Antigravity</span>
+              </div>
+              <div class="text-[9px] text-gray-500 font-bold mt-1">※ 오른편 스마트폰 화면에서 냉장고 양문을 터치하여 빙글이를 직접 깨워보세요!</div>
             </div>
           </div>
           
-          <div class="border-t-2 border-dark/10 pt-3 flex flex-col gap-1.5">
-            <div class="text-[10px] text-gray-400 font-bold">대표 및 파트너</div>
-            <div class="flex gap-4">
-              <span class="text-xs font-black text-dark">👤 풀스택 대표: Logan (1인 개발)</span>
-              <span class="text-xs font-black text-[#006b5e]">🤖 AI 어시스턴트: Antigravity</span>
-            </div>
-            <div class="text-[10px] text-gray-500 font-bold mt-2">※ 오른편 스마트폰 화면에서 냉장고 양문을 가볍게 두드려 빙글이를 직접 깨워보세요!</div>
-          </div>
-        </div>
-        
-        <!-- SLIDE 2: PROBLEM -->
-        <div id="slide-2" class="slide-container w-full h-full flex flex-col justify-between gap-4 text-left">
-          <div class="flex flex-col gap-3">
-            <span class="bg-red-400 border-2 border-dark text-white font-black px-3 py-0.5 text-[10px] rounded-full shadow-comic-sm rotate-[1deg] w-fit">
-              🥵 PROBLEM STATEMENT
-            </span>
-            <h2 class="text-2xl font-black text-dark leading-tight mt-1">
-              청년 세대의 마음 과열과<br><span class="text-red-500">번아웃의 우울 전이 문제</span>
-            </h2>
-            
-            <div class="grid grid-cols-2 gap-3 text-center my-1.5">
-              <div class="bg-red-50 border-2 border-dark p-2.5 rounded-xl shadow-comic-sm">
-                <span class="block text-[8px] font-black text-gray-500">직장인 번아웃 경험률</span>
-                <span class="text-xl font-black text-red-500">85% 🥵</span>
+          <!-- SLIDE 2: PROBLEM -->
+          <div id="slide-2" class="slide-container w-full">
+            <div class="flex flex-col gap-3">
+              <span class="bg-red-400 border-2 border-dark text-white font-black px-3 py-0.5 text-[9px] rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+                🥵 PROBLEM STATEMENT
+              </span>
+              <h2 class="text-2xl font-black text-dark leading-tight mt-1">
+                청년 세대의 마음 과열과<br><span class="text-red-500 font-black">번아웃의 우울 전이 문제</span>
+              </h2>
+              
+              <div class="grid grid-cols-2 gap-3 text-center my-1">
+                <div class="bg-red-50 border-2 border-dark p-2.5 rounded-xl shadow-comic-sm">
+                  <span class="block text-[8px] font-black text-gray-500">직장인 번아웃 경험률</span>
+                  <span class="text-xl font-black text-red-500">85% 🥵</span>
+                </div>
+                <div class="bg-red-50 border-2 border-dark p-2.5 rounded-xl shadow-comic-sm">
+                  <span class="block text-[8px] font-black text-gray-500">정신과 상담 경험률</span>
+                  <span class="text-xl font-black text-gray-500">4.8% ⚠️</span>
+                </div>
               </div>
-              <div class="bg-red-50 border-2 border-dark p-2.5 rounded-xl shadow-comic-sm">
-                <span class="block text-[8px] font-black text-gray-500">정신과 상담 경험률</span>
-                <span class="text-xl font-black text-gray-500">4.8% ⚠️</span>
+              
+              <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
+                <div>⚠️ <strong class="text-dark">정신질환으로의 조기 전이:</strong> 번아웃은 건강보험이 적용되지 않고 표준 임상 프로토콜이 없어 방치된 채 중증 우울증으로 선형 전이됩니다 (Koutsimani 메타분석 상관관계 $r \ge 0.55$).</div>
+                <div>🚫 <strong class="text-dark">기존 웰니스 앱의 한계:</strong> 명상 앱 리텐션율 중앙값 <strong>3.3%</strong>. 자발적인 의지가 방전된 유저에게 명상이나 강압적 투두를 지속하라고 강요하는 치명적 설계 오류.</div>
               </div>
             </div>
-            
-            <div class="bg-white border-bold-sm p-3 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-1.5">
-              <div>⚠️ <strong class="text-dark">ICD-11 분류 사각지대:</strong> 질병 코드가 없어 건보 혜택이 없고, 낙인 우려로 방치된 채 우울증으로 전이되는 고위험 번아웃 청년들 (상관계수 $r = 0.55$).</div>
-              <div>🚫 <strong class="text-dark">기존 웰니스 앱의 한계:</strong> 명상 앱 리텐션율 중앙값 <strong>3.3%</strong>. 자발적인 의지가 방전된 유저에게 명상이나 강압적 투두를 지속하라고 강요하는 치명적 설계 오류.</div>
-            </div>
+            <div class="text-[9px] text-gray-500 font-bold mt-2">※ 오른편 핸드폰에서 스트레스 슬라이더를 조정해 빙글이가 마음 온도를 잃고 녹아내리는 과정을 시뮬레이션해보세요.</div>
           </div>
-          <div class="text-[10px] text-gray-500 font-bold">※ 오른편 핸드폰에서 스트레스 슬라이더를 조정해 빙글이가 마음 온도를 잃고 녹아내리는 과정을 시뮬레이션해보세요.</div>
+          
+          <!-- SLIDE 3: SOLUTION -->
+          <div id="slide-3" class="slide-container w-full">
+            <div class="flex flex-col gap-3">
+              <span class="bg-teal-400 border-2 border-dark text-dark font-black px-3 py-0.5 text-[9px] rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+                ❄️ UNIQUE SOLUTION
+              </span>
+              <h2 class="text-2xl font-black text-dark leading-tight mt-1">
+                "나를 돌볼 힘이 없을 땐,<br><span class="text-primary font-black">BINGLE을 돌보세요!"</span>
+              </h2>
+              <p class="text-xs font-bold text-gray-700 leading-snug">
+                정서적 애착과 이타적 대리 양육 동기를 이용한 **대리 돌봄(Proxy Care)** 치유 설계
+              </p>
+              
+              <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2.5">
+                <div>🧬 <strong class="text-dark">행동 활성화(Behavioral Activation):</strong> 유저가 빙글이를 열사병으로부터 살리기 위해 냉장실 온도를 낮추는 미션(산책, 일기, 포커스)을 완수하는 과정에서 자신의 뇌 보상 회로가 재정렬되어 정서 활성화 달성.</div>
+                <div>🧊 <strong class="text-dark">점진적 8주 회복:</strong> 인지 부하를 제로(0)에 가깝게 통제하여 '알아차리기 -> 경계 짓기 -> 행동 조율 -> 자생 루틴 설계'로 점진적 웰빙 습관 안착.</div>
+              </div>
+            </div>
+            <div class="text-[9px] text-gray-500 font-bold mt-2">※ 오른편 핸드폰은 빙글이가 쾌적한 12°C 빙벽 돔에서 행복해하는 최적의 웰니스 상태입니다.</div>
+          </div>
+          
+          <!-- SLIDE 4: FEATURE 1 -->
+          <div id="slide-4" class="slide-container w-full">
+            <div class="flex flex-col gap-3">
+              <span class="bg-pink-400 border-2 border-dark text-white font-black px-3 py-0.5 text-[9px] rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+                📖 CORE FEATURE 01
+              </span>
+              <h2 class="text-2xl font-black text-dark leading-tight mt-1">
+                탄생 스토리 온보딩 &<br><span class="text-pink-500 font-black">자연어 번아웃 진단</span>
+              </h2>
+              
+              <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
+                <div>📖 <strong class="text-dark">감성 만화책 컷씬 시퀀스:</strong> 친근한 Stitch 망점 만화책 레이아웃과 3D 문 열기 모션으로 웰니스 앱의 메디컬 거부감을 완전히 상쇄시킵니다.</div>
+                <div>🩺 <strong class="text-dark">3대 임상 척도 융합 스크리닝:</strong> MBI-HSS, KEDS, BAT-23 정신의학 척도를 바탕으로 소진, 인지저하, 정서과민, 거리감 등 4대 웰니스 지표를 자연스러운 일화적 대화 속에서 측정해 번아웃 5단계 분류.</div>
+              </div>
+            </div>
+            <div class="text-[9px] text-gray-500 font-bold mt-2">※ 오른편 핸드폰에서 실제 앱의 스토리 패널을 위아래로 스크롤하거나 문을 다시 닫아보세요!</div>
+          </div>
+          
+          <!-- SLIDE 5: FEATURE 2 -->
+          <div id="slide-5" class="slide-container w-full">
+            <div class="flex flex-col gap-3">
+              <span class="bg-yellow-400 border-2 border-dark text-dark font-black px-3 py-0.5 text-[9px] rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+                ⏱️ CORE FEATURE 02
+              </span>
+              <h2 class="text-2xl font-black text-dark leading-tight mt-1">
+                업무 몰입 뽀모도로 &<br><span class="text-[#f59e0b] font-black">기온 연동 쿨링 대시보드</span>
+              </h2>
+              
+              <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
+                <div>⏱️ <strong class="text-dark">업무-일상 인지 분리 메타포:</strong> 뽀모도로 포커싱 세션 작동 시 냉각기가 작동을 멈춰 실온이 올라가고 빙글이가 다급히 땀을 흘립니다. 이탈(딴짓) 감지 시 패널티 온도 급증 (+2.5°C).</div>
+                <div>⚡ <strong class="text-dark">급속 냉방 보상 루틴:</strong> 25분 몰입을 무사히 마치면 급속 쿨러 냉방 가동(-20°C)과 함께 Bingle 마음 코인(Mind Coins)과 정서 경험치(XP) 적립.</div>
+              </div>
+            </div>
+            <div class="text-[9px] text-gray-500 font-bold mt-2">※ 오른편 핸드폰에서 몰입 타이머를 켜보거나 폰 이탈 버튼을 눌러보세요.</div>
+          </div>
+          
+          <!-- SLIDE 6: FEATURE 3 -->
+          <div id="slide-6" class="slide-container w-full">
+            <div class="flex flex-col gap-3">
+              <span class="bg-green-400 border-2 border-dark text-dark font-black px-3 py-0.5 text-[9px] rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+                🛍️ CORE FEATURE 03
+              </span>
+              <h2 class="text-2xl font-black text-dark leading-tight mt-1">
+                치유 식재료 인벤토리 &<br><span class="text-emerald-500 font-black">포물선 냠냠 피딩 콘솔</span>
+              </h2>
+              
+              <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-1.5">
+                <div>💧 <strong class="text-dark">탄산 마음 소화수:</strong> 불안/가슴 답답함 해소용, 실내 기온 -15°C 급랭.</div>
+                <div>🍊 <strong class="text-dark">활력 자몽 비타민:</strong> 만성 무기력 극복용, 보너스 획득 경험치 +30 XP.</div>
+                <div>🍫 <strong class="text-dark">번아웃 카카오 힐러:</strong> 뇌 과열 및 흥분 차단, 적정 감정 12°C로 즉각 보정.</div>
+                <div>🥛 <strong class="text-dark">꿀잠 라벤더 우유 & 멜론 멜론 젤리:</strong> 수면 장애 극복 및 평온 도파민 회복.</div>
+              </div>
+            </div>
+            <div class="text-[9px] text-gray-500 font-bold mt-2">※ 오른편 핸드폰 하단의 간식을 탭해 보세요! 포물선을 그리며 빙글이 입속으로 날아가 터집니다.</div>
+          </div>
+          
+          <!-- SLIDE 7: FEATURE 4 -->
+          <div id="slide-7" class="slide-container w-full">
+            <div class="flex flex-col gap-3">
+              <span class="bg-indigo-400 border-2 border-dark text-white font-black px-3 py-0.5 text-[9px] rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+                📝 CORE FEATURE 04
+              </span>
+              <h2 class="text-2xl font-black text-dark leading-tight mt-1">
+                달력 감정 성찰 일기 &<br><span class="text-indigo-500 font-black">기분 웰니스 추이 그래프</span>
+              </h2>
+              
+              <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
+                <div>📝 <strong class="text-dark">폴라로이드 일기장:</strong> 일기를 작성하면 오늘의 힐링 테마 폴라로이드 스티커(예: '차가운 파도의 안식', '산책마스터')가 달력에 수집되어 긍정 감정 정착.</div>
+                <div>📉 <strong class="text-dark">스트레스 온도 웰니스 그래프:</strong> 실시간 기분 점수와 수면/신체 활동 데이터를 융합해 매일 변화하는 마음 기온 커브 차트를 SVG dynamic 좌표로 출력.</div>
+              </div>
+            </div>
+            <div class="text-[9px] text-gray-500 font-bold mt-2">※ 오른편 핸드폰에서 폴라로이드 캘린더와 기분 그래프 궤적을 확인해 보세요.</div>
+          </div>
+          
+          <!-- SLIDE 8: FEATURE 5 -->
+          <div id="slide-8" class="slide-container w-full">
+            <div class="flex flex-col gap-3">
+              <span class="bg-emerald-400 border-2 border-dark text-dark font-black px-3 py-0.5 text-[9px] rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+                🏃 CORE FEATURE 05
+              </span>
+              <h2 class="text-2xl font-black text-dark leading-tight mt-1">
+                GPS/자이로 센서 연동<br><span class="text-emerald-600 font-black">실시간 걷기 드로잉 지도</span>
+              </h2>
+              
+              <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
+                <div>🛰️ <strong class="text-dark">정밀 캘리브레이션 모션:</strong> 스마트폰의 실제 센서 값 또는 시뮬레이터 가속도를 실시간 결합하여 감수성이 높은 동그라미 위성 연출을 제공합니다.</div>
+                <div>🎨 <strong class="text-dark">60fps 걷기 패스 드로잉:</strong> 유저가 걸은 궤적을 따라 HTML5 Canvas 가속 기반 꼬불꼬불 흙길 지도 위에 실시간으로 빙글이 발자국 점선을 정교하게 렌더링.</div>
+              </div>
+            </div>
+            <div class="text-[9px] text-gray-500 font-bold mt-2">※ 오른편 핸드폰에서 '산책하기'를 눌러 실시간 발자국 점선이 부드럽게 그려지는 모습을 시뮬레이션해보세요!</div>
+          </div>
+          
+          <!-- SLIDE 9: FEATURE 6 -->
+          <div id="slide-9" class="slide-container w-full">
+            <div class="flex flex-col gap-3">
+              <span class="bg-sky-400 border-2 border-dark text-dark font-black px-3 py-0.5 text-[9px] rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+                🌳 CORE FEATURE 06
+              </span>
+              <h2 class="text-2xl font-black text-dark leading-tight mt-1">
+                8초 뇌파 이완 명상 숲 &<br><span class="text-sky-500 font-black">입체 ASMR 자연 입체 음원</span>
+              </h2>
+              
+              <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
+                <div>🧘 <strong class="text-dark">8초 시각 메트로놈:</strong> 4초 들숨(부드럽게 팽창), 4초 날숨(부드럽게 수축) 동작을 빙글이의 투명한 돔 내부 호흡 코어 크기로 실시간 호흡 유도하여 교감신경 이완.</div>
+                <div>🔊 <strong class="text-dark">ASMR 숲 소리:</strong> 빗소리, 겨울 눈보라 소리, 얼음 녹는 청아한 소리를 결합하여 2030의 시각-청각 듀얼 정서 휴식 공간을 제공합니다.</div>
+              </div>
+            </div>
+            <div class="text-[9px] text-gray-500 font-bold mt-2">※ 오른편 핸드폰 중앙의 호흡 코어 서클이 4초마다 팽창/수축하는 동작을 보며 호흡을 가다듬어보세요.</div>
+          </div>
+          
+          <!-- SLIDE 10: BUSINESS MODEL -->
+          <div id="slide-10" class="slide-container w-full">
+            <div class="flex flex-col gap-3">
+              <span class="bg-violet-400 border-2 border-dark text-white font-black px-3 py-0.5 text-[9px] rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+                📊 BUSINESS MODEL & REVENUE
+              </span>
+              <h2 class="text-2xl font-black text-dark leading-tight mt-1">
+                지속 가능한 에코 웰니스<br><span class="text-violet-500 font-black">3대 수익 창출 파이프라인</span>
+              </h2>
+              
+              <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
+                <div>💎 <strong class="text-dark">B2C 개인 멤버십 구독 (월 4,900원):</strong> 입체 3D ASMR 프리미엄 라이브러리, Bingle AI 오디오 리포트, 한정판 스티커 마그넷 무제한 스킨 해제권 지급.</div>
+                <div>🛒 <strong class="text-dark">웰니스 오가닉 제휴 마켓 (Referral Fee):</strong> 적정 온도(12°C) 및 산책 퀘스트 달성에 상응하는 유기농 F&B, 친환경 리조트 쿠폰 및 굿즈 연동 교환 대행 수수료.</div>
+                <div>🏢 <strong class="text-dark">B2B 기업 임직원 번아웃 EAP 라이선스:</strong> 임직원 1인당 월 2,500원. 익명화된 사내 소진 지표 대시보드를 인사팀에 제공하여 임직원 조기 퇴사율 경감.</div>
+              </div>
+            </div>
+            <div class="text-[9px] text-gray-500 font-bold mt-2">※ 오른편 핸드폰은 소셜 얼음동굴 뷰어입니다. 유저의 치유 활동 보상 획득 및 상호작용 교환의 핵심 허브로 작동합니다.</div>
+          </div>
+          
+          <!-- SLIDE 11: VISION & FUTURE TECH -->
+          <div id="slide-11" class="slide-container w-full">
+            <div class="flex flex-col gap-3">
+              <span class="bg-rose-400 border-2 border-dark text-white font-black px-3 py-0.5 text-[9px] rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+                🔮 VISION & AI ALGORITHM
+              </span>
+              <h2 class="text-2xl font-black text-dark leading-tight mt-1">
+                감정 분석 AI 엔진 &<br><span class="text-rose-500 font-black">2급 디지털 치료제 허가</span>
+              </h2>
+              
+              <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[10px] font-bold text-gray-600 leading-normal flex flex-col gap-1.5">
+                <div>🤖 <strong class="text-dark">KoBERT 자연어 감정 온도 분석:</strong> 유저가 남긴 '김서림 성찰 일기' 안의 정서 가중치(Sentiment Score)를 문맥적으로 정밀 분류하여 45°C(불안), 75°C(소진) 등의 마음 온도를 자동 주입.</div>
+                <div>🩺 <strong class="text-dark">DTx 2급 의료기기 인허가 장기 목표:</strong> 서울대 정신건강의학과 연구진 협업 하에 24개월 이내 대규모 무작위 대조군 시험(RCT)을 통과하고, 식약처 공인 디지털 치료제 승인을 달성하여 처방 시장 선점.</div>
+              </div>
+            </div>
+            <div class="text-[9px] text-gray-500 font-bold mt-2">※ 오른편 핸드폰에서 직접 감정 일기장을 문질러 작성해보세요. 인앱 AI 엔진이 즉시 감정 온도를 산출하는 모델을 구현해놓았습니다!</div>
+          </div>
+          
         </div>
         
-        <!-- SLIDE 3: SOLUTION -->
-        <div id="slide-3" class="slide-container w-full h-full flex flex-col justify-between gap-4 text-left">
-          <div class="flex flex-col gap-3">
-            <span class="bg-teal-400 border-2 border-dark text-dark font-black px-3 py-0.5 text-[10px] rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
-              ❄️ UNIQUE SOLUTION
-            </span>
-            <h2 class="text-2xl font-black text-dark leading-tight mt-1">
-              "나를 돌볼 힘이 없을 땐,<br><span class="text-primary">BINGLE을 돌보세요!"</span>
-            </h2>
-            <p class="text-xs font-bold text-gray-700 leading-snug">
-              정서적 애착과 이타적 대리 양육 동기를 이용한 **대리 돌봄(Proxy Care)** 치유 설계
-            </p>
-            
-            <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
-              <div>🧬 <strong class="text-dark">행동 활성화(Behavioral Activation):</strong> 유저가 빙글이를 열사병으로부터 살리기 위해 냉장실 온도를 낮추는 미션(산책, 일기, 포커스)을 완수하는 과정에서 자신의 뇌 보상 회로가 재정렬되어 정서 활성화 달성.</div>
-              <div>🧊 <strong class="text-dark">점진적 8주 회복:</strong> 인지 부하를 제로(0)에 가깝게 통제하여 '알아차리기 -> 경계 짓기 -> 행동 조율 -> 자생 루틴 설계'로 점진적 웰빙 습관 안착.</div>
-            </div>
-          </div>
-          <div class="text-[10px] text-gray-500 font-bold">※ 오른편 핸드폰은 빙글이가 쾌적한 12°C 빙벽 돔에서 행복해하는 최적의 웰니스 상태입니다.</div>
-        </div>
-        
-        <!-- SLIDE 4: FEATURE 1 -->
-        <div id="slide-4" class="slide-container w-full h-full flex flex-col justify-between gap-4 text-left">
-          <div class="flex flex-col gap-3">
-            <span class="bg-pink-400 border-2 border-dark text-white font-black px-3 py-0.5 text-[10px] rounded-full shadow-comic-sm rotate-[1deg] w-fit">
-              📖 CORE FEATURE 01
-            </span>
-            <h2 class="text-2xl font-black text-dark leading-tight mt-1">
-              탄생 스토리 온보딩 &<br><span class="text-pink-500">자연어 번아웃 진단</span>
-            </h2>
-            
-            <div class="bg-white border-bold-sm p-3 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
-              <div>📖 <strong class="text-dark">감성 만화책 컷씬 시퀀스:</strong> 친근한 Stitch 망점 만화책 레이아웃과 3D 문 열기 모션으로 웰니스 앱의 메디컬 거부감을 완전히 상쇄시킵니다.</div>
-              <div>🩺 <strong class="text-dark">3대 임상 척도 융합 스크리닝:</strong> MBI-HSS, KEDS, BAT-23 정신의학 척도를 바탕으로 소진, 인지저하, 정서과민, 거리감 등 4대 웰니스 지표를 자연스러운 일화적 대화 속에서 측정해 번아웃 5단계 분류.</div>
-            </div>
-          </div>
-          <div class="text-[10px] text-gray-500 font-bold">※ 오른편 핸드폰에서 실제 앱의 스토리 패널을 위아래로 터치해 보세요!</div>
-        </div>
-        
-        <!-- SLIDE 5: FEATURE 2 -->
-        <div id="slide-5" class="slide-container w-full h-full flex flex-col justify-between gap-4 text-left">
-          <div class="flex flex-col gap-3">
-            <span class="bg-yellow-400 border-2 border-dark text-dark font-black px-3 py-0.5 text-[10px] rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
-              ⏱️ CORE FEATURE 02
-            </span>
-            <h2 class="text-2xl font-black text-dark leading-tight mt-1">
-              업무 몰입 뽀모도로 &<br><span class="text-[#f59e0b]">기온 연동 쿨링 대시보드</span>
-            </h2>
-            
-            <div class="bg-white border-bold-sm p-3 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
-              <div>⏱️ <strong class="text-dark">업무-일상 인지 분리 메타포:</strong> 뽀모도로 포커싱 세션 작동 시 냉각기가 작동을 멈춰 실온이 올라가고 빙글이가 다급히 땀을 흘립니다. 이탈(딴짓) 감지 시 패널티 온도 급증 (+2.5°C).</div>
-              <div>⚡ <strong class="text-dark">급속 냉방 보상 루틴:</strong> 25분 몰입을 무사히 마치면 급속 쿨러 냉방 가동(-20°C)과 함께 Bingle 마음 코인(Mind Coins)과 정서 경험치(XP) 적립.</div>
-            </div>
-          </div>
-          <div class="text-[10px] text-gray-500 font-bold">※ 오른편 핸드폰에서 몰입 타이머를 켜보거나 폰 이탈 버튼을 눌러보세요.</div>
-        </div>
-        
-        <!-- SLIDE 6: FEATURE 3 -->
-        <div id="slide-6" class="slide-container w-full h-full flex flex-col justify-between gap-4 text-left">
-          <div class="flex flex-col gap-3">
-            <span class="bg-green-400 border-2 border-dark text-dark font-black px-3 py-0.5 text-[10px] rounded-full shadow-comic-sm rotate-[1deg] w-fit">
-              🛍️ CORE FEATURE 03
-            </span>
-            <h2 class="text-2xl font-black text-dark leading-tight mt-1">
-              치유 식재료 인벤토리 &<br><span class="text-emerald-500">포물선 냠냠 피딩 콘솔</span>
-            </h2>
-            
-            <div class="bg-white border-bold-sm p-3 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-1.5">
-              <div>💧 <strong class="text-dark">탄산 마음 소화수:</strong> 불안/가슴 답답함 해소용, 실내 기온 -15°C 급랭.</div>
-              <div>🍊 <strong class="text-dark">활력 자몽 비타민:</strong> 만성 무기력 극복용, 보너스 획득 경험치 +30 XP.</div>
-              <div>🍫 <strong class="text-dark">번아웃 카카오 힐러:</strong> 뇌 과열 및 흥분 차단, 적정 감정 12°C로 즉각 보정.</div>
-              <div>🥛 <strong class="text-dark">꿀잠 라벤더 우유 & 🍈 평온 멜론 젤리:</strong> 수면 장애 극복 및 평온 도파민 회복.</div>
-            </div>
-          </div>
-          <div class="text-[10px] text-gray-500 font-bold">※ 오른편 핸드폰 하단의 간식을 탭해 보세요! 포물선을 그리며 빙글이 입속으로 날아가 터집니다.</div>
-        </div>
-        
-        <!-- SLIDE 7: FEATURE 4 -->
-        <div id="slide-7" class="slide-container w-full h-full flex flex-col justify-between gap-4 text-left">
-          <div class="flex flex-col gap-3">
-            <span class="bg-indigo-400 border-2 border-dark text-white font-black px-3 py-0.5 text-[10px] rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
-              📝 CORE FEATURE 04
-            </span>
-            <h2 class="text-2xl font-black text-dark leading-tight mt-1">
-              달력 감정 성찰 일기 &<br><span class="text-indigo-500">기분 웰니스 추이 그래프</span>
-            </h2>
-            
-            <div class="bg-white border-bold-sm p-3 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
-              <div>📝 <strong class="text-dark">폴라로이드 일기장:</strong> 일기를 작성하면 오늘의 힐링 테마 폴라로이드 스티커(예: '차가운 파도의 안식', '산책마스터')가 달력에 수집되어 긍정 감정 정착.</div>
-              <div>📉 <strong class="text-dark">스트레스 온도 웰니스 그래프:</strong> 실시간 기분 점수와 수면/신체 활동 데이터를 융합해 매일 변화하는 마음 기온 커브 차트를 SVG dynamic 좌표로 출력.</div>
-            </div>
-          </div>
-          <div class="text-[10px] text-gray-500 font-bold">※ 오른편 핸드폰에서 폴라로이드 캘린더와 기분 그래프 궤적을 확인해 보세요.</div>
-        </div>
-        
-        <!-- SLIDE 8: FEATURE 5 -->
-        <div id="slide-8" class="slide-container w-full h-full flex flex-col justify-between gap-4 text-left">
-          <div class="flex flex-col gap-3">
-            <span class="bg-emerald-400 border-2 border-dark text-dark font-black px-3 py-0.5 text-[10px] rounded-full shadow-comic-sm rotate-[1deg] w-fit">
-              🏃 CORE FEATURE 05
-            </span>
-            <h2 class="text-2xl font-black text-dark leading-tight mt-1">
-              GPS/자이로 센서 연동<br><span class="text-emerald-600">실시간 걷기 드로잉 지도</span>
-            </h2>
-            
-            <div class="bg-white border-bold-sm p-3 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
-              <div>🛰️ <strong class="text-dark">정밀 캘리브레이션 모션:</strong> 스마트폰의 실제 센서 값 또는 시뮬레이터 가속도를 실시간 결합하여 감수성이 높은 동그라미 위성 연출을 제공합니다.</div>
-              <div>🎨 <strong class="text-dark">60fps 걷기 패스 드로잉:</strong> 유저가 걸은 궤적을 따라 HTML5 Canvas 가속 기반 꼬불꼬불 흙길 지도 위에 실시간으로 빙글이 발자국 점선을 정교하게 렌더링.</div>
-            </div>
-          </div>
-          <div class="text-[10px] text-gray-500 font-bold">※ 오른편 핸드폰에서 '산책하기'를 눌러 실시간 발자국 점선이 부드럽게 그려지는 모습을 시뮬레이션해보세요!</div>
-        </div>
-        
-        <!-- SLIDE 9: FEATURE 6 -->
-        <div id="slide-9" class="slide-container w-full h-full flex flex-col justify-between gap-4 text-left">
-          <div class="flex flex-col gap-3">
-            <span class="bg-sky-400 border-2 border-dark text-dark font-black px-3 py-0.5 text-[10px] rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
-              🌳 CORE FEATURE 06
-            </span>
-            <h2 class="text-2xl font-black text-dark leading-tight mt-1">
-              8초 뇌파 이완 명상 숲 &<br><span class="text-sky-500">입체 ASMR 자연 입체 음원</span>
-            </h2>
-            
-            <div class="bg-white border-bold-sm p-3 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
-              <div>🧘 <strong class="text-dark">8초 시각 메트로놈:</strong> 4초 들숨(부드럽게 팽창), 4초 날숨(부드럽게 수축) 동작을 빙글이의 투명한 돔 내부 호흡 코어 크기로 실시간 호흡 유도하여 교감신경 이완.</div>
-              <div>🔊 <strong class="text-dark">ASMR 숲 소리:</strong> 빗소리, 겨울 눈보라 소리, 얼음 녹는 청아한 소리를 결합하여 2030의 시각-청각 듀얼 정서 휴식 공간을 제공합니다.</div>
-            </div>
-          </div>
-          <div class="text-[10px] text-gray-500 font-bold">※ 오른편 핸드폰 중앙의 호흡 코어 서클이 4초마다 팽창/수축하는 동작을 보며 호흡을 가다듬어보세요.</div>
-        </div>
-        
-        <!-- SLIDE 10: BUSINESS MODEL -->
-        <div id="slide-10" class="slide-container w-full h-full flex flex-col justify-between gap-4 text-left">
-          <div class="flex flex-col gap-3">
-            <span class="bg-violet-400 border-2 border-dark text-white font-black px-3 py-0.5 text-[10px] rounded-full shadow-comic-sm rotate-[1deg] w-fit">
-              📊 BUSINESS MODEL & REVENUE
-            </span>
-            <h2 class="text-2xl font-black text-dark leading-tight mt-1">
-              지속 가능한 에코 웰니스<br><span class="text-violet-500">3대 수익 창출 파이프라인</span>
-            </h2>
-            
-            <div class="bg-white border-bold-sm p-3.5 rounded-xl shadow-comic-sm text-[11px] font-bold text-gray-600 leading-relaxed flex flex-col gap-2">
-              <div>💎 <strong class="text-dark">B2C 개인 멤버십 구독 (월 4,900원):</strong> 입체 3D ASMR 프리미엄 라이브러리, Bingle AI 오디오 리포트, 한정판 스티커 마그넷 무제한 스킨 해제권 지급.</div>
-              <div>🛒 <strong class="text-dark">웰니스 오가닉 제휴 마켓 (Referral Fee):</strong> 적정 온도(12°C) 및 산책 퀘스트 달성에 상응하는 유기농 F&B, 친환경 리조트 쿠폰 및 굿즈 연동 교환 대행 수수료.</div>
-              <div>🏢 <strong class="text-dark">B2B 기업 임직원 번아웃 EAP 라이선스:</strong> 임직원 1인당 월 2,500원. 익명화된 사내 소진 지표 대시보드를 인사팀에 제공하여 임직원 조기 퇴사율 경감.</div>
-            </div>
-          </div>
-          <div class="text-[10px] text-gray-500 font-bold">※ 오른편 핸드폰은 소셜 얼음동굴 뷰어입니다. 유저의 치유 활동 보상 획득 및 상호작용 교환의 핵심 허브로 작동합니다.</div>
-        </div>
-        
-        <!-- SLIDE 11: VISION & FUTURE TECH -->
-        <div id="slide-11" class="slide-container w-full h-full flex flex-col justify-between gap-4 text-left">
-          <div class="flex flex-col gap-3">
-            <span class="bg-rose-400 border-2 border-dark text-white font-black px-3 py-0.5 text-[10px] rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
-              🔮 VISION & AI ALGORITHM
-            </span>
-            <h2 class="text-2xl font-black text-dark leading-tight mt-1">
-              감정 분석 AI 엔진 &<br><span class="text-rose-500">2급 디지털 치료제 허가</span>
-            </h2>
-            
-            <div class="bg-white border-bold-sm p-3 rounded-xl shadow-comic-sm text-[10px] font-bold text-gray-600 leading-normal flex flex-col gap-1.5">
-              <div>🤖 <strong class="text-dark">KoBERT 자연어 감정 온도 분석:</strong> 유저가 남긴 '김서림 성찰 일기' 안의 정서 가중치(Sentiment Score)를 문맥적으로 정밀 분류하여 45°C(불안), 75°C(소진) 등의 마음 온도를 자동 주입.</div>
-              <div>🩺 <strong class="text-dark">DTx 2급 의료기기 인허가 장기 목표:</strong> 서울대 정신건강의학과 연구진 협업 하에 24개월 이내 대규모 무작위 대조군 시험(RCT)을 통과하고, 식약처 공인 디지털 치료제 승인을 달성하여 처방 시장 선점.</div>
-            </div>
-          </div>
-          <div class="text-[10px] text-gray-500 font-bold">※ 오른편 핸드폰에서 직접 감정 일기장을 문질러 작성해보세요. 인앱 AI 엔진이 즉시 감정 온도를 산출하는 모델을 구현해놓았습니다!</div>
-        </div>
-        
-        <!-- BOTTOM SLIDE NAV -->
-        <div class="flex justify-between items-center border-t-2 border-dark pt-3 mt-4">
+        <!-- FIXED BOTTOM SLIDE NAV (LOCKED IN PLACE AT ALL TIMES) -->
+        <div class="flex justify-between items-center border-t-2 border-dark pt-3 flex-shrink-0">
           <button onclick="prevSlide()" class="bg-[#ffcb2f] hover:bg-yellow-300 border-bold-sm font-black text-xs px-3.5 py-1.5 rounded-xl shadow-comic-sm active:translate-y-0.5 active:shadow-none btn-comic text-dark">
             이전 슬라이드 ◀
           </button>
@@ -519,8 +525,8 @@
         </div>
       </section>
       
-      <!-- RIGHT PANEL: UNIFIED CSS SMARTPHONE MOCKUP FRAME (40% COLUMN WIDTH) -->
-      <section class="lg:col-span-4 flex flex-col items-center justify-center">
+      <!-- RIGHT PANEL: UNIFIED CSS SMARTPHONE MOCKUP FRAME (FIXED WIDTH, ALWAYS VISIBLE SIDE-BY-SIDE) -->
+      <section class="w-[360px] flex-shrink-0 border-bold flex items-center justify-center bg-[#faf5f0] rounded-2xl shadow-comic h-full overflow-hidden">
         
         <div class="phone-frame border-bold relative flex flex-col select-none">
           <div class="phone-notch flex justify-center items-end pb-1 gap-4">
@@ -600,8 +606,8 @@
               
               <!-- SCREEN 2: PROBLEM MELTING SIMULATOR -->
               <div id="screen-problem" class="absolute inset-0 flex flex-col bg-red-50 p-4 pt-8 gap-4 z-10 transition-opacity duration-300 hidden font-['Gaegu'] text-left">
-                <div class="bg-white border-bold-sm p-3.5 rounded-2xl shadow-comic-sm flex flex-col gap-1.5">
-                  <span class="text-xs font-black text-red-500">🥵 마음 체감 기온 연동 테스크</span>
+                <div class="bg-white border-bold-sm p-3 rounded-2xl shadow-comic-sm flex flex-col gap-1.5">
+                  <span class="text-xs font-black text-red-500">🥵 마음 체감 기온 연동 테스트</span>
                   <p class="text-[11px] font-bold text-gray-600 leading-tight">
                     스트레스 지수가 <strong>45°C</strong>를 넘어서면 빙글이가 더워지며, <strong>75°C</strong>를 넘어가면 녹아내리며 화를 냅니다!
                   </p>
@@ -611,18 +617,18 @@
                 <div class="flex-1 border-4 border-dark rounded-3xl bg-[#fffef0] shadow-comic-sm p-4 flex flex-col justify-around items-center relative overflow-hidden">
                   <div id="problem-screen-glow" class="absolute inset-0 bg-red-500/10 pointer-events-none transition-all duration-300"></div>
                   
-                  <div class="bg-white border-2 border-dark rounded-xl px-4 py-1.5 font-black text-xs shadow-comic-sm flex gap-2 items-center">
+                  <div class="bg-white border-2 border-dark rounded-xl px-4 py-1.5 font-black text-xs shadow-comic-sm flex gap-2 items-center z-10">
                     <span>마음 온도:</span>
                     <span id="p-temp-badge" class="text-red-500 text-sm">25°C 🧊</span>
                   </div>
                   
                   <!-- Breathing/Shivering Avatar Image -->
-                  <div class="w-36 h-36 relative flex items-center justify-center">
+                  <div class="w-36 h-36 relative flex items-center justify-center z-10">
                     <img id="p-bingle-img" src="images/bingle_happy.png" class="w-full h-full object-contain filter drop-shadow-[5px_5px_0_rgba(0,0,0,0.18)] breathe-anim" alt="Bingle" />
                   </div>
                   
                   <!-- Stress Control Slider -->
-                  <div class="w-full flex flex-col gap-1.5 px-2">
+                  <div class="w-full flex flex-col gap-1.5 px-2 z-10">
                     <div class="flex justify-between items-center text-[10px] font-black text-dark">
                       <span>스트레스 지수 (온도)</span>
                       <span id="p-slider-txt" class="text-red-500">25°C (보통)</span>
@@ -693,7 +699,7 @@
                 
                 <!-- Bottom quick info area -->
                 <div class="bg-[#dcfce7] border-3 border-dark p-2.5 rounded-xl shadow-comic-sm text-[10px] font-bold leading-normal">
-                  🌱 <strong>뽀모도로 몰입 작동 기제:</strong> 집중 시 마음 온도가 올라 빙글이가 땀을 흘리고, 이탈 시 급격한 열경보 벌칙이 생깁니다. 몰입 완료 시 급속 냉화(-20°C) 보상이 작동합니다.
+                  🌱 <strong>뽀모도로 몰입 작동 기제:</strong> 집중 시 마음 온도가 올라 빙글이가 땀을 흘리고, 이탈 시 급격한 열경보 벌칙이 생깁니다. 몰입 완료 시 급속 냉방(-20°C) 보상이 작동합니다.
                 </div>
               </div>
               
@@ -720,21 +726,21 @@
                   <div class="w-full bg-gradient-to-b from-[#e5e7eb] to-[#d1d5db] border-3 border-dark p-2.5 rounded-2xl shadow-comic z-20 flex flex-col gap-2 mt-auto">
                     <span class="text-[9px] font-black text-dark/75 block text-center">🛒 치유 F&B 마켓 (가볍게 터치해 피딩해보세요!)</span>
                     
-                    <div class="grid grid-cols-5 gap-1.5">
+                    <div class="grid grid-cols-5 gap-1">
                       <button onclick="feedPantryItem('water')" class="bg-[#bae6fd] border-2 border-dark p-1 rounded-xl shadow-comic-sm text-center font-black text-xs hover:-translate-y-0.5 active:translate-y-0.5 btn-comic text-dark">
-                        💧<span class="block text-[7px] text-gray-500">소화수</span>
+                        💧<span class="block text-[6px] text-gray-500">소화수</span>
                       </button>
                       <button onclick="feedPantryItem('orange')" class="bg-[#fed7aa] border-2 border-dark p-1 rounded-xl shadow-comic-sm text-center font-black text-xs hover:-translate-y-0.5 active:translate-y-0.5 btn-comic text-dark">
-                        🍊<span class="block text-[7px] text-gray-500">자몽</span>
+                        🍊<span class="block text-[6px] text-gray-500">자몽</span>
                       </button>
                       <button onclick="feedPantryItem('chocolate')" class="bg-[#ffeadc] border-2 border-dark p-1 rounded-xl shadow-comic-sm text-center font-black text-xs hover:-translate-y-0.5 active:translate-y-0.5 btn-comic text-dark">
-                        🍫<span class="block text-[7px] text-gray-500">카카오</span>
+                        🍫<span class="block text-[6px] text-gray-500">카카오</span>
                       </button>
                       <button onclick="feedPantryItem('melon')" class="bg-[#dcfce7] border-2 border-dark p-1 rounded-xl shadow-comic-sm text-center font-black text-xs hover:-translate-y-0.5 active:translate-y-0.5 btn-comic text-dark">
-                        🍈<span class="block text-[7px] text-gray-500">멜론</span>
+                        🍈<span class="block text-[6px] text-gray-500">멜론</span>
                       </button>
                       <button onclick="feedPantryItem('milk')" class="bg-[#f3e8ff] border-2 border-dark p-1 rounded-xl shadow-comic-sm text-center font-black text-xs hover:-translate-y-0.5 active:translate-y-0.5 btn-comic text-dark">
-                        🥛<span class="block text-[7px] text-gray-500">우유</span>
+                        🥛<span class="block text-[6px] text-gray-500">우유</span>
                       </button>
                     </div>
                   </div>
@@ -744,7 +750,7 @@
               <!-- SCREEN 7: CALENDAR DIARY & STATS -->
               <div id="screen-diary" class="absolute inset-0 flex flex-col bg-[#fffbeb] p-3 pt-8 gap-3 z-10 transition-opacity duration-300 hidden font-['Gaegu'] text-left">
                 <!-- Polaroid Sticker diary calendar card -->
-                <div class="bg-white border-3 border-dark p-2.5 rounded-2xl shadow-comic-sm flex flex-col gap-1.5">
+                <div class="bg-white border-3 border-dark p-2 rounded-2xl shadow-comic-sm flex flex-col gap-1">
                   <span class="text-[9px] font-black text-indigo-500">📅 오늘의 감정 수집 달력 (Week 1)</span>
                   
                   <div class="grid grid-cols-7 gap-1 text-center font-bold text-[8px] text-dark">
@@ -768,10 +774,10 @@
                 </div>
                 
                 <!-- Stress Temp Chart SVG output -->
-                <div class="bg-white border-3 border-dark p-2.5 rounded-2xl shadow-comic-sm flex flex-col gap-1.5 flex-1 justify-between">
+                <div class="bg-white border-3 border-dark p-2 rounded-2xl shadow-comic-sm flex flex-col gap-1.5 flex-1 justify-between">
                   <span class="text-[9px] font-black text-indigo-500">📉 주간 마음 스트레스 기온 커브</span>
                   
-                  <div class="flex-1 w-full relative min-h-[110px] mt-1 border border-dark/5 rounded-lg flex items-end">
+                  <div class="flex-1 w-full relative min-h-[90px] mt-0.5 border border-dark/5 rounded-lg flex items-end">
                     <!-- Curved SVG Path chart overlay -->
                     <svg class="absolute inset-0 w-full h-full p-2" viewBox="0 0 100 50" preserveAspectRatio="none">
                       <!-- Grid lines -->
@@ -803,7 +809,7 @@
                     </div>
                   </div>
                   
-                  <div class="bg-indigo-50 border border-indigo-200 rounded p-1 text-[8px] font-bold text-indigo-700 leading-normal">
+                  <div class="bg-indigo-50 border border-indigo-200 rounded p-1 text-[8px] font-bold text-indigo-700 leading-tight">
                     📈 <strong>성찰 분석 결과:</strong> 카카오 🍫 섭취 미션 실천 후 정서 과민 지표가 <strong>68% 강하</strong>하여 스트레스 누출량이 정상치에 안착했습니다!
                   </div>
                 </div>
@@ -811,7 +817,7 @@
               
               <!-- SCREEN 8: GPS MAP WALK -->
               <div id="screen-walk" class="absolute inset-0 flex flex-col bg-amber-50 p-4 pt-8 gap-3 z-10 transition-opacity duration-300 hidden font-['Gaegu'] text-left">
-                <div class="bg-white border-3 border-dark p-2.5 rounded-2xl shadow-comic-sm flex flex-col gap-1 text-[10px]">
+                <div class="bg-white border-3 border-dark p-2 rounded-xl shadow-comic-sm flex flex-col gap-1 text-[10px]">
                   <span class="font-black text-amber-600">🏃 GPS 만보 정서 정화 지도</span>
                   <div class="flex justify-between font-bold text-gray-500">
                     <span>오늘 걸음: <strong id="w-steps-val">750보</strong></span>
@@ -821,14 +827,11 @@
                 
                 <!-- Map Canvas widget -->
                 <div class="flex-1 border-4 border-dark rounded-3xl bg-[#fef3c7] shadow-comic-sm relative overflow-hidden flex items-center justify-center">
-                  <!-- Radar satellite wobbly spinner -->
                   <div class="absolute w-20 h-20 border-2 border-dashed border-amber-600/40 rounded-full dot-radar z-0"></div>
                   <div class="absolute w-4 h-4 bg-amber-500 rounded-full border-2 border-dark z-20 flex items-center justify-center font-bold text-[7px]">🛰️</div>
                   
-                  <!-- Step path drawing canvas -->
                   <canvas id="walk-map-canvas" width="260" height="240" class="absolute inset-0 z-10 cursor-pointer"></canvas>
                   
-                  <!-- Character dot -->
                   <div id="w-char-marker" class="absolute z-20 w-8 h-8 pointer-events-none transition-all duration-700" style="left: 120px; top: 120px;">
                     <img src="images/bingle_happy.png" class="w-full h-full object-contain filter drop-shadow" />
                   </div>
@@ -849,7 +852,6 @@
                 </div>
                 
                 <div class="flex-1 border-4 border-dark rounded-3xl bg-[#dcfce7] shadow-comic-sm p-4 flex flex-col justify-around items-center relative overflow-hidden">
-                  <!-- Shimmering leaves falling dynamic -->
                   <span class="absolute top-10 left-10 text-emerald-700/20 text-lg">🍃</span>
                   <span class="absolute top-36 right-8 text-emerald-700/25 text-sm">🌿</span>
                   
@@ -862,7 +864,6 @@
                     </div>
                   </div>
                   
-                  <!-- ASMR select options -->
                   <div class="flex gap-2 w-full max-w-[200px]">
                     <span class="bg-white border-2 border-dark font-black text-[9px] px-2 py-0.5 rounded-lg flex-1 text-center shadow-comic-sm">🌧️ 빗소리 온</span>
                     <span class="bg-white border-2 border-dark font-black text-[9px] px-2 py-0.5 rounded-lg flex-1 text-center shadow-comic-sm">❄️ 눈보라 온</span>
@@ -881,18 +882,15 @@
                 <div class="flex-1 border-4 border-dark rounded-3xl p-3 flex flex-col justify-between items-center relative overflow-hidden bg-cover bg-center" style="background-image: url('images/ice_igloo_bg.png');">
                   <div class="absolute inset-0 bg-blue-900/10 backdrop-blur-[0.5px]"></div>
                   
-                  <!-- Polaroid Header -->
                   <div class="w-full bg-white/95 border-2 border-dark p-1.5 rounded-lg flex justify-between items-center shadow-comic-sm z-10">
                     <span class="font-black text-[9px] text-blue-950">👑 민지의_민트동굴 🧊</span>
                     <span class="bg-blue-100 border border-dark font-bold text-[8px] px-1.5 rounded">12°C ❄️</span>
                   </div>
                   
-                  <!-- Bingle frozen inside igloo -->
                   <div class="w-24 h-24 relative flex items-center justify-center z-10 my-1 breathe-anim">
                     <img src="images/bingle_sleeping.png" class="w-full h-full object-contain filter drop-shadow-[3px_3px_0_rgba(0,0,0,0.15)]" />
                   </div>
                   
-                  <!-- Support comments log -->
                   <div class="w-full bg-white/95 border-2 border-dark p-1.5 rounded-xl shadow-comic-sm z-10 flex flex-col gap-1 text-[8px] text-left">
                     <div class="font-bold border-b border-dark/10 pb-0.5 text-center">💬 응원 로그 (간접 소통)</div>
                     <div>👍 **산책마스터**: 이글루 배경 자는 모습 진짜 극락이네요!</div>
@@ -942,9 +940,9 @@
 
     </main>
 
-    <!-- FOOTER -->
-    <footer class="w-full max-w-7xl mx-auto mt-6 bg-dark border-bold p-3.5 rounded-3xl text-center text-xs font-bold text-white/75 relative shadow-comic">
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-2">
+    <!-- FOOTER (FIXED HEIGHT) -->
+    <footer class="w-full max-w-[1400px] mx-auto bg-dark border-bold p-3 rounded-2xl text-center text-xs font-bold text-white/75 relative shadow-comic flex-shrink-0">
+      <div class="flex justify-between items-center">
         <span>© 2026 BINGLE Inc. 정서 조절 & 행동 활성화 디지털 웰니스 스타트업. All Rights Reserved.</span>
         <span class="text-[#67f9e1]">💡 AI Pair Programmed by Google DeepMind Antigravity 어시스턴트</span>
       </div>
