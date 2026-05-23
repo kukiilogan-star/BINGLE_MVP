@@ -334,6 +334,7 @@
       <section id="slides-section" class="flex-1 bg-cream border-bold p-4 sm:p-6 rounded-2xl shadow-comic flex flex-col justify-between h-full overflow-hidden relative">
         
         <!-- MOBILE SLIDE SELECTOR DROPDOWN (VISIBLE ONLY ON MOBILE/TABLET < lg) -->
+        <!-- MOBILE SLIDE SELECTOR DROPDOWN (VISIBLE ONLY ON MOBILE/TABLET < lg) -->
         <div class="lg:hidden w-full mb-3 flex-shrink-0">
           <label for="mobile-slide-select" class="block text-[10px] font-black text-dark mb-1">🔍 슬라이드 바로가기:</label>
           <select onchange="goToSlide(parseInt(this.value))" id="mobile-slide-select" class="w-full bg-white border-bold-sm p-2 rounded-xl font-black text-xs text-dark shadow-comic-sm focus:outline-none">
@@ -347,442 +348,492 @@
             <option value="8">08 AI 기술 특허 (AI Tech)</option>
             <option value="9">09 핵심 디자인권 (Design)</option>
             <option value="10">10 차별성 분석 (Analysis)</option>
-            <option value="11">11 추진 계획 (Strategy)</option>
-            <option value="12">12 기대효과 & 역량 (Vision)</option>
+            <option value="11">11 추진 계획 (Roadmap)</option>
+            <option value="12">12 전문성 보유 역량 (Vision)</option>
           </select>
         </div>
 
-        <!-- SCROLLABLE CONTENT BODY (KEEPS VIEWPORT STATIC) -->
-        <div id="slide-content-container" class="flex-1 overflow-y-auto pr-1 no-scrollbar mb-4 flex flex-col gap-4">
+        <!-- SCROLLABLE CONTENT BODY (KEEPS VIEWPORT STATIC - RESTRICTED TO FIT HEIGHT PERFECTLY) -->
+        <div id="slide-content-container" class="flex-1 overflow-hidden pr-1 no-scrollbar mb-2 flex flex-col justify-center">
           
           <!-- SLIDE 1: COVER & SUMMARY -->
-          <div id="slide-1" class="slide-container w-full">
-            <div class="flex flex-col gap-4 text-center items-center w-full">
+          <div id="slide-1" class="slide-container w-full h-full flex flex-col justify-between items-center text-center py-2">
+            <div class="flex flex-col gap-2 items-center w-full">
               <span class="bg-[#ff8c69] border-2 border-dark text-dark font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
                 🚀 라이프스타일 감성 웰니스 플랫폼
               </span>
-              <h2 class="text-3xl sm:text-4xl font-black text-dark leading-tight mt-1 text-center">
+              <h2 class="text-3xl sm:text-4xl font-black text-dark leading-tight mt-1">
                 마음 냉장고 <span class="text-primary font-black">BINGLE</span>
               </h2>
-              <p class="text-sm font-bold text-gray-500 max-w-xl text-center leading-normal">
-                현대인의 정서적 소진과 만성 번아웃을 우회적 돌봄으로 해결하는 <strong>웰니스 콕핏 플랫폼</strong>
-              </p>
-              
-              <div class="bg-white border-bold-sm p-4 w-full text-left rounded-xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-600 leading-relaxed flex flex-col gap-3">
-                <div>📌 <strong class="text-dark">창업아이템 소개:</strong> 자발적인 회복 동기와 에너지가 완전히 방전된 유저들을 위해 임상학적 인지행동 치유 설계를 친근한 만화책 스타일로 녹여낸 저부하 감성 웰니스 서비스.</div>
-                <div>🧊 <strong class="text-dark">창업아이템의 독창성·발전가능성·완성도:</strong> 유저가 극도의 무기력 상태에서도 얼음 요정 빙글이를 보살피는 <strong>대리 돌봄(Proxy Care)</strong> 행위를 통해, 역설적으로 자기 자신의 스트레스 기온을 최적 온도인 <strong>12°C</strong>로 회복하고 행동 활성화를 달성하는 웰니스 에코시스템.</div>
-              </div>
-
-
             </div>
             
-            <div class="border-t-2 border-dark/10 pt-3 mt-4 flex flex-col gap-1 w-full text-center">
-              <div class="text-[10px] text-gray-400 font-bold">주요 참여자 및 프론트엔드 기술 스택 명세</div>
-              <div class="text-[10px] font-black text-dark">
-                👑 주 작성자: 창업지능 파트 담당자 (대표) | ⚙️ 코어 스택: React 18, Vite, Framer Motion, HTML5 Canvas, Firebase
+            <!-- 🖼️ 1:1 정사각형 앱 커버 이미지 삽입 (비주얼 중심 극대화) -->
+            <div class="relative w-full max-w-[210px] sm:max-w-[240px] aspect-square my-1.5">
+              <img src="images/bingle_square_cover.png" class="w-full h-full object-contain rounded-2xl border-4 border-dark shadow-comic-sm" alt="Bingle App Cover Image" />
+            </div>
+            
+            <div class="flex flex-col gap-2 w-full items-center">
+              <p class="text-xs sm:text-sm font-bold text-gray-700 max-w-xl leading-snug">
+                나를 돌볼 힘이 없을 땐, <strong>빙글이(BINGLE)</strong>를 보살피세요.<br>
+                대리 돌봄(Proxy Care)을 통한 자연스러운 <strong>번아웃 예방 웰니스 서비스</strong>
+              </p>
+              
+              <div class="border-t-2 border-dark/10 pt-2 w-full flex justify-between items-center text-[10px] font-black text-dark">
+                <span>👑 대표 작성자: Logan</span>
+                <span>⚙️ 기술 스택: React & Vite, Matter.js Physics</span>
               </div>
             </div>
           </div>
           
           <!-- SLIDE 2: PROBLEM I -->
-          <div id="slide-2" class="slide-container w-full">
-            <div class="flex flex-col gap-4 text-center items-center w-full">
+          <div id="slide-2" class="slide-container w-full h-full flex flex-col justify-between items-center py-2">
+            <div class="flex flex-col gap-1 items-center w-full">
               <span class="bg-red-400 border-2 border-dark text-white font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
                 🥵 PROBLEM STATEMENT I
               </span>
-              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1 text-center">
-                치료 사각지대에 방치된<br><span class="text-red-500 font-black">현대인의 번아웃 증후군</span>
+              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
+                치료 사각지대에 방치된 <span class="text-red-500 font-black">직장인 번아웃</span>
               </h2>
-              <p class="text-sm font-bold text-gray-500 max-w-xl text-center leading-normal">
-                2,000만 직장인, 그리고 대다수의 2030 세대가 겪는 번아웃의 실태
+              <p class="text-xs font-bold text-gray-500">
+                대다수의 2030 직장인이 겪는 일상 무기력과 소진의 실태
               </p>
-              
-              <div class="bg-white border-bold-sm p-4 w-full text-left rounded-xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-600 leading-relaxed flex flex-col gap-3">
-                <div>🔥 <strong class="text-dark">1. 사회 구성원 대다수가 겪는 번아웃 증후군:</strong> 2024년 기준 약 2,959만 명의 취업자 중 직장인의 약 85%가 직무 스트레스를 경험. 만성적 소진(번아웃) 경험률은 64%~85% 수준이며, 특히 20~30대 청년 직장인에게서 가장 집중됩니다. (직접 실행한 설문조사에서도 88.9%가 번아웃 경험 유경험 응답)</div>
-                <div>🚫 <strong class="text-dark">2. 다른 정신질환보다 뒤처지는 치료 접근성:</strong> WHO는 2019년 번아웃을 의학적 질환이 아닌 '직업 관련 현상(occupational phenomenon)'으로 기술(ICD-11). 이로 인해 대다수 국가에서 건강보험 비적용 대상이며, 표준화된 치료 임상 프로토콜이 전무한 상태입니다.</div>
-                <div>🔒 <strong class="text-dark">3. 한국의 경쟁 문화와 사회적 낙인:</strong> 국민건강 통계에 따르면 정신 문제 상담 경험률은 단 4.8%에 불과하며, '정신과 진료 이력'에 대한 낙인과 우려로 인해 초기 증상을 음지화하여 사태를 악화시킵니다.</div>
+            </div>
+            
+            <div class="bg-white border-bold-sm p-4 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-3 my-2">
+              <div class="flex items-center gap-2">
+                <span class="text-xl">💥</span>
+                <div><strong>직장인 88.9% 번아웃 경험:</strong> 만성 소진으로 일상 무기력 가속화</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xl">🚫</span>
+                <div><strong>의료적 상담 거부감:</strong> 정신 상담 비율 단 <strong>4.8%</strong> 불과</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xl">🔒</span>
+                <div><strong>진료 이력 우려:</strong> 사회적 낙인 걱정으로 번아웃 초기 증상을 음지화</div>
               </div>
             </div>
+            
+            <p class="text-xs font-black text-red-500">
+              💡 기존의 무겁고 딱딱한 병원 중심 서비스로는 해결할 수 없는 사회적 장벽 존재
+            </p>
           </div>
           
           <!-- SLIDE 3: PROBLEM II -->
-          <div id="slide-3" class="slide-container w-full">
-            <div class="flex flex-col gap-4 text-center items-center w-full">
+          <div id="slide-3" class="slide-container w-full h-full flex flex-col justify-between items-center py-2">
+            <div class="flex flex-col gap-1 items-center w-full">
               <span class="bg-red-400 border-2 border-dark text-white font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
                 ⚠️ PROBLEM STATEMENT II
               </span>
-              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1 text-center">
-                중증 질환으로의 전이 및<br><span class="text-red-500 font-black">기존 웰니스 앱의 한계</span>
+              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
+                기존 웰니스 서비스의 <span class="text-red-500 font-black">리텐션 실패 한계</span>
               </h2>
-              <p class="text-sm font-bold text-gray-500 max-w-xl text-center leading-normal">
-                학술 데이터에 기반한 번아웃 방치의 악영향과 경제적 손실
+              <p class="text-xs font-bold text-gray-500">
+                동기가 상실된 번아웃 유저의 행동 극복 실패 분석
               </p>
-              
-              <div class="bg-white border-bold-sm p-4 w-full text-left rounded-xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-600 leading-relaxed flex flex-col gap-3">
-                <div>📉 <strong class="text-dark">4. 심각한 정신 질환으로의 전이 (학술 입증):</strong>
-                  <ul class="list-disc pl-5 mt-1 flex flex-col gap-1 text-[11px] sm:text-xs">
-                    <li>Kirsi Ahola 연구: 번아웃 심각도와 우울증 상관관계 <em>r</em> = 0.55 (<em>p</em> &lt; 0.001) 정량적 입증.</li>
-                    <li>Koutsimani 메타 분석(46,191명 표본): 번아웃-우울 상관관계 <em>r</em> = 0.52 ~ 0.80 도출.</li>
-                    <li>JDC 설문: 고위험군의 31.7%가 우울 고위험군에 동시 해당하여 높은 동반 전이율 확인.</li>
-                  </ul>
-                </div>
-                <div>🏢 <strong class="text-dark">5. 기업 및 국가의 직접적인 경제 손실:</strong> 소진이 높은 집단은 결근율 3.3배, 프리젠티즘(생산성 저하) 4.7배 증가. 1인당 연간 약 $4,000 ~ $21,000의 생산성 누수 유발.</div>
-                <div>❌ <strong class="text-dark">6. 기존 멘탈 케어 앱들의 치료 효과 한계 및 리텐션 실패:</strong>
-                  범용 웰니스 앱들은 번아웃 환자의 '인지적 과부하'와 '동기 고갈'에 특화된 개입이 전무합니다. 
-                  Headspace 앱의 의료진 대상 RCT에서도 번아웃 핵심 척도인 MBI 개선 효과는 없었습니다 (<em>b</em> = -0.19, -0.04, 0.13, <em>p</em> = 0.65, 0.67, 0.35). 
-                  동기가 방전된 유저에게 스스로 명상하도록 강요하는 설계상의 모순으로 30일 리텐션율 중앙값은 3.3%에 불과합니다.
-                </div>
+            </div>
+            
+            <div class="bg-white border-bold-sm p-4 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-3 my-2">
+              <div class="flex items-center gap-2">
+                <span class="text-xl">📉</span>
+                <div><strong>의지 요구형 한계:</strong> 지쳐있는 유저에게 명상이나 계획 수립 강요</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xl">❌</span>
+                <div><strong>명상 앱 리텐션 붕괴:</strong> 번아웃 유저의 <strong>30일 리텐션 단 3.3%</strong></div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xl">🪫</span>
+                <div><strong>정서 피로 방치:</strong> 스스로 챙기는 웰니스의 동기 원천이 완전히 고갈됨</div>
               </div>
             </div>
+            
+            <p class="text-xs font-black text-red-500">
+              💡 유저 본인에게 의지를 요구하지 않는 완전히 새로운 우회적 기제가 요구됨
+            </p>
           </div>
           
           <!-- SLIDE 4: CONCEPT -->
-          <div id="slide-4" class="slide-container w-full">
-            <div class="flex flex-col gap-4 text-center items-center w-full">
+          <div id="slide-4" class="slide-container w-full h-full flex flex-col justify-between items-center py-2">
+            <div class="flex flex-col gap-1 items-center w-full">
               <span class="bg-teal-400 border-2 border-dark text-dark font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
                 🧬 BUSINESS CORE CONCEPT
               </span>
-              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1 text-center">
-                대리 돌봄(Proxy Care)을 통한<br><span class="text-primary font-black">자연스러운 인지행동 치유</span>
+              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
+                대리 돌봄 <span class="text-primary font-black">Proxy Care</span> 메커니즘
               </h2>
-              <p class="text-sm font-bold text-gray-500 max-w-xl text-center leading-normal">
-                "나를 돌볼 힘이 없을 땐, BINGLE을 돌보세요."
+              <p class="text-xs font-bold text-gray-500">
+                "나를 돌볼 힘이 없을 땐, 빙글이를 대신 돌보며 내 스트레스를 완화합니다"
               </p>
-              
-              <div class="bg-white border-bold-sm p-4 w-full text-left rounded-xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-600 leading-relaxed flex flex-col gap-3">
-                <div>🍼 <strong class="text-dark">치료적 가설 정의 (아기 도식 및 행동 활성화):</strong> 인간은 본능적으로 둥글고 귀여운 '아기 도식(Baby Schema)' 캐릭터에게 이타적인 돌봄 동기를 갖습니다. 유저가 무기력한 나를 돌보는 대신 빙글이를 살리기 위해 수행하는 미션(산책, 일기, 포커스)이 유저 본인의 번아웃을 자연스럽게 치유하는 행동 활성화 이론(Behavioral Activation)을 실현합니다.</div>
-                <div>🎯 <strong class="text-dark">1차 타겟 (핵심 진입 시장):</strong> 직무 번아웃의 초기 신호를 경험하기 시작하고, 비치료 프레이밍(카툰 컷씬)을 선호하며 감성 소통을 갈망하는 20~30대 여성 직장인.</div>
-                <div>🏢 <strong class="text-dark">2차 타겟 (B2B 시장):</strong> 임직원 프리젠티즘 저하와 소진 퇴사율을 방지하고자 헬스케어 자금을 유기적으로 투입하는 국내외 IT 기업 및 스타트업 대상 근로자지원프로그램(EAP) 시장.</div>
+            </div>
+            
+            <div class="bg-[#e6f6f9] border-bold-sm p-4 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-dark leading-relaxed flex flex-col gap-3 my-2">
+              <div class="flex items-start gap-2">
+                <span class="text-xl">👶</span>
+                <div><strong>아기 도식 (Baby Schema) 투사:</strong> 동글동글한 얼음 요정 빙글이와 정서 교감</div>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-xl">🧊</span>
+                <div><strong>마음 온도 시각화:</strong> 유저의 누적 피로도를 빙글이의 냉장실 온도(**12°C~100°C**)와 melting/freezing 외형 변화로 투사</div>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-xl">🔄</span>
+                <div><strong>역설적 행동 활성화:</strong> 빙글이에게 시원한 웰니스 간식을 주려 미션(산책, 일기)을 실천하다 본인 마음도 함께 치유</div>
               </div>
             </div>
+            
+            <p class="text-xs font-black text-teal-600">
+              💡 치료제라는 무겁고 거부감 있는 포지션 대신 일상의 아기자기한 캐릭터 웰니스로 접근
+            </p>
           </div>
           
           <!-- SLIDE 5: ROADMAP -->
-          <div id="slide-5" class="slide-container w-full">
-            <div class="flex flex-col gap-4 text-center items-center w-full">
+          <div id="slide-5" class="slide-container w-full h-full flex flex-col justify-between items-center py-2">
+            <div class="flex flex-col gap-1 items-center w-full">
               <span class="bg-pink-400 border-2 border-dark text-white font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
-                📅 8-WEEK PROCESS
+                📅 8-WEEK ROADMAP
               </span>
-              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1 text-center">
-                점진적 인지 부하 조절 기반<br><span class="text-pink-500 font-black">8주 회복 프로세스 로드맵</span>
+              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
+                점진적 자생력 복원 <span class="text-pink-500 font-black">8주 프로세스</span>
               </h2>
-              <p class="text-sm font-bold text-gray-500 max-w-xl text-center leading-normal">
-                웰니스 기제와 기기 센서 데이터를 융합한 8주 점진적 모바일 콕핏
+              <p class="text-xs font-bold text-gray-500">
+                인지적 부하를 최소화한 4단계 콕핏 치유 로드맵
               </p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3 w-full text-left my-2">
+              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between">
+                <span class="text-xs font-black text-primary">1단계: 신호 감지 (1~2주)</span>
+                <p class="text-[10px] font-bold text-gray-600 mt-1 leading-snug">
+                  14문항 대화형 온보딩 만화를 통해 정서 소진도 5단계 정밀 분류
+                </p>
+              </div>
               
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full text-left">
-                <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm">
-                  <span class="text-xs font-black text-primary block">1단계: 나의 번아웃 신호 알아차리기 (1~2주차)</span>
-                  <p class="text-[11px] font-bold text-gray-600 mt-1 leading-snug">
-                    빙글이와의 자연스러운 만화책 대화를 통해 선호도와 소진 점수를 5단계로 정밀 파악합니다. [개발 완료]
-                  </p>
-                </div>
-                
-                <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm">
-                  <span class="text-xs font-black text-primary block">2단계: 업무와 일상 사이 경계 짓기 (3~4주차)</span>
-                  <p class="text-[11px] font-bold text-gray-600 mt-1 leading-snug">
-                    5분 미만의 초저난도 행동(따뜻한 차 마시기 등) 연속 출석, 일상 패턴 동기화 위젯 및 건강 상태 외형 반영. [개발 완료]
-                  </p>
-                </div>
-                
-                <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm">
-                  <span class="text-xs font-black text-primary block">3단계: 무기력 극복을 위한 행동 조율 (5~6주차)</span>
-                  <p class="text-[11px] font-bold text-gray-600 mt-1 leading-snug">
-                    분석된 생체 정보 기반 5대 맞춤 식재료 치유 피딩 시스템 구동 및 간접 소셜 교류 '얼음동굴' 개방. [개발 완료]
-                  </p>
-                </div>
-                
-                <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm">
-                  <span class="text-xs font-black text-primary block">4단계: 지속 가능한 루틴의 자생 설계 (7~8주차)</span>
-                  <p class="text-[11px] font-bold text-gray-600 mt-1 leading-snug">
-                    축적된 실천 데이터를 분석하여 유저 스스로 자기 돌봄을 유지할 수 있는 개인 맞춤형 수호 루틴 캘린더 확립. [기획 완료]
-                  </p>
-                </div>
+              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between">
+                <span class="text-xs font-black text-primary">2단계: 일상 경계 (3~4주)</span>
+                <p class="text-[10px] font-bold text-gray-600 mt-1 leading-snug">
+                  초저난도 행동(수면/출퇴근) 홈 위젯 연동으로 안정적 루틴 유도
+                </p>
+              </div>
+              
+              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between">
+                <span class="text-xs font-black text-primary">3단계: 행동 조율 (5~6주)</span>
+                <p class="text-[10px] font-bold text-gray-600 mt-1 leading-snug">
+                  분석된 신체 HRV 기반 5대 웰니스 푸드 피딩 및 간접 소셜 얼음동굴 개방
+                </p>
+              </div>
+              
+              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between">
+                <span class="text-xs font-black text-primary">4단계: 자생 루틴 (7~8주)</span>
+                <p class="text-[10px] font-bold text-gray-600 mt-1 leading-snug">
+                  유저 스스로 치유 캘린더를 맞춤 정비하고 자율 관리를 평생 정착
+                </p>
               </div>
             </div>
+            
+            <p class="text-xs font-black text-pink-500">
+              💡 단계별 심리적 적응을 돕는 유저 맞춤형 정밀 복원 설계
+            </p>
           </div>
           
           <!-- SLIDE 6: FEATURES -->
-          <div id="slide-6" class="slide-container w-full">
-            <div class="flex flex-col gap-4 text-center items-center w-full">
+          <div id="slide-6" class="slide-container w-full h-full flex flex-col justify-between items-center py-2">
+            <div class="flex flex-col gap-1 items-center w-full">
               <span class="bg-yellow-400 border-2 border-dark text-dark font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
-                🛠️ CORE FEATURES & DEV STATUS
+                🛠️ CORE FEATURES & STATUS
               </span>
-              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1 text-center">
-                개인 맞춤 5대 솔루션 풀 및<br><span class="text-[#f59e0b] font-black">시제품 시뮬레이터 구동</span>
+              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
+                사용자와 상호작용하는 <span class="text-[#f59e0b] font-black">5대 핵심 콕핏</span>
               </h2>
-              <p class="text-sm font-bold text-gray-500 max-w-xl text-center leading-normal">
-                인지 부하를 방지하기 위해 데이터를 기반으로 최적의 솔루션만을 선별 제공
+              <p class="text-xs font-bold text-gray-500">
+                실제 서비스에 구현 완료되어 즉각 구동되는 실시간 체험 스크린
               </p>
-              
-              <div class="bg-white border-bold-sm p-4 w-full text-left rounded-xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-600 leading-relaxed flex flex-col gap-3">
-                <div>🎨 <strong class="text-dark">비치료 프레이밍(Non-therapeutic Framing):</strong> 정신과 진료 거부감을 극복하기 위해 '치료'라는 무거운 언어 대신 빙글이와의 스토리 유대로 포장하여 진입 장벽을 혁신적으로 낮췄습니다.</div>
-                <div>🩺 <strong class="text-dark">1단계 온보딩 진단:</strong> KEDS, MBI-HSS, BAT-23 정신의학 척도를 벤치마킹한 독자적인 4대 영역(소진, 인지, 정서, 거리감) 14문항을 통해 총점 0~90점을 산출하여 번아웃 단계를 5단계로 정밀 계량화합니다.</div>
-                <div>🔄 <strong class="text-dark">2단계 일상 패턴 동기화 & 피드백:</strong> 유저가 일할 때 빙글이도 일하고, 퇴근 시엔 같이 퇴근하는 홈 위젯 구동. 불규칙 수면 시 빙글이 다크서클 반영. 매일 아침 감사 편지와 저녁 요약 V-log 애니메이션을 통해 감성 환류 구조를 실현합니다.</div>
-                <div>🌱 <strong class="text-dark">5대 맞춤형 웰니스 솔루션:</strong> 
-                  신체 활동(선호 운동 제안), 수면 안정화(패턴 분석), 명상/호흡(호흡 메트로놈 숲), 맞춤 문화생활(취향 여가 추천), 소셜 커뮤니티(간접 소셜 '얼음동굴').
-                </div>
+            </div>
+            
+            <div class="bg-white border-bold-sm p-4 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-2.5 my-2">
+              <div class="flex items-center justify-between">
+                <span class="font-black text-dark">🌱 1. 비치료 스토리 온보딩</span>
+                <span class="bg-[#dcfce7] border border-dark text-dark text-[9px] font-black px-2 py-0.5 rounded-full">개발 완료 🚪</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-black text-dark">⏱️ 2. 몰입 포커스 센터 (뽀모도로)</span>
+                <span class="bg-[#dcfce7] border border-dark text-dark text-[9px] font-black px-2 py-0.5 rounded-full">개발 완료 ⏳</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-black text-dark">🍊 3. 5대 웰니스 푸드 피딩 (상점)</span>
+                <span class="bg-[#dcfce7] border border-dark text-dark text-[9px] font-black px-2 py-0.5 rounded-full">개발 완료 🍖</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-black text-dark">📝 4. 김서림 성찰 일기 & 수채화 스티커</span>
+                <span class="bg-[#dcfce7] border border-dark text-dark text-[9px] font-black px-2 py-0.5 rounded-full">개발 완료 🎨</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-black text-dark">🏃 5. 60fps 자이로/GPS 산책 캔버스</span>
+                <span class="bg-[#dcfce7] border border-dark text-dark text-[9px] font-black px-2 py-0.5 rounded-full">개발 완료 🗺️</span>
               </div>
             </div>
+            
+            <p class="text-xs font-black text-amber-500">
+              💡 오른쪽 모바일 시뮬레이터에서 5대 콕핏 기능의 실시간 물리 동작을 직접 확인해보세요!
+            </p>
           </div>
           
           <!-- SLIDE 7: BUSINESS MODEL -->
-          <div id="slide-7" class="slide-container w-full">
-            <div class="flex flex-col gap-4 text-center items-center w-full">
+          <div id="slide-7" class="slide-container w-full h-full flex flex-col justify-between items-center py-2">
+            <div class="flex flex-col gap-1 items-center w-full">
               <span class="bg-green-400 border-2 border-dark text-dark font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
                 🪙 MONETIZATION PIPELINE
               </span>
-              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1 text-center">
-                지속 가능성을 확보한<br><span class="text-emerald-600 font-black">융복합 비즈니스 모델(BM)</span>
+              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
+                다각적 융합 <span class="text-emerald-600 font-black">3대 수익 모델 (BM)</span>
               </h2>
-              <p class="text-sm font-bold text-gray-500 max-w-xl text-center leading-normal">
-                [의생명공학(인지행동치료) + AI + 웰니스 라이프스타일 커머스] 3대 핵심 수익 모델
+              <p class="text-xs font-bold text-gray-500">
+                수익성과 지속성을 확보한 하이브리드 비즈니스 모델
               </p>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-2.5 w-full text-left my-2">
+              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between h-[155px]">
+                <div class="font-black text-xs text-emerald-800 border-b border-dark/10 pb-0.5">
+                  👑 B2C 프리미엄 구독
+                </div>
+                <p class="text-[9px] font-bold text-gray-600 leading-snug mt-1 flex-1">
+                  <strong>월 4,900원 / 연 39,000원</strong><br>
+                  고민상담 '라디오 우체통', 수면 ASMR, 한정 마그넷 스킨 제공
+                </p>
+              </div>
               
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full text-left">
-                <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col gap-2">
-                  <div class="font-black text-xs text-emerald-800 border-b border-dark/10 pb-1 flex items-center gap-1">
-                    <span>👑</span> B2C 프리미엄 구독
-                  </div>
-                  <p class="text-[10px] font-bold text-gray-500 leading-snug">
-                    <strong>월 4,900원 / 연 39,000원</strong><br>
-                    수면 전문 ASMR 사운드 라이브러리 무제한 이용, 맞춤형 고민 상담 '빙글이의 AI 라디오 우체통', 한정판 스킨 및 한정판 스페셜 데코 마그넷 굿즈 지급.
-                  </p>
+              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between h-[155px]">
+                <div class="font-black text-xs text-emerald-800 border-b border-dark/10 pb-0.5">
+                  🛒 D2C 웰니스 Pantry
                 </div>
-                
-                <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col gap-2">
-                  <div class="font-black text-xs text-emerald-800 border-b border-dark/10 pb-1 flex items-center gap-1">
-                    <span>🛒</span> D2C 웰니스 커머스
-                  </div>
-                  <p class="text-[10px] font-bold text-gray-500 leading-snug">
-                    <strong>BINGLE Pantry 중개 마진</strong><br>
-                    앱 내 치유 간식 5종(소화수, 자몽, 카카오, 멜론, 우유)을 실제 유기농 F&B 처방 식품 패키지로 전환 배송하는 브랜드 제휴 수수료 및 D2C 판매 마진 확보.
-                  </p>
+                <p class="text-[9px] font-bold text-gray-600 leading-snug mt-1 flex-1">
+                  <strong>브랜드 제휴 중개 마진</strong><br>
+                  앱 내 피딩 F&B 5대 웰니스 식품 실물 패키지 연계 정기 배송
+                </p>
+              </div>
+              
+              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between h-[155px]">
+                <div class="font-black text-xs text-emerald-800 border-b border-dark/10 pb-0.5">
+                  🏢 B2B 사내 복지 EAP
                 </div>
-                
-                <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col gap-2">
-                  <div class="font-black text-xs text-emerald-800 border-b border-dark/10 pb-1 flex items-center gap-1">
-                    <span>🏢</span> B2B 사내 EAP 패키지
-                  </div>
-                  <p class="text-[10px] font-bold text-gray-500 leading-snug">
-                    <strong>임직원 1인당 월 2,500원</strong><br>
-                    IT 기업 및 스타트업 대상 단체 구독 라이선스. 인사팀(HR)에 사내 조직의 익명화된 주간 '사내 번아웃 예측 및 위험 대시보드' 제공.
-                  </p>
-                </div>
+                <p class="text-[9px] font-bold text-gray-600 leading-snug mt-1 flex-1">
+                  <strong>1인당 월 2,500원</strong><br>
+                  임직원 단체 라이선스 공급. 인사 관리용 비식별 소진 관리망 제공
+                </p>
               </div>
             </div>
+            
+            <p class="text-xs font-black text-emerald-600">
+              💡 F&B 커머스 마진과 소프트웨어(SaaS) 사내 복지 구독의 유기적 결합
+            </p>
           </div>
           
           <!-- SLIDE 8: AI TECH -->
-          <div id="slide-8" class="slide-container w-full">
-            <div class="flex flex-col gap-4 text-center items-center w-full">
+          <div id="slide-8" class="slide-container w-full h-full flex flex-col justify-between items-center py-2">
+            <div class="flex flex-col gap-1 items-center w-full">
               <span class="bg-indigo-400 border-2 border-dark text-white font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
                 🤖 PATENT CORE TECHNOLOGY
               </span>
-              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1 text-center">
-                AI 융합 감정 분석 엔진 및<br><span class="text-indigo-500 font-black">특허 출원 핵심 기술 프로세스</span>
+              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
+                AI 융합 감정 온도 <span class="text-indigo-500 font-black">특허 엔진</span>
               </h2>
-              <p class="text-sm font-bold text-gray-500 max-w-xl text-center leading-normal">
-                BM 특허 출원을 위해 AI 엔진 작동 단계를 논리적으로 분리 정형화
+              <p class="text-xs font-bold text-gray-500">
+                모바일 행동 데이터와 고민 성찰을 결합한 3단계 정서 정밀 판독
               </p>
-              
-              <div class="bg-white border-bold-sm p-4 w-full text-left rounded-xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-600 leading-relaxed flex flex-col gap-3">
-                <div class="bg-indigo-50 border-2 border-dark p-2.5 rounded-xl text-center font-black text-[11px] sm:text-xs text-indigo-950 flex flex-wrap justify-center gap-2 items-center">
-                  <span>[유저 모바일 데이터 다원 수집]</span>
-                  <span>──&gt;</span>
-                  <span>[AI 인지형 융합 감정 분석]</span>
-                  <span>──&gt;</span>
-                  <span>[초개인화 처방 및 EAP/커머스 환류]</span>
-                </div>
-                <div>📥 <strong class="text-dark">단계 1: 다원 데이터 수집 (Input):</strong> 사용자가 입력한 '김서림 감정 일기'의 자유 텍스트 데이터와 스마트기기의 백그라운드 헬스 API 데이터(원시 수면 주기, 심박변이도 HRV, 백그라운드 가속도 걸음 수)를 다차원 벡터 배열로 결합 입력받습니다.</div>
-                <div>🧠 <strong class="text-dark">단계 2: AI 인지형 융합 분석 (Processing) [★특허 핵심 기술]:</strong> 
-                  <ul class="list-disc pl-5 mt-1 text-[11px] sm:text-xs">
-                    <li><strong>KoBERT/KoELECTRA 자연어 파싱:</strong> NLP 감성 분석을 통해 문맥 속 번아웃 시그널 단어 가중치를 정밀 계량해 '감정 온도 지수(12°C ~ 100°C)'로 맵핑합니다.</li>
-                    <li><strong>소진/인지저하 융합 알고리즘:</strong> 생체 데이터 결손율과 수면 불규칙 표준편차를 결합하여 소진 임계 이상 위험 징후 매트릭스로 필터링 및 Level 5 등급을 실시간으로 분류합니다.</li>
-                  </ul>
-                </div>
-                <div>📤 <strong class="text-dark">단계 3: 초개인화 처방 및 환류 (Output):</strong> 온도 지수 45°C 돌파 시 불안 완화용 [소화수 💧], 75°C 돌파 시 카카오 힐러 처방을 가상 인벤토리에 자동 지급하고 웰니스 D2C D2C 물류망 연동 배송 처리 및 사내 EAP 대시보드를 비식별 실시간 갱신합니다.</div>
+            </div>
+            
+            <div class="bg-white border-bold-sm p-4 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-3 my-2">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-indigo-100 border-2 border-dark flex items-center justify-center font-black text-indigo-700 flex-shrink-0 text-xs">1</span>
+                <div><strong>KoBERT 성찰 일기 자연어 파싱:</strong> 일기 감정 어조를 감지하여 스트레스 온도 수치(12°C~100°C)로 기계 매핑</div>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-indigo-100 border-2 border-dark flex items-center justify-center font-black text-indigo-700 flex-shrink-0 text-xs">2</span>
+                <div><strong>다차원 센서 데이터 결합:</strong> 모바일 백그라운드 수면 결손, GPS 활동, 생체 HRV 결합</div>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-indigo-100 border-2 border-dark flex items-center justify-center font-black text-indigo-700 flex-shrink-0 text-xs">3</span>
+                <div><strong>초개인화 간식 인벤토리 처방:</strong> 감정 온도 임계점 돌파 시 자동 냉각 간식 및 D2C 자동 배송 트리거</div>
               </div>
             </div>
+            
+            <p class="text-xs font-black text-indigo-600">
+              💡 실시간 AI 감정 매핑 기술은 독점적 BM 특허 출원으로 강력한 기술 진입장벽을 구축함
+            </p>
           </div>
           
           <!-- SLIDE 9: INTELLECTUAL PROPERTY -->
-          <div id="slide-9" class="slide-container w-full">
-            <div class="flex flex-col gap-4 text-center items-center w-full">
+          <div id="slide-9" class="slide-container w-full h-full flex flex-col justify-between items-center py-2">
+            <div class="flex flex-col gap-1 items-center w-full">
               <span class="bg-violet-400 border-2 border-dark text-white font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
-                🛡️ INTELLECTUAL PROPERTY PROTECTION
+                🛡️ INTELLECTUAL PROPERTY
               </span>
-              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1 text-center">
-                BINGLE 핵심 디자인권 및<br><span class="text-violet-500 font-black">3대 청구 항목 출원 전략</span>
+              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
+                비주얼 표절 원천 방어 <span class="text-violet-500 font-black">3대 디자인권</span>
               </h2>
-              <p class="text-sm font-bold text-gray-500 max-w-xl text-center leading-normal">
-                독창적 비주얼 인터페이스 표절 원천 차단 및 배타적 권리 확보
+              <p class="text-xs font-bold text-gray-500">
+                BINGLE 만화책 디자인 자산의 독창적 배타 권리 확보
               </p>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-2.5 w-full text-left my-2">
+              <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm flex flex-col justify-between h-[155px]">
+                <div class="font-black text-xs text-violet-850 border-b border-dark/10 pb-0.5">
+                  ① 화상디자인 (GUI)
+                </div>
+                <p class="text-[9px] font-bold text-gray-600 leading-snug mt-1 flex-1">
+                  스마트폰 속 **3D 냉장고 콕핏** UI 레이아웃 선반 격자 배치의 고유 권리 보호
+                </p>
+              </div>
               
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full text-left">
-                <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col gap-2">
-                  <div class="font-black text-xs text-violet-850 border-b border-dark/10 pb-1">
-                    ① 화상디자인권 (GUI)
-                  </div>
-                  <p class="text-[10px] font-bold text-gray-500 leading-snug">
-                    스마트폰 화면에 구현되는 <strong>'3D 마음 냉장고 콕핏' UI 레이아웃</strong> 및 상단 온도 패널, 5대 간식이 배치되는 선반 인벤토리의 고유한 공간 구도를 독점적으로 보장받아 모방앱의 디자인 차용을 강력하게 방어합니다.
-                  </p>
+              <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm flex flex-col justify-between h-[155px]">
+                <div class="font-black text-xs text-violet-850 border-b border-dark/10 pb-0.5">
+                  ② 동적 화상디자인 모션
                 </div>
-                
-                <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col gap-2">
-                  <div class="font-black text-xs text-violet-850 border-b border-dark/10 pb-1">
-                    ② 동적 화상디자인권
-                  </div>
-                  <p class="text-[10px] font-bold text-gray-500 leading-snug">
-                    사용자 행동 모드에 따라 문이 3D 회전 물리 효과와 함께 열리고 닫히는 <strong>Swinging 모션</strong>, 유저 스트레스 데이터에 비례하여 '빙글이'가 단단한 얼음에서 서서히 녹아내리는 <strong>Melting 연속 프레임 변화</strong> 등 고유 동적 감성 경험(UX)을 보호합니다.
-                  </p>
+                <p class="text-[9px] font-bold text-gray-600 leading-snug mt-1 flex-1">
+                  냉장고 입체 **Swinging 모션** 및 스트레스 온도에 따른 캐릭터 **Melting 모션**의 UX 권리 독점
+                </p>
+              </div>
+              
+              <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm flex flex-col justify-between h-[155px]">
+                <div class="font-black text-xs text-violet-850 border-b border-dark/10 pb-0.5">
+                  ③ 캐릭터 IP 디자인권
                 </div>
-                
-                <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col gap-2">
-                  <div class="font-black text-xs text-violet-850 border-b border-dark/10 pb-1">
-                    ③ 캐릭터 디자인권
-                  </div>
-                  <p class="text-[10px] font-bold text-gray-500 leading-snug">
-                    앱 내 핵심 소통 매개체인 <strong>'얼음 요정 빙글이'</strong> 캐릭터의 기본형 뿐 아니라 온도별 4대 감정 바리에이션(기쁨, 숙면, 과열, 멜팅) 세트 전반을 출원하여 향후 웰니스 굿즈, 이모티콘 등 IP 커머스로의 독점 확장을 보장합니다.
-                  </p>
-                </div>
+                <p class="text-[9px] font-bold text-gray-600 leading-snug mt-1 flex-1">
+                  치유 핵심 페르소나인 **얼음 요정 빙글이** 캐릭터 온도별 4대 감정 변이 디자인 출원 완료
+                </p>
               </div>
             </div>
+            
+            <p class="text-xs font-black text-violet-600">
+              💡 고유 디자인 브랜딩 권리 출원으로 카피캣 플랫폼의 시장 진입 원천 차단
+            </p>
           </div>
           
-          <!-- SLIDE 10: COMPARISON ANALYSIS -->
-          <div id="slide-10" class="slide-container w-full">
-            <div class="flex flex-col gap-4 text-center items-center w-full">
+          <!-- SLIDE 10: COMPETITOR ANALYSIS -->
+          <div id="slide-10" class="slide-container w-full h-full flex flex-col justify-between items-center py-2">
+            <div class="flex flex-col gap-1 items-center w-full">
               <span class="bg-sky-400 border-2 border-dark text-dark font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
                 📊 COMPETITOR ANALYSIS
               </span>
-              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1 text-center">
-                선행 특허 조사 및<br><span class="text-sky-600 font-black">유사 서비스 대조 차별성</span>
+              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
+                BINGLE vs 경쟁 서비스 <span class="text-sky-600 font-black">차별성 요약</span>
               </h2>
-              <p class="text-sm font-bold text-gray-500 max-w-xl text-center leading-normal">
-                KIPRIS 및 생성형 AI를 활용한 웰니스 서비스 선행 기술 대조 분석
+              <p class="text-xs font-bold text-gray-500">
+                기존 명상 및 목표 추적형 플랫폼과의 리텐션·기제 차별성 대조
               </p>
-              
-              <!-- 📊 타사 서비스와의 비교 분석표 -->
-              <div class="border-4 border-dark rounded-xl overflow-hidden shadow-comic-sm bg-white mt-1 w-full max-w-4xl">
-                <div class="bg-[#ffcb2f] border-b-2 border-dark p-2 text-center text-xs font-black text-dark">
-                  📊 웰니스 서비스 비교 분석 (BINGLE vs 타사 경쟁 플랫폼)
-                </div>
-                <div class="overflow-x-auto">
-                  <table class="w-full text-left border-collapse text-[10px] font-bold text-gray-700">
-                    <thead>
-                      <tr class="bg-gray-100 border-b border-dark">
-                        <th class="p-2 border-r border-dark font-black">비교 분석 항목</th>
-                        <th class="p-2 border-r border-dark font-black text-primary bg-orange-50/50">BINGLE (본 아이템)</th>
-                        <th class="p-2 border-r border-dark font-black">Headspace / Calm</th>
-                        <th class="p-2 border-r border-dark font-black">닥터프레소</th>
-                        <th class="p-2 font-black">마이루틴 / 투두메이트</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="border-b border-dark">
-                        <td class="p-2 border-r border-dark bg-gray-50 font-black">핵심 치료 기제</td>
-                        <td class="p-2 border-r border-dark text-primary bg-orange-50/30">이타적 대리 돌봄 (Proxy Care) & 인지 경계 콕핏</td>
-                        <td class="p-2 border-r border-dark">마음 챙김, 명상 및 사운드 청취</td>
-                        <td class="p-2 border-r border-dark">임상 치료 프로그램 및 의사 매칭</td>
-                        <td class="p-2">일방적 투두리스트 등록 및 완료</td>
-                      </tr>
-                      <tr class="border-b border-dark">
-                        <td class="p-2 border-r border-dark bg-gray-50 font-black">리텐션 유도 전략</td>
-                        <td class="p-2 border-r border-dark text-primary bg-orange-50/30">초저난도 5분 미션 & 캐릭터 유대</td>
-                        <td class="p-2 border-r border-dark">자발적인 유저 진입 및 의지 요구</td>
-                        <td class="p-2 border-r border-dark">의료적 목적의 진입 강요</td>
-                        <td class="p-2">사용자 본인의 내재적 계획 의지</td>
-                      </tr>
-                      <tr class="border-b border-dark">
-                        <td class="p-2 border-r border-dark bg-gray-50 font-black">비주얼 심미성</td>
-                        <td class="p-2 border-r border-dark text-primary bg-orange-50/30">카툰 만화 디자인 시스템 (하프톤 질감 & 테두리)</td>
-                        <td class="p-2 border-r border-dark">모던 플랫 그래픽 & 다크 모드</td>
-                        <td class="p-2 border-r border-dark">병원 스타일의 차가운 블루 UI</td>
-                        <td class="p-2">심플한 이모지 및 격자 표식</td>
-                      </tr>
-                      <tr class="border-b border-dark">
-                        <td class="p-2 border-r border-dark bg-gray-50 font-black">AI 기능 수준</td>
-                        <td class="p-2 border-r border-dark text-primary bg-orange-50/30">KoBERT 감정 일기 분석 + 백그라운드 센서 온도 매핑</td>
-                        <td class="p-2 border-r border-dark">AI 맞춤형 명상 오디오 추천</td>
-                        <td class="p-2 border-r border-dark">AI 기반 자가 진단 및 챗봇 상담</td>
-                        <td class="p-2">AI 루틴 제안 및 분석 보고서</td>
-                      </tr>
-                      <tr>
-                        <td class="p-2 border-r border-dark bg-gray-50 font-black">소진 대처력</td>
-                        <td class="p-2 border-r border-dark text-primary bg-orange-50/30">MBI 수치 개선 임상적 가설 및 대리 돌봄 투사</td>
-                        <td class="p-2 border-r border-dark">RCT 결과 MBI 수치 개선 불가 입증</td>
-                        <td class="p-2 border-r border-dark">정서적 거부감으로 중도 이탈 가능성</td>
-                        <td class="p-2">과부하로 인한 실천 회피 위험성</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+            </div>
+            
+            <!-- 📊 타사 서비스와의 비교 분석 그리드 - 화면 꽉 차게 콤팩트 가독성 극대화 -->
+            <div class="border-4 border-dark rounded-xl overflow-hidden shadow-comic-sm bg-white w-full text-[10px] font-bold text-dark my-2">
+              <div class="grid grid-cols-4 bg-[#ffcb2f] border-b-2 border-dark p-1 text-center font-black">
+                <span>비교 항목</span>
+                <span class="text-primary">BINGLE</span>
+                <span>Calm / 명상앱</span>
+                <span>마이루틴 / 계획앱</span>
+              </div>
+              <div class="grid grid-cols-4 border-b border-dark/10 p-1.5 items-center">
+                <span class="bg-gray-50 p-0.5 rounded text-center">치유 기제</span>
+                <span class="text-primary text-center font-black">대리 돌봄 (행동활성화)</span>
+                <span class="text-center text-gray-500">자발적 명상 청취</span>
+                <span class="text-center text-gray-500">투두 계획 등록</span>
+              </div>
+              <div class="grid grid-cols-4 border-b border-dark/10 p-1.5 items-center">
+                <span class="bg-gray-50 p-0.5 rounded text-center">리텐션 유도</span>
+                <span class="text-primary text-center font-black">초저난도 5분 + 캐릭터 유대</span>
+                <span class="text-center text-gray-500">사용자 자발적 의지 요구</span>
+                <span class="text-center text-gray-500">사용자 본인 의지 의존</span>
+              </div>
+              <div class="grid grid-cols-4 border-b border-dark/10 p-1.5 items-center">
+                <span class="bg-gray-50 p-0.5 rounded text-center">비주얼</span>
+                <span class="text-primary text-center font-black">카툰 만화 콕핏 (Stitch)</span>
+                <span class="text-center text-gray-500">모던 플랫 다크 테마</span>
+                <span class="text-center text-gray-500">심플 이모지 격자판</span>
+              </div>
+              <div class="grid grid-cols-4 p-1.5 items-center">
+                <span class="bg-gray-50 p-0.5 rounded text-center">AI 기술</span>
+                <span class="text-primary text-center font-black">KoBERT 감정온도 + 센싱</span>
+                <span class="text-center text-gray-500">오디오 콘텐츠 추천</span>
+                <span class="text-center text-gray-500">단순 루틴 통계 분석</span>
               </div>
             </div>
+            
+            <p class="text-xs font-black text-sky-600">
+              💡 BINGLE은 "타자를 돌보는 행동 활성화"를 통해 번아웃 유저의 만성 무기력을 극복합니다
+            </p>
           </div>
           
           <!-- SLIDE 11: PUBLIC DATA & MILESTONES -->
-          <div id="slide-11" class="slide-container w-full">
-            <div class="flex flex-col gap-4 text-center items-center w-full">
+          <div id="slide-11" class="slide-container w-full h-full flex flex-col justify-between items-center py-2">
+            <div class="flex flex-col gap-1 items-center w-full">
               <span class="bg-emerald-400 border-2 border-dark text-dark font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
-                📊 PUBLIC DATA & MILESTONES
+                📊 DATA & MILESTONES
               </span>
-              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1 text-center">
-                보건의료 공공데이터 활용 및<br><span class="text-emerald-600 font-black">단·중·장기 추진 로드맵</span>
+              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
+                보건데이터 활용 및 <span class="text-emerald-600 font-black">단계별 마일스톤</span>
               </h2>
-              <p class="text-sm font-bold text-gray-500 max-w-xl text-center leading-normal">
-                공공 데이터를 기반으로 타당성을 확보하고 점진적으로 성장
+              <p class="text-xs font-bold text-gray-500">
+                공공보건 데이터를 결합한 의학적 신뢰 구축 및 단·중·장기 계획
               </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full text-left my-2 text-xs">
+              <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm flex flex-col gap-1">
+                <span class="font-black text-emerald-800 border-b border-dark/10 pb-0.5">📁 보건의료 공공데이터 활용</span>
+                <ul class="list-disc pl-4 text-[10px] text-gray-600 leading-snug flex flex-col gap-1 mt-1">
+                  <li><strong>질병관리청 건강통계:</strong> 연령/직군별 표준 수면 및 걸음 수 기준치 필터 반영</li>
+                  <li><strong>보건복지부 정신건강 실태:</strong> 치료 저항층 분석 기반 거부감 없는 카툰 콕핏 기획</li>
+                </ul>
+              </div>
               
-              <div class="bg-white border-bold-sm p-4 w-full text-left rounded-xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-600 leading-relaxed flex flex-col gap-3">
-                <div>📁 <strong class="text-dark">보건의료분야 공공데이터 활용 방안:</strong>
-                  <ul class="list-disc pl-5 mt-1 flex flex-col gap-1 text-[11px] sm:text-xs">
-                    <li><strong>질병관리청 국민건강통계:</strong> 연령/직군별 신체 활동율, 평균 수면 시간 지표를 활용하여 유저가 스스로의 상태를 평균치와 객관적으로 대조해 보도록 돕습니다.</li>
-                    <li><strong>보건복지부 국민 정신건강 지식 및 태도 조사:</strong> 2030 청년 세대의 정신과 진료 거부 주요 원인을 분석하여 인지적 거부감을 덜어낼 수 있는 감성적 비치료 콕핏 UI 구성에 반영했습니다.</li>
-                    <li><strong>제주국제자유도시개발센터 JDC 월간 설문:</strong> 실제 사내 근로자들의 번아웃 소진 문항과 우울 위험 연동 통계를 파싱하여 정밀 진단 판독 알고리즘 임계값 설계에 반영했습니다.</li>
-                  </ul>
-                </div>
-                <div>📅 <strong class="text-dark">단기 / 중기 / 장기 추진 목표:</strong>
-                  <ul class="list-disc pl-5 mt-1 flex flex-col gap-1 text-[11px] sm:text-xs">
-                    <li><strong>단기 (~26년 7월):</strong> MVP 완성 및 KEDS 척도 기준 실제 사용자의 번아웃 수준 개선 데이터를 확보하는 소규모 임상 효과 검증 POC 완료.</li>
-                    <li><strong>중기 (~26년 말):</strong> MAU 5만 명 및 유료 구독자 7,500명 달성, 국내 IT 중견기업 10개사와 B2B EAP 단체 계약 수주.</li>
-                    <li><strong>장기 (27년~):</strong> 유사한 고경쟁 문화를 가진 일본 버전 로컬라이징 출시 및 오가닉 웰니스 헬스케어 시장 진출.</li>
-                  </ul>
-                </div>
+              <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm flex flex-col gap-1">
+                <span class="font-black text-emerald-800 border-b border-dark/10 pb-0.5">📅 추진 로드맵</span>
+                <ul class="list-disc pl-4 text-[10px] text-gray-600 leading-snug flex flex-col gap-1 mt-1">
+                  <li><strong>단기 (~26.07):</strong> MVP 완료 및 번아웃 척도 임상 효과 검증 (소규모 POC)</li>
+                  <li><strong>중기 (~26.12):</strong> MAU 5만, 유료구독 7.5천 명, IT 기업 EAP 계약 수주</li>
+                  <li><strong>장기 (27.01~):</strong> 일본 번아웃 시장 로컬라이징 출시 & 글로벌 진출</li>
+                </ul>
               </div>
             </div>
+            
+            <p class="text-xs font-black text-emerald-600">
+              💡 신뢰할 수 있는 공공 보건 데이터를 기반으로 의학적 타당성과 안전한 성장을 완수합니다
+            </p>
           </div>
           
           <!-- SLIDE 12: CAPABILITY -->
-          <div id="slide-12" class="slide-container w-full">
-            <div class="flex flex-col gap-4 text-center items-center w-full">
+          <div id="slide-12" class="slide-container w-full h-full flex flex-col justify-between items-center py-2">
+            <div class="flex flex-col gap-1 items-center w-full">
               <span class="bg-rose-400 border-2 border-dark text-white font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
-                🔮 FUTURE VISION & TEAM CAPABILITY
+                🔮 VISION & CAPABILITY
               </span>
-              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1 text-center">
-                사회적 파급 기대 효과 및<br><span class="text-rose-500 font-black">신청자 역량 & 기술 명세</span>
+              <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
+                사회적 파급력 및 <span class="text-rose-500 font-black">전문성 보유 역량</span>
               </h2>
-              <p class="text-sm font-bold text-gray-500 max-w-xl text-center leading-normal">
-                보건의료 파급 효과 및 ESG 혁신 방안과 핵심 엔지니어링 역량
+              <p class="text-xs font-bold text-gray-500">
+                BINGLE 개발 전문팀 역량 및 확장 아키텍처 기술 명세
               </p>
-              
-              <div class="bg-white border-bold-sm p-4 w-full text-left rounded-xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-600 leading-relaxed flex flex-col gap-3">
-                <div>🔮 <strong class="text-dark">보건의료 파급 효과 및 ESG 혁신 방법:</strong> 
-                  초기 번아웃 극복 개입을 통한 청년기 중증 우울 전이 차단 및 심리적 안전망(S)을 구축합니다. 
-                  B2B EAP 비식별화 인사관리 대시보드를 구축해 건강한 직무 지배 구조(G)를 확립하고, 친환경 D2C 로컬 푸드 물류 제휴로 유기농 커머스 탄소 저감(E)을 결합합니다.
+            </div>
+            
+            <div class="bg-white border-bold-sm p-4 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-3 my-2">
+              <div class="flex items-start gap-2">
+                <span class="text-xl">👥</span>
+                <div>
+                  <strong>전문성 보유 역량:</strong> 인지행동 치유 연구 전문 전공자 + 특허/디자인 출원 수상이력을 완비한 창업 대표팀 + Web 가속 풀스택 파워의 엔지니어링 역량
                 </div>
-                <div>👥 <strong class="text-dark">전문성 보유 역량:</strong> 
-                  인지행동치료 기반 치유 연구 실무 전공자 및 창업지능 관련 풍부한 수상이력, 지식재산권(특허, 디자인) 출원 노하우를 갖춘 창업팀. 
-                  원활한 B2B 연동 및 Web 가속기 설계가 가능한 풀스택 엔지니어링 파워 보유.
-                </div>
-                <div>💻 <strong class="text-dark">BINGLE 코어 테크니컬 아키텍처 스택:</strong>
-                  React 18 & Vite 초고속 로딩, <strong>HTML5 Canvas 60fps</strong> 고성능 실시간 GPS 꼬불꼬불 궤적 패스 드로잉, 
-                  <strong>Matter.js Physics Engine</strong>을 탑재한 감 snacks 냠냠 포물선 물리 운동 시뮬레이션, 
-                  Firebase WebSocket 실시간 DB 및 하이브리드 캐시 복원 설계 탑재.
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-xl">💻</span>
+                <div>
+                  <strong>기술적 차별성:</strong> React 18 & Vite, Matter.js Physics 가속, HTML5 Canvas 60fps 실시간 GPS 궤적 드로잉, Firebase WebSocket 실시간 DB 및 하이브리드 캐시
                 </div>
               </div>
             </div>
+            
+            <p class="text-xs font-black text-rose-500">
+              💡 기획, 의과학, 하드웨어 센싱 결합 및 고성능 프론트엔드 연동을 직접 리드할 수 있는 기술진 확보
+            </p>
           </div>
           
         </div>
