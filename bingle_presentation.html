@@ -321,12 +321,15 @@
           </div>
         </button>
         
-        <!-- Live Quick Stats Magnet -->
-        <div class="mt-auto bg-[#ffd275] border-4 border-dark p-2.5 rounded-xl shadow-comic-sm text-[9px] text-left flex-shrink-0">
-          <div class="font-black border-b border-dark pb-0.5 text-center">💡 사용 가이드</div>
-          <p class="font-bold text-dark/80 mt-1 leading-snug">
-            오른편 **핸드폰 모바일 화면**은 실제 동작하는 인터랙티브 앱과 똑같이 만들어져 있습니다. 직접 화면을 스크롤하거나 슬라이더, 입력창을 조작해 보세요!
-          </p>
+        <!-- Live Quick Stats Magnet & QR Code -->
+        <div class="mt-auto flex flex-col gap-1.5 bg-[#ffd275] border-4 border-dark p-2 rounded-xl shadow-comic-sm text-[8px] sm:text-[9px] text-left flex-shrink-0">
+          <div class="font-black border-b border-dark pb-0.5 text-center">📱 모바일 직접 체험하기</div>
+          <div class="flex items-center gap-1.5">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://kukiilogan-star.github.io/BINGLE_MVP/&color=1a1510&bgcolor=ffd275" class="w-14 h-14 border border-dark rounded shadow-comic-xs object-contain flex-shrink-0" alt="Bingle App QR Code" />
+            <p class="font-bold text-dark/85 leading-snug">
+              발표를 들으시면서 QR 코드를 스캔해 보세요! <strong>BINGLE MVP 서비스</strong>를 직접 체험하실 수 있습니다.
+            </p>
+          </div>
         </div>
       </nav>
       
@@ -340,26 +343,13 @@
           <select onchange="goToSlide(parseInt(this.value))" id="mobile-slide-select" class="w-full bg-white border-bold-sm p-2 rounded-xl font-black text-xs text-dark shadow-comic-sm focus:outline-none">
             <option value="1">01 요약 (Summary)</option>
             <option value="2">02 문제 인식 I (Problem)</option>
-            <option value="3">03 문제 인식 II (Problem)</option>
-            <option value="4">04 사업 컨셉 (Concept)</option>
-            <option value="5">05 회복 로드맵 (Roadmap)</option>
-            <option value="6">06 핵심 솔루션 (Features)</option>
-            <option value="7">07 수익 모델 (BM)</option>
-            <option value="8">08 AI 기술 특허 (AI Tech)</option>
-            <option value="9">09 핵심 디자인권 (Design)</option>
-            <option value="10">10 차별성 분석 (Analysis)</option>
-            <option value="11">11 추진 계획 (Roadmap)</option>
-            <option value="12">12 전문성 보유 역량 (Vision)</option>
-          </select>
-        </div>
-
-        <!-- SCROLLABLE CONTENT BODY (KEEPS VIEWPORT STATIC - RESTRICTED TO FIT HEIGHT PERFECTLY) -->
-        <div id="slide-content-container" class="flex-1 overflow-hidden pr-1 no-scrollbar mb-2 flex flex-col justify-center">
+            <option value="3">03 문제 인식        <!-- SCROLLABLE CONTENT BODY (KEEPS VIEWPORT STATIC - RESTRICTED TO FIT HEIGHT PERFECTLY) -->
+        <div id="slide-content-container" class="flex-1 overflow-hidden pr-1 no-scrollbar mb-1 flex flex-col justify-start">
           
           <!-- SLIDE 1: COVER & SUMMARY -->
-          <div id="slide-1" class="slide-container w-full h-full flex-col justify-between items-center text-center py-2">
-            <div class="flex flex-col gap-2 items-center w-full">
-              <span class="bg-[#ff8c69] border-2 border-dark text-dark font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+          <div id="slide-1" class="slide-container w-full h-full flex-col justify-start items-center text-center gap-1.5 py-1">
+            <div class="flex flex-col gap-1 items-center w-full">
+              <span class="bg-[#ff8c69] border-2 border-dark text-dark font-black px-4 py-0.5 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
                 🚀 라이프스타일 감성 웰니스 플랫폼
               </span>
               <h2 class="text-3xl sm:text-4xl font-black text-dark leading-tight mt-1">
@@ -367,18 +357,18 @@
               </h2>
             </div>
             
-            <!-- 🖼️ 1:1 정사각형 앱 커버 이미지 삽입 (비주얼 중심 극대화) -->
-            <div class="relative w-full max-w-[210px] sm:max-w-[240px] aspect-square my-1.5">
+            <!-- 🖼️ 1:1 정사각형 앱 커버 이미지 삽입 (비주얼 중심 극대화 및 높이 축소로 잘림 완전 방지) -->
+            <div class="relative w-full max-w-[170px] sm:max-w-[190px] aspect-square my-1">
               <img src="images/bingle_square_cover.png" class="w-full h-full object-contain rounded-2xl border-4 border-dark shadow-comic-sm" alt="Bingle App Cover Image" />
             </div>
             
-            <div class="flex flex-col gap-2 w-full items-center">
+            <div class="flex flex-col gap-1.5 w-full items-center">
               <p class="text-xs sm:text-sm font-bold text-gray-700 max-w-xl leading-snug">
                 나를 돌볼 힘이 없을 땐, <strong>빙글이(BINGLE)</strong>를 보살피세요.<br>
                 대리 돌봄(Proxy Care)을 통한 자연스러운 <strong>번아웃 예방 웰니스 서비스</strong>
               </p>
               
-              <div class="border-t-2 border-dark/10 pt-2 w-full flex justify-between items-center text-[10px] font-black text-dark">
+              <div class="border-t-2 border-dark/10 pt-1.5 w-full flex justify-between items-center text-[10px] font-black text-dark">
                 <span>👑 대표 작성자: Logan</span>
                 <span>⚙️ 기술 스택: React & Vite, Matter.js Physics</span>
               </div>
@@ -386,9 +376,9 @@
           </div>
           
           <!-- SLIDE 2: PROBLEM I -->
-          <div id="slide-2" class="slide-container w-full h-full flex-col justify-between items-center py-2">
+          <div id="slide-2" class="slide-container w-full h-full flex-col justify-start items-center gap-1.5 py-1">
             <div class="flex flex-col gap-1 items-center w-full">
-              <span class="bg-red-400 border-2 border-dark text-white font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+              <span class="bg-red-400 border-2 border-dark text-white font-black px-4 py-0.5 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
                 🥵 PROBLEM STATEMENT I
               </span>
               <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
@@ -399,7 +389,7 @@
               </p>
             </div>
             
-            <div class="bg-white border-bold-sm p-4 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-3 my-2">
+            <div class="bg-white border-bold-sm p-3 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-2 my-1">
               <div class="flex items-center gap-2">
                 <span class="text-xl">💥</span>
                 <div><strong>직장인 88.9% 번아웃 경험:</strong> 만성 소진으로 일상 무기력 가속화</div>
@@ -420,9 +410,9 @@
           </div>
           
           <!-- SLIDE 3: PROBLEM II -->
-          <div id="slide-3" class="slide-container w-full h-full flex-col justify-between items-center py-2">
+          <div id="slide-3" class="slide-container w-full h-full flex-col justify-start items-center gap-1.5 py-1">
             <div class="flex flex-col gap-1 items-center w-full">
-              <span class="bg-red-400 border-2 border-dark text-white font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+              <span class="bg-red-400 border-2 border-dark text-white font-black px-4 py-0.5 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
                 ⚠️ PROBLEM STATEMENT II
               </span>
               <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
@@ -433,7 +423,7 @@
               </p>
             </div>
             
-            <div class="bg-white border-bold-sm p-4 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-3 my-2">
+            <div class="bg-white border-bold-sm p-3 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-2 my-1">
               <div class="flex items-center gap-2">
                 <span class="text-xl">📉</span>
                 <div><strong>의지 요구형 한계:</strong> 지쳐있는 유저에게 명상이나 계획 수립 강요</div>
@@ -454,9 +444,9 @@
           </div>
           
           <!-- SLIDE 4: CONCEPT -->
-          <div id="slide-4" class="slide-container w-full h-full flex-col justify-between items-center py-2">
+          <div id="slide-4" class="slide-container w-full h-full flex-col justify-start items-center gap-1.5 py-1">
             <div class="flex flex-col gap-1 items-center w-full">
-              <span class="bg-teal-400 border-2 border-dark text-dark font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+              <span class="bg-teal-400 border-2 border-dark text-dark font-black px-4 py-0.5 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
                 🧬 BUSINESS CORE CONCEPT
               </span>
               <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
@@ -467,14 +457,14 @@
               </p>
             </div>
             
-            <div class="bg-[#e6f6f9] border-bold-sm p-4 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-dark leading-relaxed flex flex-col gap-3 my-2">
+            <div class="bg-[#e6f6f9] border-bold-sm p-3.5 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-dark leading-relaxed flex flex-col gap-2 my-1">
               <div class="flex items-start gap-2">
                 <span class="text-xl">👶</span>
                 <div><strong>아기 도식 (Baby Schema) 투사:</strong> 동글동글한 얼음 요정 빙글이와 정서 교감</div>
               </div>
               <div class="flex items-start gap-2">
                 <span class="text-xl">🧊</span>
-                <div><strong>마음 온도 시각화:</strong> 유저의 누적 피로도를 빙글이의 냉장실 온도(**12°C~100°C**)와 melting/freezing 외형 변화로 투사</div>
+                <div><strong>마음 온도 시각화:</strong> 유저의 누적 피로도를 빙글이의 냉장실 온도(<strong>12°C~100°C</strong>)와 melting/freezing 외형 변화로 투사</div>
               </div>
               <div class="flex items-start gap-2">
                 <span class="text-xl">🔄</span>
@@ -488,9 +478,9 @@
           </div>
           
           <!-- SLIDE 5: ROADMAP -->
-          <div id="slide-5" class="slide-container w-full h-full flex-col justify-between items-center py-2">
+          <div id="slide-5" class="slide-container w-full h-full flex-col justify-start items-center gap-1.5 py-1">
             <div class="flex flex-col gap-1 items-center w-full">
-              <span class="bg-pink-400 border-2 border-dark text-white font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+              <span class="bg-pink-400 border-2 border-dark text-white font-black px-4 py-0.5 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
                 📅 8-WEEK ROADMAP
               </span>
               <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
@@ -501,31 +491,31 @@
               </p>
             </div>
             
-            <div class="grid grid-cols-2 gap-3 w-full text-left my-2">
-              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between">
+            <div class="grid grid-cols-2 gap-2 w-full text-left my-1.5">
+              <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm flex flex-col justify-between">
                 <span class="text-xs font-black text-primary">1단계: 신호 감지 (1~2주)</span>
-                <p class="text-[10px] font-bold text-gray-600 mt-1 leading-snug">
+                <p class="text-[10px] font-bold text-gray-600 mt-0.5 leading-snug">
                   14문항 대화형 온보딩 만화를 통해 정서 소진도 5단계 정밀 분류
                 </p>
               </div>
               
-              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between">
+              <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm flex flex-col justify-between">
                 <span class="text-xs font-black text-primary">2단계: 일상 경계 (3~4주)</span>
-                <p class="text-[10px] font-bold text-gray-600 mt-1 leading-snug">
+                <p class="text-[10px] font-bold text-gray-600 mt-0.5 leading-snug">
                   초저난도 행동(수면/출퇴근) 홈 위젯 연동으로 안정적 루틴 유도
                 </p>
               </div>
               
-              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between">
+              <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm flex flex-col justify-between">
                 <span class="text-xs font-black text-primary">3단계: 행동 조율 (5~6주)</span>
-                <p class="text-[10px] font-bold text-gray-600 mt-1 leading-snug">
+                <p class="text-[10px] font-bold text-gray-600 mt-0.5 leading-snug">
                   분석된 신체 HRV 기반 5대 웰니스 푸드 피딩 및 간접 소셜 얼음동굴 개방
                 </p>
               </div>
               
-              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between">
+              <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm flex flex-col justify-between">
                 <span class="text-xs font-black text-primary">4단계: 자생 루틴 (7~8주)</span>
-                <p class="text-[10px] font-bold text-gray-600 mt-1 leading-snug">
+                <p class="text-[10px] font-bold text-gray-600 mt-0.5 leading-snug">
                   유저 스스로 치유 캘린더를 맞춤 정비하고 자율 관리를 평생 정착
                 </p>
               </div>
@@ -537,9 +527,9 @@
           </div>
           
           <!-- SLIDE 6: FEATURES -->
-          <div id="slide-6" class="slide-container w-full h-full flex-col justify-between items-center py-2">
+          <div id="slide-6" class="slide-container w-full h-full flex-col justify-start items-center gap-1.5 py-1">
             <div class="flex flex-col gap-1 items-center w-full">
-              <span class="bg-yellow-400 border-2 border-dark text-dark font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+              <span class="bg-yellow-400 border-2 border-dark text-dark font-black px-4 py-0.5 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
                 🛠️ CORE FEATURES & STATUS
               </span>
               <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
@@ -550,7 +540,7 @@
               </p>
             </div>
             
-            <div class="bg-white border-bold-sm p-4 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-2.5 my-2">
+            <div class="bg-white border-bold-sm p-3 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-2 my-1.5">
               <div class="flex items-center justify-between">
                 <span class="font-black text-dark">🌱 1. 비치료 스토리 온보딩</span>
                 <span class="bg-[#dcfce7] border border-dark text-dark text-[9px] font-black px-2 py-0.5 rounded-full">개발 완료 🚪</span>
@@ -579,9 +569,9 @@
           </div>
           
           <!-- SLIDE 7: BUSINESS MODEL -->
-          <div id="slide-7" class="slide-container w-full h-full flex-col justify-between items-center py-2">
+          <div id="slide-7" class="slide-container w-full h-full flex-col justify-start items-center gap-1.5 py-1">
             <div class="flex flex-col gap-1 items-center w-full">
-              <span class="bg-green-400 border-2 border-dark text-dark font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+              <span class="bg-green-400 border-2 border-dark text-dark font-black px-4 py-0.5 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
                 🪙 MONETIZATION PIPELINE
               </span>
               <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
@@ -592,8 +582,8 @@
               </p>
             </div>
             
-            <div class="grid grid-cols-3 gap-2.5 w-full text-left my-2">
-              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between h-[155px]">
+            <div class="grid grid-cols-3 gap-2 w-full text-left my-1.5">
+              <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm flex flex-col justify-between h-[135px]">
                 <div class="font-black text-xs text-emerald-800 border-b border-dark/10 pb-0.5">
                   👑 B2C 프리미엄 구독
                 </div>
@@ -603,7 +593,7 @@
                 </p>
               </div>
               
-              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between h-[155px]">
+              <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm flex flex-col justify-between h-[135px]">
                 <div class="font-black text-xs text-emerald-800 border-b border-dark/10 pb-0.5">
                   🛒 D2C 웰니스 Pantry
                 </div>
@@ -613,7 +603,7 @@
                 </p>
               </div>
               
-              <div class="bg-white border-2 border-dark p-3.5 rounded-xl shadow-comic-sm flex flex-col justify-between h-[155px]">
+              <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm flex flex-col justify-between h-[135px]">
                 <div class="font-black text-xs text-emerald-800 border-b border-dark/10 pb-0.5">
                   🏢 B2B 사내 복지 EAP
                 </div>
@@ -630,9 +620,9 @@
           </div>
           
           <!-- SLIDE 8: AI TECH -->
-          <div id="slide-8" class="slide-container w-full h-full flex-col justify-between items-center py-2">
+          <div id="slide-8" class="slide-container w-full h-full flex-col justify-start items-center gap-1.5 py-1">
             <div class="flex flex-col gap-1 items-center w-full">
-              <span class="bg-indigo-400 border-2 border-dark text-white font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+              <span class="bg-indigo-400 border-2 border-dark text-white font-black px-4 py-0.5 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
                 🤖 PATENT CORE TECHNOLOGY
               </span>
               <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
@@ -643,7 +633,7 @@
               </p>
             </div>
             
-            <div class="bg-white border-bold-sm p-4 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-3 my-2">
+            <div class="bg-white border-bold-sm p-3 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-2 my-1">
               <div class="flex items-center gap-3">
                 <span class="w-8 h-8 rounded-full bg-indigo-100 border-2 border-dark flex items-center justify-center font-black text-indigo-700 flex-shrink-0 text-xs">1</span>
                 <div><strong>KoBERT 성찰 일기 자연어 파싱:</strong> 일기 감정 어조를 감지하여 스트레스 온도 수치(12°C~100°C)로 기계 매핑</div>
@@ -664,9 +654,9 @@
           </div>
           
           <!-- SLIDE 9: INTELLECTUAL PROPERTY -->
-          <div id="slide-9" class="slide-container w-full h-full flex-col justify-between items-center py-2">
+          <div id="slide-9" class="slide-container w-full h-full flex-col justify-start items-center gap-1.5 py-1">
             <div class="flex flex-col gap-1 items-center w-full">
-              <span class="bg-violet-400 border-2 border-dark text-white font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+              <span class="bg-violet-400 border-2 border-dark text-white font-black px-4 py-0.5 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
                 🛡️ INTELLECTUAL PROPERTY
               </span>
               <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
@@ -677,31 +667,31 @@
               </p>
             </div>
             
-            <div class="grid grid-cols-3 gap-2.5 w-full text-left my-2">
-              <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm flex flex-col justify-between h-[155px]">
+            <div class="grid grid-cols-3 gap-2 w-full text-left my-1.5">
+              <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm flex flex-col justify-between h-[135px]">
                 <div class="font-black text-xs text-violet-850 border-b border-dark/10 pb-0.5">
                   ① 화상디자인 (GUI)
                 </div>
                 <p class="text-[9px] font-bold text-gray-600 leading-snug mt-1 flex-1">
-                  스마트폰 속 **3D 냉장고 콕핏** UI 레이아웃 선반 격자 배치의 고유 권리 보호
+                  스마트폰 속 <strong>3D 냉장고 콕핏</strong> UI 레이아웃 선반 격자 배치의 고유 권리 보호
                 </p>
               </div>
               
-              <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm flex flex-col justify-between h-[155px]">
+              <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm flex flex-col justify-between h-[135px]">
                 <div class="font-black text-xs text-violet-850 border-b border-dark/10 pb-0.5">
                   ② 동적 화상디자인 모션
                 </div>
                 <p class="text-[9px] font-bold text-gray-600 leading-snug mt-1 flex-1">
-                  냉장고 입체 **Swinging 모션** 및 스트레스 온도에 따른 캐릭터 **Melting 모션**의 UX 권리 독점
+                  냉장고 입체 <strong>Swinging 모션</strong> 및 스트레스 온도에 따른 캐릭터 <strong>Melting 모션</strong>의 UX 권리 독점
                 </p>
               </div>
               
-              <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm flex flex-col justify-between h-[155px]">
+              <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm flex flex-col justify-between h-[135px]">
                 <div class="font-black text-xs text-violet-850 border-b border-dark/10 pb-0.5">
                   ③ 캐릭터 IP 디자인권
                 </div>
                 <p class="text-[9px] font-bold text-gray-600 leading-snug mt-1 flex-1">
-                  치유 핵심 페르소나인 **얼음 요정 빙글이** 캐릭터 온도별 4대 감정 변이 디자인 출원 완료
+                  치유 핵심 페르소나인 <strong>얼음 요정 빙글이</strong> 캐릭터 온도별 4대 감정 변이 디자인 출원 완료
                 </p>
               </div>
             </div>
@@ -712,9 +702,9 @@
           </div>
           
           <!-- SLIDE 10: COMPETITOR ANALYSIS -->
-          <div id="slide-10" class="slide-container w-full h-full flex-col justify-between items-center py-2">
+          <div id="slide-10" class="slide-container w-full h-full flex-col justify-start items-center gap-1.5 py-1">
             <div class="flex flex-col gap-1 items-center w-full">
-              <span class="bg-sky-400 border-2 border-dark text-dark font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+              <span class="bg-sky-400 border-2 border-dark text-dark font-black px-4 py-0.5 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
                 📊 COMPETITOR ANALYSIS
               </span>
               <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
@@ -726,32 +716,32 @@
             </div>
             
             <!-- 📊 타사 서비스와의 비교 분석 그리드 - 화면 꽉 차게 콤팩트 가독성 극대화 -->
-            <div class="border-4 border-dark rounded-xl overflow-hidden shadow-comic-sm bg-white w-full text-[10px] font-bold text-dark my-2">
+            <div class="border-4 border-dark rounded-xl overflow-hidden shadow-comic-sm bg-white w-full text-[10px] font-bold text-dark my-1.5">
               <div class="grid grid-cols-4 bg-[#ffcb2f] border-b-2 border-dark p-1 text-center font-black">
                 <span>비교 항목</span>
                 <span class="text-primary">BINGLE</span>
                 <span>Calm / 명상앱</span>
                 <span>마이루틴 / 계획앱</span>
               </div>
-              <div class="grid grid-cols-4 border-b border-dark/10 p-1.5 items-center">
+              <div class="grid grid-cols-4 border-b border-dark/10 p-1 items-center">
                 <span class="bg-gray-50 p-0.5 rounded text-center">치유 기제</span>
                 <span class="text-primary text-center font-black">대리 돌봄 (행동활성화)</span>
                 <span class="text-center text-gray-500">자발적 명상 청취</span>
                 <span class="text-center text-gray-500">투두 계획 등록</span>
               </div>
-              <div class="grid grid-cols-4 border-b border-dark/10 p-1.5 items-center">
+              <div class="grid grid-cols-4 border-b border-dark/10 p-1 items-center">
                 <span class="bg-gray-50 p-0.5 rounded text-center">리텐션 유도</span>
                 <span class="text-primary text-center font-black">초저난도 5분 + 캐릭터 유대</span>
                 <span class="text-center text-gray-500">사용자 자발적 의지 요구</span>
                 <span class="text-center text-gray-500">사용자 본인 의지 의존</span>
               </div>
-              <div class="grid grid-cols-4 border-b border-dark/10 p-1.5 items-center">
+              <div class="grid grid-cols-4 border-b border-dark/10 p-1 items-center">
                 <span class="bg-gray-50 p-0.5 rounded text-center">비주얼</span>
                 <span class="text-primary text-center font-black">카툰 만화 콕핏 (Stitch)</span>
                 <span class="text-center text-gray-500">모던 플랫 다크 테마</span>
                 <span class="text-center text-gray-500">심플 이모지 격자판</span>
               </div>
-              <div class="grid grid-cols-4 p-1.5 items-center">
+              <div class="grid grid-cols-4 p-1 items-center">
                 <span class="bg-gray-50 p-0.5 rounded text-center">AI 기술</span>
                 <span class="text-primary text-center font-black">KoBERT 감정온도 + 센싱</span>
                 <span class="text-center text-gray-500">오디오 콘텐츠 추천</span>
@@ -765,78 +755,86 @@
           </div>
           
           <!-- SLIDE 11: PUBLIC DATA & MILESTONES -->
-          <div id="slide-11" class="slide-container w-full h-full flex-col justify-between items-center py-2">
+          <div id="slide-11" class="slide-container w-full h-full flex-col justify-start items-center gap-1.5 py-1">
             <div class="flex flex-col gap-1 items-center w-full">
-              <span class="bg-emerald-400 border-2 border-dark text-dark font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
+              <span class="bg-emerald-400 border-2 border-dark text-dark font-black px-4 py-0.5 text-xs rounded-full shadow-comic-sm rotate-[-1deg] w-fit">
                 📊 DATA & MILESTONES
               </span>
               <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
                 보건데이터 활용 및 <span class="text-emerald-600 font-black">단계별 마일스톤</span>
               </h2>
               <p class="text-xs font-bold text-gray-500">
-                공공보건 데이터를 결합한 의학적 신뢰 구축 및 단·중·장기 계획
+                공공보건 데이터를 결합한 의학적 신뢰 구축 및 기대 매출액 추정
               </p>
             </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full text-left my-2 text-xs">
-              <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm flex flex-col gap-1">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full text-left my-1.5 text-xs">
+              <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm flex flex-col gap-1">
                 <span class="font-black text-emerald-800 border-b border-dark/10 pb-0.5">📁 보건의료 공공데이터 활용</span>
-                <ul class="list-disc pl-4 text-[10px] text-gray-600 leading-snug flex flex-col gap-1 mt-1">
+                <ul class="list-disc pl-4 text-[10px] text-gray-600 leading-snug flex flex-col gap-0.5 mt-0.5">
                   <li><strong>질병관리청 건강통계:</strong> 연령/직군별 표준 수면 및 걸음 수 기준치 필터 반영</li>
                   <li><strong>보건복지부 정신건강 실태:</strong> 치료 저항층 분석 기반 거부감 없는 카툰 콕핏 기획</li>
                 </ul>
               </div>
               
-              <div class="bg-white border-2 border-dark p-3 rounded-xl shadow-comic-sm flex flex-col gap-1">
-                <span class="font-black text-emerald-800 border-b border-dark/10 pb-0.5">📅 추진 로드맵</span>
-                <ul class="list-disc pl-4 text-[10px] text-gray-600 leading-snug flex flex-col gap-1 mt-1">
-                  <li><strong>단기 (~26.07):</strong> MVP 완료 및 번아웃 척도 임상 효과 검증 (소규모 POC)</li>
-                  <li><strong>중기 (~26.12):</strong> MAU 5만, 유료구독 7.5천 명, IT 기업 EAP 계약 수주</li>
-                  <li><strong>장기 (27.01~):</strong> 일본 번아웃 시장 로컬라이징 출시 & 글로벌 진출</li>
+              <div class="bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm flex flex-col gap-1">
+                <span class="font-black text-emerald-800 border-b border-dark/10 pb-0.5">📅 추진 로드맵 & 매출 목표</span>
+                <ul class="list-disc pl-4 text-[10px] text-gray-600 leading-snug flex flex-col gap-0.5 mt-0.5">
+                  <li><strong>단기 (~26.07):</strong> MVP 완료 및 번아웃 예방 효과 검증 (소규모 POC)</li>
+                  <li><strong>중기 (~26.12):</strong> MAU 5만, 유료구독 7.5천 명 확보 <span class="text-emerald-600 font-black">(월 구독 매출 약 3,700만~7,400만 원 / 연 4.4억~8.9억 원)</span>, IT 기업 B2B EAP 계약 수주 (연 1억+ 추가)</li>
+                  <li><strong>장기 (27.01~):</strong> 일본 번아웃 시장 로컬라이징 출시 & 글로벌 진출 (연 매출 20억+ 목표)</li>
                 </ul>
               </div>
             </div>
             
             <p class="text-xs font-black text-emerald-600">
-              💡 신뢰할 수 있는 공공 보건 데이터를 기반으로 의학적 타당성과 안전한 성장을 완수합니다
+              💡 신뢰할 수 있는 공공 보건 데이터를 기반으로 의학적 타당성과 안정적인 성장을 완수합니다
             </p>
           </div>
           
           <!-- SLIDE 12: CAPABILITY -->
-          <div id="slide-12" class="slide-container w-full h-full flex-col justify-between items-center py-2">
+          <div id="slide-12" class="slide-container w-full h-full flex-col justify-start items-center gap-1.5 py-1">
             <div class="flex flex-col gap-1 items-center w-full">
-              <span class="bg-rose-400 border-2 border-dark text-white font-black px-4 py-1 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
+              <span class="bg-rose-400 border-2 border-dark text-white font-black px-4 py-0.5 text-xs rounded-full shadow-comic-sm rotate-[1deg] w-fit">
                 🔮 VISION & CAPABILITY
               </span>
               <h2 class="text-2xl sm:text-3xl font-black text-dark leading-tight mt-1">
                 사회적 파급력 및 <span class="text-rose-500 font-black">전문성 보유 역량</span>
               </h2>
               <p class="text-xs font-bold text-gray-500">
-                BINGLE 개발 전문팀 역량 및 확장 아키텍처 기술 명세
+                BINGLE 개발팀의 1인 풀스택 프로덕트 구현 역량 및 확장 아키텍처
               </p>
             </div>
             
-            <div class="bg-white border-bold-sm p-4 w-full rounded-2xl shadow-comic-sm text-xs sm:text-sm font-bold text-gray-700 leading-relaxed flex flex-col gap-3 my-2">
-              <div class="flex items-start gap-2">
-                <span class="text-xl">👥</span>
-                <div>
-                  <strong>전문성 보유 역량:</strong> 인지행동 치유 연구 전문 전공자 + 특허/디자인 출원 수상이력을 완비한 창업 대표팀 + Web 가속 풀스택 파워의 엔지니어링 역량
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 w-full text-left my-1 text-xs">
+              <!-- Column 1 & 2: Builder Capabilities -->
+              <div class="sm:col-span-2 bg-white border-2 border-dark p-2.5 rounded-xl shadow-comic-sm flex flex-col gap-2">
+                <div class="flex items-start gap-2">
+                  <span class="text-lg">👥</span>
+                  <div>
+                    <strong>풀스택 프로덕트 구현 역량:</strong> 기획부터 프론트엔드·백엔드 가속 구현, 캐릭터 물리 엔진 연동까지 1인 풀스택으로 린(Lean)하고 민첩하게 프로덕트를 직접 빌드하는 강력한 엔지니어링 실행력
+                  </div>
+                </div>
+                <div class="flex items-start gap-2 border-t border-dark/10 pt-1.5">
+                  <span class="text-lg">💻</span>
+                  <div>
+                    <strong>기술적 차별성:</strong> React 18 & Vite, Matter.js Physics 가속, HTML5 Canvas 60fps 실시간 GPS 궤적 드로잉, Firebase WebSocket 실시간 DB 및 하이브리드 캐시
+                  </div>
                 </div>
               </div>
-              <div class="flex items-start gap-2">
-                <span class="text-xl">💻</span>
-                <div>
-                  <strong>기술적 차별성:</strong> React 18 & Vite, Matter.js Physics 가속, HTML5 Canvas 60fps 실시간 GPS 궤적 드로잉, Firebase WebSocket 실시간 DB 및 하이브리드 캐시
-                </div>
+              
+              <!-- Column 3: App QR Code -->
+              <div class="bg-amber-100 border-2 border-dark p-2 rounded-xl shadow-comic-sm flex flex-col items-center justify-center text-center">
+                <span class="font-black text-amber-800 text-[10px] mb-1">📱 모바일 앱 체험하기</span>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kukiilogan-star.github.io/BINGLE_MVP/&color=1a1510&bgcolor=fef3c7" class="w-16 h-16 sm:w-20 sm:h-20 border border-dark rounded shadow-comic-xs object-contain" alt="App QR Code" />
+                <span class="text-[8px] font-bold text-gray-500 mt-1">발표 중 직접 스캔하여<br>BINGLE을 플레이하세요!</span>
               </div>
             </div>
             
             <p class="text-xs font-black text-rose-500">
-              💡 기획, 의과학, 하드웨어 센싱 결합 및 고성능 프론트엔드 연동을 직접 리드할 수 있는 기술진 확보
+              💡 외부 의존 없이 기획부터 설계, 풀스택 개발까지 초고속으로 실현할 수 있는 유연한 실행력을 자랑합니다
             </p>
           </div>
-          
-        </div>
         
         <!-- FIXED BOTTOM SLIDE NAV (LOCKED IN PLACE AT ALL TIMES) -->
         <div class="flex justify-between items-center border-t-2 border-dark pt-3 flex-shrink-0">
@@ -1222,8 +1220,8 @@
                   
                   <div class="w-full bg-white/95 border-2 border-dark p-1.5 rounded-xl shadow-comic-sm z-10 flex flex-col gap-1 text-[8px] text-left">
                     <div class="font-bold border-b border-dark/10 pb-0.5 text-center">💬 응원 로그 (간접 소통)</div>
-                    <div>👍 **산책마스터**: 이글루 배경 자는 모습 진짜 극락이네요!</div>
-                    <div class="text-[#0ac1ab]">🧊 **나**: 시원한 냉기 팩 배달 성공! (+10 XP)</div>
+                    <div>👍 <strong>산책마스터</strong>: 이글루 배경 자는 모습 진짜 극락이네요!</div>
+                    <div class="text-[#0ac1ab]">🧊 <strong>나</strong>: 시원한 냉기 팩 배달 성공! (+10 XP)</div>
                   </div>
                 </div>
               </div>
@@ -1297,11 +1295,18 @@
           Object.defineProperty(HTMLImageElement.prototype, 'src', {
             set: function(val) {
               if (typeof val === 'string') {
-                if (val.includes('/images/') && !val.includes('/public/images/')) {
-                  const parts = val.split('/images/');
-                  val = parts[0] + '/public/images/' + parts[1];
-                } else if (val.startsWith('images/') && !val.startsWith('public/')) {
-                  val = 'public/' + val;
+                // Prevent double prefixing
+                if (val.includes('public/public/')) {
+                  val = val.replace('public/public/', 'public/');
+                }
+                
+                // Rewrite path
+                if (val.includes('images/') && !val.includes('public/images/')) {
+                  if (val.includes('/images/')) {
+                    val = val.replace('/images/', '/public/images/');
+                  } else if (val.startsWith('images/')) {
+                    val = 'public/' + val;
+                  }
                 }
               }
               originalSrcDescriptor.set.call(this, val);
@@ -1312,8 +1317,8 @@
           });
         }
         
-        // Rewrite static background images on DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', () => {
+        // Rewrite static background images
+        const rewriteBg = () => {
           document.querySelectorAll('[style*="background-image"]').forEach(el => {
             const style = el.getAttribute('style');
             if (style && style.includes("url('images/")) {
@@ -1322,7 +1327,13 @@
               el.setAttribute('style', style.replace('url("images/', 'url("public/images/'));
             }
           });
-        });
+        };
+        
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', rewriteBg);
+        } else {
+          rewriteBg();
+        }
       }
 
       let currentSlide = 1;
