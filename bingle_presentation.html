@@ -219,22 +219,22 @@
       }
 
       /* Bulletproof Slide 1 Custom Typography overrides (Beats ancestor specificity (1,1,0) to prevent clipping) */
-      #slides-section #slide-1 .text-[10px] { font-size: 16px !important; }
-      #slides-section #slide-1 .text-[11px] { font-size: 17px !important; }
-      #slides-section #slide-1 .text-xs { font-size: 18px !important; }
-      #slides-section #slide-1 .text-[13px] { font-size: 19px !important; }
-      #slides-section #slide-1 .text-[13.5px] { font-size: 19.5px !important; }
-      #slides-section #slide-1 .text-sm { font-size: 20px !important; }
-      #slides-section #slide-1 .text-[14px] { font-size: 20px !important; }
-      #slides-section #slide-1 .text-[14.5px] { font-size: 21px !important; }
-      #slides-section #slide-1 .text-[15px] { font-size: 22px !important; }
-      #slides-section #slide-1 .text-[16.5px] { font-size: 23px !important; }
-      #slides-section #slide-1 .text-[18px] { font-size: 25px !important; }
-      #slides-section #slide-1 .text-xl { font-size: 32px !important; }
-      #slides-section #slide-1 .text-2xl { font-size: 38px !important; }
-      #slides-section #slide-1 .text-3xl { font-size: 46px !important; }
+      #slides-section #slide-1 .text-[10px] { font-size: 18px !important; }
+      #slides-section #slide-1 .text-[11px] { font-size: 19px !important; }
+      #slides-section #slide-1 .text-xs { font-size: 21px !important; }
+      #slides-section #slide-1 .text-[13px] { font-size: 22px !important; }
+      #slides-section #slide-1 .text-[13.5px] { font-size: 22.5px !important; }
+      #slides-section #slide-1 .text-sm { font-size: 23px !important; }
+      #slides-section #slide-1 .text-[14px] { font-size: 23px !important; }
+      #slides-section #slide-1 .text-[14.5px] { font-size: 24px !important; }
+      #slides-section #slide-1 .text-[15px] { font-size: 25px !important; }
+      #slides-section #slide-1 .text-[16.5px] { font-size: 26px !important; }
+      #slides-section #slide-1 .text-[18px] { font-size: 28px !important; }
+      #slides-section #slide-1 .text-xl { font-size: 36px !important; }
+      #slides-section #slide-1 .text-2xl { font-size: 42px !important; }
+      #slides-section #slide-1 .text-3xl { font-size: 50px !important; }
       #slides-section #slide-1 p, #slides-section #slide-1 span, #slides-section #slide-1 li {
-        line-height: 1.5 !important;
+        line-height: 1.4 !important;
       }
     </style>
   </head>
@@ -427,14 +427,34 @@
             <!-- 2-Column Cover Layout: Visual Left, Index/TOC Right (Saves height to fit in one glance) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full items-stretch my-1 flex-shrink-0">
               <!-- Left Column: App Description & Presenter (1/2 width) -->
-              <div class="bg-white/50 border-4 border-dark p-3.5 rounded-2xl shadow-comic flex flex-col justify-between gap-3 flex-shrink-0">
-                <div class="flex-1 flex flex-col justify-center items-center">
-                  <p class="text-sm sm:text-[16.5px] lg:text-[18px] font-black text-gray-900 leading-snug">
-                    나를 돌볼 힘이 없을 땐, <span class="text-primary font-black">빙글이(BINGLE)</span>를 보살피세요.<br>
-                    대리 돌봄(Proxy Care)을 통한 자연스러운 <span class="text-primary font-black">번아웃 예방 웰니스 서비스</span>
-                  </p>
+              <div class="bg-white/95 border-4 border-dark p-4 rounded-2xl shadow-comic flex flex-col justify-between gap-3.5 flex-shrink-0 text-left">
+                <span class="font-black text-xs sm:text-[14px] lg:text-[15px] text-dark border-b-2 border-dark/35 pb-1.5 mb-1 flex items-center gap-1 flex-shrink-0">
+                  🌟 서비스 핵심 가치 (Core Value)
+                </span>
+                
+                <div class="flex-1 flex flex-col justify-center gap-3.5 my-1">
+                  <div class="flex items-start gap-2.5">
+                    <span class="text-xl sm:text-2xl mt-0.5 flex-shrink-0">🎯</span>
+                    <div>
+                      <h4 class="font-black text-[15px] sm:text-[16.5px] lg:text-[18px] text-primary leading-tight">대리 돌봄 (Proxy Care)</h4>
+                      <p class="font-bold text-xs sm:text-[13.5px] lg:text-[14.5px] text-gray-800 leading-snug mt-1">
+                        나를 돌볼 여력이 없을 때, 귀여운 가상 캐릭터 <span class="text-primary font-black">빙글이(BINGLE)</span>를 대신 보살피며 자연스러운 정서적 위안과 인지 변화를 획득
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-start gap-2.5">
+                    <span class="text-xl sm:text-2xl mt-0.5 flex-shrink-0">🌡️</span>
+                    <div>
+                      <h4 class="font-black text-[15px] sm:text-[16.5px] lg:text-[18px] text-primary leading-tight">자가 진단 및 웰니스 액션</h4>
+                      <p class="font-bold text-xs sm:text-[13.5px] lg:text-[14.5px] text-gray-800 leading-snug mt-1">
+                        실시간 <strong>마음 온도 관리</strong> 및 뽀모도로 포커스, GPS 산책, AI 일기 쓰기를 통해 심리 상담의 장벽을 낮추는 지속 가능한 일상 습관 형성
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div class="border-t-2 border-dark/15 pt-1.5 w-full flex justify-center items-center text-[11px] sm:text-[13px] lg:text-[14px] font-black text-dark max-w-md mx-auto flex-shrink-0 mt-0.5">
+
+                <div class="border-t-2 border-dark/15 pt-2 w-full flex justify-center items-center text-[11px] sm:text-[13px] lg:text-[14px] font-black text-dark flex-shrink-0">
                   <span>👑 발표자: KU 자유전공학부 202613175 박규빈</span>
                 </div>
               </div>
