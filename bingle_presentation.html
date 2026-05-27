@@ -412,9 +412,9 @@
             </div>
             
             <!-- 2-Column Cover Layout: Visual Left, Index/TOC Right (Saves height to fit in one glance) -->
-            <div class="grid grid-cols-1 sm:grid-cols-5 gap-3.5 w-full items-center my-0.5 flex-shrink-0">
+            <div class="grid grid-cols-1 sm:grid-cols-5 gap-3.5 w-full items-stretch my-0.5 flex-shrink-0">
               <!-- Left Column: App Cover Image & Presenter (3/5 width) -->
-              <div class="sm:col-span-3 flex flex-col items-center gap-1 flex-shrink-0">
+              <div class="sm:col-span-3 bg-white/50 border-4 border-dark p-3 rounded-2xl shadow-comic flex flex-col items-center justify-between gap-2 flex-shrink-0">
                 <a href="https://kukiilogan-star.github.io/BINGLE_MVP/" target="_blank" class="relative w-full max-w-[65px] sm:max-w-[75px] lg:max-w-[85px] aspect-square flex-shrink-0 hover:scale-105 transition-transform block">
                   <img src="images/bingle_square_cover.png" class="w-full h-full object-contain rounded-xl border-4 border-dark shadow-comic-sm" alt="Bingle App Cover Image" />
                 </a>
@@ -428,11 +428,11 @@
               </div>
               
               <!-- Right Column: Table of Contents / 발표 목차 (2/5 width) -->
-              <div class="sm:col-span-2 bg-[#ffd275]/35 border-4 border-dark p-2 sm:p-2.5 rounded-2xl shadow-comic text-left h-full flex flex-col justify-center flex-shrink-0">
-                <span class="font-black text-xs sm:text-[14px] lg:text-[15px] text-dark border-b-2 border-dark/35 pb-0.5 mb-1 flex items-center gap-1 flex-shrink-0">
+              <div class="sm:col-span-2 bg-[#ffd275]/35 border-4 border-dark p-3 rounded-2xl shadow-comic text-left flex flex-col justify-between flex-shrink-0">
+                <span class="font-black text-xs sm:text-[14px] lg:text-[15px] text-dark border-b-2 border-dark/35 pb-1 mb-1.5 flex items-center gap-1 flex-shrink-0">
                   📋 발표 목차 (Contents)
                 </span>
-                <ul class="text-xs sm:text-[13.5px] lg:text-[14.5px] font-black text-gray-900 leading-snug flex flex-col gap-0.5 sm:gap-1">
+                <ul class="text-xs sm:text-[13.5px] lg:text-[14.5px] font-black text-gray-900 leading-snug flex flex-col gap-1 sm:gap-1.5 flex-1 justify-center">
                   <li><span class="text-primary font-black">01.</span> 요약 및 개요 (Summary)</li>
                   <li><span class="text-primary font-black">02.</span> 문제 인식 (Problem Statement)</li>
                   <li><span class="text-primary font-black">03.</span> 해결 대안 (BINGLE Solution)</li>
