@@ -183,6 +183,40 @@
         padding: 0 6px;
         border-radius: 6px;
       }
+
+      /* PDF / Print Full Dashboard Style */
+      @media print {
+        @page {
+          size: 1440px 900px;
+          margin: 0;
+        }
+        body, html {
+          background: #faf5f0 !important;
+          width: 1440px !important;
+          height: 900px !important;
+          overflow: hidden !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+        /* Hide mobile-specific layout switcher tab buttons in print to keep it clean */
+        .lg\:hidden,
+        #mobile-slide-select {
+          display: none !important;
+        }
+        main {
+          height: calc(900px - 85px) !important;
+          overflow: hidden !important;
+          display: flex !important;
+          flex-direction: row !important;
+        }
+        #slides-section {
+          height: 100% !important;
+          overflow: hidden !important;
+        }
+        #mockup-section {
+          display: flex !important; /* Force visible in print even if browser viewport is narrow */
+        }
+      }
     </style>
   </head>
   <body class="halftone-bg h-screen flex flex-col p-3 overflow-hidden">
@@ -375,9 +409,9 @@
             <div class="grid grid-cols-1 sm:grid-cols-5 gap-3.5 w-full items-center my-0.5 flex-shrink-0">
               <!-- Left Column: App Cover Image & Presenter (3/5 width) -->
               <div class="sm:col-span-3 flex flex-col items-center gap-1 flex-shrink-0">
-                <div class="relative w-full max-w-[65px] sm:max-w-[75px] lg:max-w-[85px] aspect-square flex-shrink-0">
+                <a href="https://kukiilogan-star.github.io/BINGLE_MVP/" target="_blank" class="relative w-full max-w-[65px] sm:max-w-[75px] lg:max-w-[85px] aspect-square flex-shrink-0 hover:scale-105 transition-transform block">
                   <img src="images/bingle_square_cover.png" class="w-full h-full object-contain rounded-xl border-4 border-dark shadow-comic-sm" alt="Bingle App Cover Image" />
-                </div>
+                </a>
                 <p class="text-sm sm:text-[16.5px] lg:text-[18px] font-black text-gray-900 leading-snug">
                   나를 돌볼 힘이 없을 땐, <span class="text-primary font-black">빙글이(BINGLE)</span>를 보살피세요.<br>
                   대리 돌봄(Proxy Care)을 통한 자연스러운 <span class="text-primary font-black">번아웃 예방 웰니스 서비스</span>
@@ -848,11 +882,11 @@
               </div>
               
               <!-- Column 3: App QR Code -->
-              <div class="bg-amber-100 border-2 border-dark p-2 rounded-xl shadow-comic-sm flex flex-col items-center justify-center text-center">
+              <a href="https://kukiilogan-star.github.io/BINGLE_MVP/" target="_blank" class="bg-amber-100 border-2 border-dark p-2 rounded-xl shadow-comic-sm flex flex-col items-center justify-center text-center hover:bg-amber-200 transition-colors block">
                 <span class="font-black text-amber-800 text-[10px] mb-1">📱 모바일 앱 체험하기</span>
                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kukiilogan-star.github.io/BINGLE_MVP/&color=1a1510&bgcolor=fef3c7" class="w-16 h-16 sm:w-20 sm:h-20 border border-dark rounded shadow-comic-xs object-contain" alt="App QR Code" />
                 <span class="text-[8px] font-bold text-gray-500 mt-1">발표 중 직접 스캔하여<br>BINGLE을 플레이하세요!</span>
-              </div>
+              </a>
             </div>
             
             <p class="text-xs font-black text-rose-500">
