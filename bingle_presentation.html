@@ -259,6 +259,94 @@
         font-size: 13.5px !important;
         padding: 4px 6px !important;
       }
+
+      /* Slide-specific title and text scale-down overrides to prevent wrapping & clipping on 2,3,10,12 */
+      #slides-section #slide-2 h2,
+      #slides-section #slide-3 h2,
+      #slides-section #slide-10 h2,
+      #slides-section #slide-12 h2 {
+        font-size: 38px !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+      }
+
+      #slides-section #slide-2 p.text-gray-500,
+      #slides-section #slide-3 p.text-gray-500,
+      #slides-section #slide-10 p.text-gray-500,
+      #slides-section #slide-12 p.text-gray-500 {
+        font-size: 18px !important;
+        line-height: 1.3 !important;
+        margin-top: 2px !important;
+        margin-bottom: 4px !important;
+      }
+
+      /* Slide 2 Content Overrides */
+      #slides-section #slide-2 .bg-white div {
+        font-size: 18.5px !important;
+        line-height: 1.4 !important;
+      }
+      #slides-section #slide-2 .bg-white .text-xl {
+        font-size: 24px !important;
+      }
+      #slides-section #slide-2 p.text-red-500 {
+        font-size: 16.5px !important;
+        margin-top: 4px !important;
+      }
+
+      /* Slide 3 Grid Overrides */
+      #slides-section #slide-3 .grid span {
+        font-size: 17px !important;
+        line-height: 1.3 !important;
+      }
+      #slides-section #slide-3 .grid div {
+        font-size: 15.5px !important;
+        line-height: 1.4 !important;
+      }
+      #slides-section #slide-3 .grid div div {
+        font-size: 13px !important;
+        line-height: 1.3 !important;
+        margin-top: 2px !important;
+      }
+      #slides-section #slide-3 p.text-red-500 {
+        font-size: 16.5px !important;
+        margin-top: 4px !important;
+      }
+
+      /* Slide 10 Caption Overrides */
+      #slides-section #slide-10 p.text-sky-600 {
+        font-size: 16.5px !important;
+        margin-top: 4px !important;
+      }
+
+      /* Slide 12 Grid & QR Overrides */
+      #slides-section #slide-12 .grid div {
+        font-size: 15px !important;
+        line-height: 1.4 !important;
+      }
+      #slides-section #slide-12 .grid strong {
+        font-size: 15px !important;
+      }
+      #slides-section #slide-12 .grid .text-lg {
+        font-size: 20px !important;
+      }
+      #slides-section #slide-12 .grid a {
+        padding: 6px !important;
+      }
+      #slides-section #slide-12 .grid a span.text-amber-800 {
+        font-size: 12px !important;
+      }
+      #slides-section #slide-12 .grid a img {
+        width: 72px !important;
+        height: 72px !important;
+      }
+      #slides-section #slide-12 .grid a span.text-gray-500 {
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+      }
+      #slides-section #slide-12 p.text-rose-500 {
+        font-size: 16.5px !important;
+        margin-top: 4px !important;
+      }
     </style>
   </head>
   <body class="halftone-bg h-screen flex flex-col p-3 overflow-hidden">
