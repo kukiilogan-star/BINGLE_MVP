@@ -218,10 +218,23 @@
         }
       }
 
-      /* Shield Slide 1 from massive big-screen presentation font size overrides to prevent layout clipping */
-      #slide-1, #slide-1 * {
-        font-size: revert !important;
-        line-height: revert !important;
+      /* Bulletproof Slide 1 Custom Typography overrides (Beats ancestor specificity (1,1,0) to prevent clipping) */
+      #slides-section #slide-1 .text-[10px] { font-size: 11px !important; }
+      #slides-section #slide-1 .text-[11px] { font-size: 11.5px !important; }
+      #slides-section #slide-1 .text-xs { font-size: 12px !important; }
+      #slides-section #slide-1 .text-[13px] { font-size: 13px !important; }
+      #slides-section #slide-1 .text-[13.5px] { font-size: 13px !important; }
+      #slides-section #slide-1 .text-sm { font-size: 13px !important; }
+      #slides-section #slide-1 .text-[14px] { font-size: 14px !important; }
+      #slides-section #slide-1 .text-[14.5px] { font-size: 14px !important; }
+      #slides-section #slide-1 .text-[15px] { font-size: 14.5px !important; }
+      #slides-section #slide-1 .text-[16.5px] { font-size: 15px !important; }
+      #slides-section #slide-1 .text-[18px] { font-size: 16px !important; }
+      #slides-section #slide-1 .text-xl { font-size: 18px !important; }
+      #slides-section #slide-1 .text-2xl { font-size: 22px !important; }
+      #slides-section #slide-1 .text-3xl { font-size: 26px !important; }
+      #slides-section #slide-1 p, #slides-section #slide-1 span, #slides-section #slide-1 li {
+        line-height: 1.4 !important;
       }
     </style>
   </head>
