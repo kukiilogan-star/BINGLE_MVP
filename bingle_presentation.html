@@ -217,6 +217,12 @@
           display: flex !important; /* Force visible in print even if browser viewport is narrow */
         }
       }
+
+      /* Shield Slide 1 from massive big-screen presentation font size overrides to prevent layout clipping */
+      #slide-1, #slide-1 * {
+        font-size: revert !important;
+        line-height: revert !important;
+      }
     </style>
   </head>
   <body class="halftone-bg h-screen flex flex-col p-3 overflow-hidden">
@@ -774,7 +780,10 @@
               <div class="grid grid-cols-4 bg-[#ffcb2f] border-b-4 border-dark p-2 sm:p-2.5 text-center font-black text-xs sm:text-sm">
                 <span>비교 항목</span>
                 <span class="text-primary font-black">BINGLE</span>
-                <span>비대면 심리상담/진단 앱</span>
+                <span class="flex flex-col justify-center items-center leading-tight">
+                  <span>비대면 심리상담/진단 앱</span>
+                  <span class="text-[9px] sm:text-[10px] font-bold text-dark/65 mt-0.5">(트로스트, 마인드카페 등)</span>
+                </span>
                 <span>마이루틴 / 계획앱</span>
               </div>
               <div class="grid grid-cols-4 border-b-2 border-dark/15 p-2 sm:p-2.5 items-center">
